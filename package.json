@@ -1,25 +1,29 @@
 {
-    "name": "minikit",
+    "name": "@ajay007e/minikit",
     "version": "0.0.1",
-    "license": "MIT",
-    "author": "Ajay Mathew",
-    "homepage": "https://github.com/ajay007e/minikit",
     "description": "A lightweight HTML-first design system foundation with themes, typography, forms, buttons, accessibility, and minimal CSS utilities.",
+    "author": "Ajay Mathew",
+    "license": "MIT",
+    "homepage": "https://github.com/ajay007e/minikit",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ajay007e/minikit.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ajay007e/minikit/issues"
     },
     "keywords": [
         "css",
         "html",
         "ui",
         "frontend",
-        "component-library"
+        "design-system",
+        "accessibility"
     ],
+    "style": "dist/minikit.mini.css",
     "files": [
-        "minikit.min.css",
-        "minikit.min.js",
-        "css",
-        "js"
+        "dist",
+        "README.md",
+        "LICENSE"
     ]
 }
