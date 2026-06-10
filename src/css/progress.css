@@ -1,0 +1,90 @@
+@layer base {
+  progress {
+    appearance: none;
+
+    inline-size: 100%;
+    block-size: var(--mk-bar-height);
+
+    overflow: hidden;
+
+    border: none;
+    border-radius: var(--mk-radius-full);
+
+    background-color: var(--mk-color-muted);
+
+    &::-webkit-progress-bar {
+      background-color: var(--mk-color-muted);
+
+      border-radius: var(--mk-radius-full);
+    }
+
+    &::-webkit-progress-value {
+      background-color: var(--mk-color-primary);
+
+      border-radius: var(--mk-radius-full);
+
+      transition: inline-size var(--mk-transition);
+    }
+
+    &::-moz-progress-bar {
+      background-color: var(--mk-color-primary);
+
+      border-radius: var(--mk-radius-full);
+    }
+  }
+
+  meter {
+    appearance: none;
+
+    inline-size: 100%;
+    block-size: var(--mk-bar-height);
+
+    overflow: hidden;
+
+    border: none;
+    border-radius: var(--mk-radius-full);
+
+    background-color: var(--mk-color-muted);
+
+    &::-webkit-meter-bar {
+      block-size: var(--mk-bar-height);
+
+      border: none;
+      border-radius: var(--mk-radius-full);
+
+      background-color: var(--mk-color-muted);
+    }
+
+    &::-webkit-meter-optimum-value,
+    &::-webkit-meter-suboptimum-value,
+    &::-webkit-meter-even-less-good-value {
+      border-radius: var(--mk-radius-full);
+    }
+
+    &::-webkit-meter-optimum-value {
+      background-color: var(--mk-color-success);
+    }
+
+    &::-webkit-meter-suboptimum-value {
+      background-color: var(--mk-color-warning);
+    }
+
+    &::-webkit-meter-even-less-good-value {
+      background-color: var(--mk-color-danger);
+    }
+
+    &::-moz-meter-bar {
+      background-color: var(--mk-color-success);
+
+      border-radius: var(--mk-radius-full);
+    }
+
+    &:-moz-meter-sub-optimum::-moz-meter-bar {
+      background-color: var(--mk-color-warning);
+    }
+
+    &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+      background-color: var(--mk-color-danger);
+    }
+  }
+}

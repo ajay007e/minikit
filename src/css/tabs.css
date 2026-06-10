@@ -1,0 +1,59 @@
+@layer component {
+  [role="tablist"] {
+    display: inline-flex;
+    align-items: center;
+
+    gap: var(--mk-space-1);
+
+    padding: var(--mk-space-1);
+
+    background-color: var(--mk-color-muted);
+
+    border-radius: var(--mk-radius-md);
+  }
+
+  [role="tab"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--mk-space-2) var(--mk-space-3);
+
+    font-size: var(--mk-text-7);
+    font-weight: var(--mk-font-medium);
+
+    white-space: nowrap;
+
+    color: var(--mk-color-fg);
+    background-color: transparent;
+
+    border: none;
+    border-radius: calc(var(--mk-radius-md) - 2px);
+
+    cursor: pointer;
+
+    transition:
+      background-color var(--mk-transition-fast),
+      color var(--mk-transition-fast);
+  }
+
+  [role="tab"]:hover {
+    color: var(--mk-color-muted-fg);
+  }
+
+  [role="tab"][aria-selected="true"] {
+    color: var(--mk-color-fg);
+
+    background-color: var(--mk-color-bg);
+
+    box-shadow: var(--mk-shadow-small);
+  }
+
+  [role="tabpanel"] {
+    padding-block: var(--mk-space-4);
+  }
+
+  [role="tabpanel"]:focus-visible {
+    outline: none;
+  }
+}

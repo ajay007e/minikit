@@ -1,0 +1,33 @@
+@layer component {
+  [data-card] {
+    padding: var(--mk-space-6);
+
+    color: var(--mk-color-card-fg);
+    background-color: var(--mk-color-card);
+
+    border: 1px solid var(--mk-color-border);
+    border-radius: var(--mk-radius-md);
+
+    box-shadow: var(--mk-shadow-small);
+  }
+
+  [data-card]>header {
+    margin-block-end: var(--mk-space-4);
+  }
+
+  [data-card]>footer {
+    margin-block-start: var(--mk-space-4);
+  }
+
+  [data-card]> :last-child {
+    margin-block-end: 0;
+  }
+
+  [data-card].flat {
+    box-shadow: none;
+  }
+
+  [data-card].outline {
+    background-color: transparent;
+  }
+}

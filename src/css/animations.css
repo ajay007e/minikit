@@ -21,7 +21,7 @@
 
   @keyframes mk-spin {
     to {
-      rotate: 360deg;
+      transform: rotate(360deg);
     }
   }
 }

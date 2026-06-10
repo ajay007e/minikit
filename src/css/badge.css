@@ -1,0 +1,67 @@
+@layer component {
+  [data-badge] {
+    display: inline-flex;
+    align-items: center;
+
+    gap: var(--mk-space-1);
+
+    padding: var(--mk-space-1) var(--mk-space-3);
+
+    font-size: var(--mk-text-8);
+    font-weight: var(--mk-font-medium);
+    line-height: var(--mk-leading-normal);
+
+    white-space: nowrap;
+
+    color: var(--mk-color-primary-fg);
+    background-color: var(--mk-color-primary);
+
+    border-radius: var(--mk-radius-full);
+  }
+
+  [data-badge][data-variant="secondary"] {
+    color: var(--mk-color-secondary-fg);
+    background-color: var(--mk-color-secondary);
+  }
+
+  [data-badge][data-variant="success"] {
+    color: var(--mk-color-success);
+
+    background-color: light-dark(color-mix(in srgb, var(--mk-color-success) 10%, transparent),
+        color-mix(in srgb, var(--mk-color-success) 30%, transparent));
+  }
+
+  [data-badge][data-variant="warning"] {
+    color: var(--mk-color-warning);
+
+    background-color: light-dark(color-mix(in srgb, var(--mk-color-warning) 10%, transparent),
+        color-mix(in srgb, var(--mk-color-warning) 30%, transparent));
+  }
+
+  [data-badge][data-variant="danger"] {
+    color: var(--mk-color-danger);
+
+    background-color: light-dark(color-mix(in srgb, var(--mk-color-danger) 10%, transparent),
+        color-mix(in srgb, var(--mk-color-danger) 30%, transparent));
+  }
+
+  [data-badge].outline {
+    color: var(--mk-color-fg);
+
+    background-color: transparent;
+
+    border: 1px solid var(--mk-color-border);
+  }
+
+  [data-badge].small {
+    padding-inline: var(--mk-space-2);
+
+    font-size: var(--mk-text-8);
+  }
+
+  [data-badge].large {
+    padding-inline: var(--mk-space-4);
+
+    font-size: var(--mk-text-7);
+  }
+}

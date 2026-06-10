@@ -1,0 +1,51 @@
+@layer component {
+  [aria-busy="true"] {
+    &::before {
+      content: "";
+
+      display: inline-block;
+
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+
+      border: 2px solid var(--mk-color-muted);
+      border-top-color: var(--mk-color-primary);
+
+      border-radius: var(--mk-radius-full);
+
+      animation: mk-spin 1s linear infinite;
+    }
+
+    &[data-spinner~="small"]::before {
+      inline-size: 1rem;
+      block-size: 1rem;
+    }
+
+    &[data-spinner~="large"]::before {
+      inline-size: 2rem;
+      block-size: 2rem;
+
+      border-width: 3px;
+    }
+
+    &[data-spinner~="overlay"] {
+      position: relative;
+
+      pointer-events: none;
+
+      >* {
+        opacity: 0.3;
+      }
+
+      &::before {
+        position: absolute;
+
+        inset: 0;
+
+        margin: auto;
+
+        z-index: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@layer component {
+  figure[data-variant="avatar"]:not([role="group"]) {
+    --_size: 2.5rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    inline-size: var(--_size);
+    block-size: var(--_size);
+
+    margin: 0;
+
+    overflow: hidden;
+
+    color: var(--mk-color-primary-fg);
+
+    background-color: var(--mk-color-faint);
+
+    border-radius: var(--mk-radius-full);
+
+    font-size: var(--mk-text-7);
+    font-weight: var(--mk-font-medium);
+
+    flex-shrink: 0;
+
+    >img {
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+    }
+
+    >figcaption {
+      display: none;
+    }
+
+    &.small {
+      --_size: 2rem;
+    }
+
+    &.large {
+      --_size: 3.25rem;
+    }
+  }
+
+  figure[data-variant="avatar"][role="group"] {
+    --_size: 2.5rem;
+
+    display: inline-flex;
+    align-items: center;
+
+    margin: 0;
+
+    >figure[data-variant="avatar"] {
+      --_size: inherit;
+
+      isolation: isolate;
+
+      margin-inline-end: calc(var(--mk-space-5) * -1);
+
+      border: 2px solid var(--mk-color-bg);
+
+      &:last-child {
+        margin-inline-end: 0;
+      }
+    }
+
+    &.small {
+      --_size: 2rem;
+
+      >figure[data-variant="avatar"] {
+        margin-inline-end: calc(var(--mk-space-4) * -0.8);
+        border-width: 1px;
+      }
+    }
+
+    &.large {
+      --_size: 3.25rem;
+
+      >figure[data-variant="avatar"] {
+        margin-inline-end: calc(var(--mk-space-6) * -1);
+      }
+    }
+  }
+}
