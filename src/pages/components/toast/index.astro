@@ -1,0 +1,438 @@
+---
+import ComponentLayout from "../../../layouts/component-layout.astro";
+
+import Example from "../../../components/example.astro";
+import CodeBlock from "../../../components/code-block.astro";
+
+const basicExample = `mk.toast(
+  "Your changes have been saved."
+);`;
+
+const successExample = `mk.toast(
+  "Profile updated successfully.",
+  "Success",
+  {
+    variant: "success",
+  },
+);`;
+
+const warningExample = `mk.toast(
+  "Your session will expire soon.",
+  "Warning",
+  {
+    variant: "warning",
+  },
+);`;
+
+const dangerExample = `mk.toast(
+  "Unable to save your changes.",
+  "Error",
+  {
+    variant: "danger",
+  },
+);`;
+
+const placementExample = `mk.toast(
+  "Profile updated.",
+  "Success",
+  {
+    placement: "bottom-right",
+  },
+);`;
+
+const customExample = `mk.toastEl(
+  document.getElementById(
+    "custom-toast",
+  ),
+);`;
+
+const durationExample = `mk.toast(
+  "Saved successfully.",
+  "",
+  {
+    duration: 8000,
+  },
+);
+
+mk.toast(
+  "Uploading...",
+  "",
+  {
+    duration: 0,
+  },
+);`;
+
+const clearExample = `mk.toastClear();
+
+mk.toastClear(
+  "top-right",
+);`;
+---
+
+<ComponentLayout
+  slug="toast"
+  title="Toast"
+  description="Display temporary notification messages."
+  nav={[
+    {
+      href: "#overview",
+      label: "Overview",
+    },
+    {
+      href: "#basic",
+      label: "Basic Usage",
+    },
+    {
+      href: "#variants",
+      label: "Variants",
+    },
+    {
+      href: "#placement",
+      label: "Placement",
+    },
+    {
+      href: "#custom",
+      label: "Custom Toasts",
+    },
+    {
+      href: "#duration",
+      label: "Duration",
+    },
+    {
+      href: "#clear",
+      label: "Clear Toasts",
+    },
+    {
+      href: "#accessibility",
+      label: "Accessibility",
+    },
+    {
+      href: "#api",
+      label: "API",
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Toasts display short-lived notification messages without
+      interrupting the user's workflow. They are commonly used to
+      communicate successful actions, warnings, errors, or general
+      information.
+    </p>
+
+    <p>
+      MiniKit automatically creates toast containers, handles
+      animations, manages stacking, and removes notifications after the
+      configured duration.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>
+      Display a notification using the
+      <code>show()</code>
+      function.
+    </p>
+
+   <Example code={basicExample}>
+  <button
+    onclick={`mk.toast(
+      "Your changes have been saved."
+    )`}
+  >
+    Show Toast
+  </button>
+</Example>
+
+    <p>
+      The first argument is the message. An optional title and
+      configuration object can also be supplied.
+    </p>
+  </section>
+
+  <section id="variants">
+    <h2>Variants</h2>
+
+    <p>
+      Toasts support four built-in variants to communicate different
+      message types.
+    </p>
+
+    <h3>Success</h3>
+
+   <Example code={successExample}>
+  <button
+    onclick={`mk.toast(
+      "Profile updated successfully.",
+      "Success",
+      {
+        variant: "success",
+      }
+    )`}
+  >
+    Show Success Toast
+  </button>
+</Example>
+
+    <h3>Warning</h3>
+
+   <Example code={warningExample}>
+  <button
+    onclick={`mk.toast(
+      "Your session will expire soon.",
+      "Warning",
+      {
+        variant: "warning",
+      }
+    )`}
+  >
+    Show Warning Toast
+  </button>
+</Example>
+
+    <h3>Danger</h3>
+
+   <Example code={dangerExample}>
+  <button
+    onclick={`mk.toast(
+      "Unable to save your changes.",
+      "Error",
+      {
+        variant: "danger",
+      }
+    )`}
+  >
+    Show Error Toast
+  </button>
+</Example>
+
+    <p>
+      When no variant is specified, the default
+      <code>info</code>
+      style is used.
+    </p>
+  </section>
+  <section id="placement">
+    <h2>Placement</h2>
+
+    <p>
+      Toasts can appear in six predefined positions on the screen using
+      the
+      <code>placement</code>
+      option.
+    </p>
+
+    <CodeBlock
+      code={placementExample}
+    />
+
+    <table>
+      <thead>
+        <tr>
+          <th>Placement</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>top-left</code></td>
+          <td>Top-left corner.</td>
+        </tr>
+
+        <tr>
+          <td><code>top-center</code></td>
+          <td>Centered at the top.</td>
+        </tr>
+
+        <tr>
+          <td><code>top-right</code></td>
+          <td>Top-right corner (default).</td>
+        </tr>
+
+        <tr>
+          <td><code>bottom-left</code></td>
+          <td>Bottom-left corner.</td>
+        </tr>
+
+        <tr>
+          <td><code>bottom-center</code></td>
+          <td>Centered at the bottom.</td>
+        </tr>
+
+        <tr>
+          <td><code>bottom-right</code></td>
+          <td>Bottom-right corner.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="custom">
+    <h2>Custom Toasts</h2>
+
+    <p>
+      Display custom HTML by passing an element or template to
+      <code>showElement()</code>.
+    </p>
+
+   <Example
+  code={customExample}
+>
+  <template id="custom-toast">
+    <output data-variant="success">
+      <div class="toast-title">
+        Deployment Complete
+      </div>
+
+      <div class="toast-message">
+        Your application has been deployed.
+      </div>
+    </output>
+  </template>
+
+  <button
+    onclick={`mk.toastEl(
+      document.getElementById("custom-toast")
+    )`}
+  >
+    Show Custom Toast
+  </button>
+</Example>
+    <p>
+      Custom toasts allow complete control over the content while
+      preserving MiniKit's animations and positioning.
+    </p>
+  </section>
+
+  <section id="duration">
+    <h2>Duration</h2>
+
+    <p>
+      Toasts automatically dismiss after four seconds by default.
+      Override this using the
+      <code>duration</code>
+      option.
+    </p>
+
+    <CodeBlock
+      code={durationExample}
+    />
+
+    <p>
+      Set
+      <code>duration: 0</code>
+      to keep a toast visible until it is removed manually.
+    </p>
+  </section>
+
+  <section id="clear">
+    <h2>Clear Toasts</h2>
+
+    <p>
+      Remove active notifications using the
+      <code>clear()</code>
+      function.
+    </p>
+
+    <CodeBlock
+      code={clearExample}
+    />
+
+    <p>
+      When a placement is provided, only that container is cleared.
+      Otherwise, every visible toast is removed.
+    </p>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      MiniKit automatically applies
+      <code>role="status"</code>
+      to generated toast notifications so assistive technologies can
+      announce them appropriately.
+    </p>
+
+    <ul>
+      <li>
+        Use concise, meaningful notification messages.
+      </li>
+
+      <li>
+        Avoid displaying multiple high-priority notifications
+        simultaneously.
+      </li>
+
+      <li>
+        Use success, warning, and danger variants consistently to help
+        users understand the message.
+      </li>
+
+      <li>
+        Keep notifications visible long enough to be read comfortably.
+      </li>
+    </ul>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Function</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>show(message, title?, options?)</code></td>
+          <td>Displays a toast notification.</td>
+        </tr>
+
+        <tr>
+          <td><code>showElement(element, options?)</code></td>
+          <td>Displays a custom HTML toast.</td>
+        </tr>
+
+        <tr>
+          <td><code>clear()</code></td>
+          <td>Removes all visible toast notifications.</td>
+        </tr>
+
+        <tr>
+          <td><code>clear(placement)</code></td>
+          <td>Clears notifications from a specific placement.</td>
+        </tr>
+
+        <tr>
+          <td><code>variant</code></td>
+          <td>info, success, warning, or danger.</td>
+        </tr>
+
+        <tr>
+          <td><code>placement</code></td>
+          <td>
+            top-left, top-center, top-right, bottom-left,
+            bottom-center, or bottom-right.
+          </td>
+        </tr>
+
+        <tr>
+          <td><code>duration</code></td>
+          <td>
+            Time in milliseconds before automatically dismissing the
+            toast. Set to <code>0</code> to disable auto-dismiss.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

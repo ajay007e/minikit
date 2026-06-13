@@ -1,0 +1,238 @@
+---
+import ComponentLayout from '../../../layouts/component-layout.astro';
+
+import Example from '../../../components/example.astro';
+
+const basicBadge = `<span data-badge>
+  Badge
+</span>`;
+
+const variantsBadge = `<div class="hstack">
+  <span data-badge>
+    Default
+  </span>
+
+  <span
+    data-badge
+    data-variant="secondary"
+  >
+    Secondary
+  </span>
+
+  <span
+    data-badge
+    data-variant="success"
+  >
+    Success
+  </span>
+
+  <span
+    data-badge
+    data-variant="warning"
+  >
+    Warning
+  </span>
+
+  <span
+    data-badge
+    data-variant="danger"
+  >
+    Danger
+  </span>
+</div>`;
+
+const outlineBadge = `<span
+  data-badge
+  class="outline"
+>
+  Outline
+</span>`;
+
+const sizesBadge = `<div class="hstack">
+  <span
+    data-badge
+    class="small"
+  >
+    Small
+  </span>
+
+  <span data-badge>
+    Default
+  </span>
+
+  <span
+    data-badge
+    class="large"
+  >
+    Large
+  </span>
+</div>`;
+---
+
+<ComponentLayout
+  slug="badge"
+  title="Badge"
+  description="Display short labels, statuses, and metadata."
+  nav={[
+    {
+      href: '#overview',
+      label: 'Overview',
+    },
+    {
+      href: '#basic',
+      label: 'Basic Usage',
+    },
+    {
+      href: '#variants',
+      label: 'Variants',
+    },
+    {
+      href: '#outline',
+      label: 'Outline',
+    },
+    {
+      href: '#sizes',
+      label: 'Sizes',
+    },
+    {
+      href: '#accessibility',
+      label: 'Accessibility',
+    },
+    {
+      href: '#api',
+      label: 'API',
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Badges are compact visual indicators used to display status, categories, counts, and metadata.
+    </p>
+
+    <p>
+      MiniKit provides several badge variants for communicating information while maintaining a
+      consistent visual language across your application.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>
+      Create a badge using the <code>data-badge</code> attribute.
+    </p>
+
+    <Example code={basicBadge}>
+      <span data-badge>Badge</span>
+    </Example>
+  </section>
+
+  <section id="variants">
+    <h2>Variants</h2>
+
+    <p>Badges support multiple variants for different semantic meanings.</p>
+
+    <Example code={variantsBadge}>
+      <div class="hstack">
+        <span data-badge>Default</span>
+
+        <span data-badge data-variant="secondary">Secondary</span>
+
+        <span data-badge data-variant="success">Success</span>
+
+        <span data-badge data-variant="warning">Warning</span>
+
+        <span data-badge data-variant="danger">Danger</span>
+      </div>
+    </Example>
+  </section>
+
+  <section id="outline">
+    <h2>Outline</h2>
+
+    <p>
+      Use the <code>outline</code> class for a less prominent appearance.
+    </p>
+
+    <Example code={outlineBadge}>
+      <span data-badge class="outline">Outline</span>
+    </Example>
+  </section>
+
+  <section id="sizes">
+    <h2>Sizes</h2>
+
+    <p>Badges support small and large size modifiers.</p>
+
+    <Example code={sizesBadge}>
+      <div class="hstack">
+        <span data-badge class="small">Small</span>
+
+        <span data-badge>Default</span>
+
+        <span data-badge class="large">Large</span>
+      </div>
+    </Example>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      Badges should supplement content rather than be the sole method of communicating important
+      information.
+    </p>
+
+    <p>
+      Avoid relying entirely on color to convey meaning. Pair badges with descriptive text whenever
+      possible.
+    </p>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>data-badge</code></td>
+          <td>Creates a badge component.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-variant</code></td>
+          <td>
+            Supports <code>secondary</code>,
+            <code>success</code>,
+            <code>warning</code>, and
+            <code>danger</code>.
+          </td>
+        </tr>
+
+        <tr>
+          <td><code>outline</code></td>
+          <td>Applies the outline style.</td>
+        </tr>
+
+        <tr>
+          <td><code>small</code></td>
+          <td>Applies the small size.</td>
+        </tr>
+
+        <tr>
+          <td><code>large</code></td>
+          <td>Applies the large size.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

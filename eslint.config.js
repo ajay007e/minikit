@@ -1,0 +1,14 @@
+export default [
+  {
+    rules: {
+      'no-multiple-empty-lines': [
+        'error',
+        {
+          max: 1,
+          maxBOF: 0,
+          maxEOF: 0,
+        },
+      ],
+    },
+  },
+];

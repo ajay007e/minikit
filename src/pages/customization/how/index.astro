@@ -1,0 +1,158 @@
+---
+import DocsLayout from '../../../layouts/docs-layout.astro';
+import CodeBlock from '../../../components/code-block.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout
+  title="Customizing"
+  page="how"
+  nav={[
+    {
+      href: '#intro',
+      label: 'Introduction',
+    },
+    {
+      href: '#override',
+      label: 'Override Styles',
+    },
+    {
+      href: '#modules',
+      label: 'Picking and Choosing',
+    },
+    {
+      href: '#best-practices',
+      label: 'Best Practices',
+    },
+    {
+      href: '#next',
+      label: 'Next Steps',
+    },
+  ]}
+>
+  <section id="intro">
+    <h1>Customizing</h1>
+
+    <p class="lead">MiniKit is designed to be customized without modifying library source files.</p>
+
+    <p>
+      Every project has different design requirements. MiniKit provides a flexible foundation that
+      allows you to adjust styling, spacing, typography, colors, and component appearance while
+      keeping the underlying markup unchanged.
+    </p>
+
+    <p>
+      Instead of introducing complex configuration systems, MiniKit relies on familiar web standards
+      such as CSS variables, cascading stylesheets, and progressive enhancement.
+    </p>
+
+    <p>
+      This approach keeps customization simple, predictable, and easy to maintain across projects of
+      any size.
+    </p>
+  </section>
+
+  <section id="override">
+    <h2>Override Styles</h2>
+
+    <p>
+      MiniKit styles can be customized by loading your own stylesheet after the library stylesheet.
+    </p>
+
+    <p>
+      Since MiniKit uses low-specificity selectors and design tokens, most visual changes can be
+      made without editing library files or relying on <code>!important</code>.
+    </p>
+
+    <CodeBlock
+      code={`<link rel="stylesheet" href="minikit.min.css"/>
+<link rel="stylesheet" href="custom.css"/>`}
+    />
+
+    <p>
+      Any styles defined in your custom stylesheet automatically take precedence when loaded after
+      MiniKit.
+    </p>
+  </section>
+
+  <section id="modules">
+    <h2>Picking and Choosing</h2>
+
+    <p>
+      MiniKit is intentionally small and can be included as a complete package in most projects.
+      However, individual modules can also be loaded when finer control is required.
+    </p>
+
+    <p>
+      The following files provide the foundation of the library and should always be included first.
+    </p>
+
+    <CodeBlock
+      code={`00-base.css
+01-theme.css
+base.js`}
+    />
+
+    <p>
+      Additional component styles and scripts can then be loaded based on the needs of your
+      application.
+    </p>
+
+    <p>
+      This modular structure allows projects to include only the pieces they need while maintaining
+      a consistent design system.
+    </p>
+  </section>
+
+  <section id="best-practices">
+    <h2>Best Practices</h2>
+
+    <p>
+      For the best customization experience, treat MiniKit as a design foundation rather than a
+      framework that needs to be modified.
+    </p>
+
+    <ul>
+      <li>Override variables before overriding component styles.</li>
+
+      <li>Place custom styles in separate project stylesheets.</li>
+
+      <li>Avoid editing MiniKit source files directly.</li>
+
+      <li>Prefer semantic HTML over custom component abstractions.</li>
+
+      <li>Keep customizations consistent across components.</li>
+    </ul>
+
+    <p>
+      Following these practices makes upgrading MiniKit easier and helps maintain consistency
+      throughout your application.
+    </p>
+  </section>
+
+  <section id="next">
+    <h2>Next Steps</h2>
+
+    <p>
+      Continue to the customization guides to learn how MiniKit's design tokens and color system
+      work.
+    </p>
+
+    <div class="start-grid">
+      <a href={`${base}customization/css-variables/`} data-card>
+        <h3>CSS Variables</h3>
+
+        <p>
+          Explore the design tokens that control spacing, typography, sizing, shadows, and layout.
+        </p>
+      </a>
+
+      <a href={`${base}customization/theme/`} data-card>
+        <h3>Theme</h3>
+
+        <p>Learn how to customize colors, palettes, and appearance across the entire library.</p>
+      </a>
+    </div>
+  </section>
+</DocsLayout>

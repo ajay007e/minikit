@@ -1,0 +1,106 @@
+---
+import DocsLayout from '../../layouts/docs-layout.astro';
+import CodeBlock from '../../components/code-block.astro';
+import Example from '../../components/example.astro';
+---
+
+<DocsLayout
+  title="Installation"
+  page="installation"
+  nav={[
+    {
+      href: '#overview',
+      label: 'Overview',
+    },
+    {
+      href: '#npm',
+      label: 'Install with npm',
+    },
+    {
+      href: '#cdn',
+      label: 'Use from CDN',
+    },
+    {
+      href: '#css',
+      label: 'Include CSS',
+    },
+    {
+      href: '#js',
+      label: 'Include JavaScript',
+    },
+    {
+      href: '#verify',
+      label: 'Verify Installation',
+    },
+  ]}
+>
+  <section id="overview">
+    <h1>Installation</h1>
+
+    <p class="lead">Get MiniKit up and running in your project using npm or a CDN.</p>
+
+    <p>
+      MiniKit can be installed into modern build-based projects or used directly in static HTML
+      pages without any build tooling.
+    </p>
+  </section>
+
+  <section id="npm">
+    <h2>Install with npm</h2>
+
+    <p>Install MiniKit from npm when using a bundler, framework, or build tool.</p>
+
+    <CodeBlock code={`npm install @ajay007e/minikit`} />
+  </section>
+
+  <section id="cdn">
+    <h2>Use from CDN</h2>
+
+    <p>For static websites or quick prototypes, MiniKit can be loaded directly from a CDN.</p>
+
+    <p>Add the stylesheet and JavaScript bundle to your page.</p>
+  </section>
+
+  <section id="css">
+    <h2>Include CSS</h2>
+
+    <p>Include the MiniKit stylesheet in the document head.</p>
+
+    <CodeBlock
+      code={`<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ajay007e/minikit@latest/dist/minikit.min.css"/>`}
+    />
+  </section>
+
+  <section id="js">
+    <h2>Include JavaScript</h2>
+
+    <p>Include the JavaScript bundle before the closing body tag.</p>
+
+    <CodeBlock
+      code={`<script src="https://cdn.jsdelivr.net/npm/@ajay007e/minikit@latest/dist/minikit.min.js"></script>`}
+    />
+  </section>
+
+  <section id="verify">
+    <h2>Verify Installation</h2>
+
+    <p>
+      Once MiniKit is installed, create a simple button to verify that the stylesheet and JavaScript
+      bundle are loading correctly.
+    </p>
+
+    <Example code={`<button>Hello MiniKit</button>`}>
+      <button>Hello MiniKit</button>
+    </Example>
+
+    <p>
+      If the button appears with MiniKit styling, the installation was successful and you're ready
+      to start building.
+    </p>
+
+    <p>
+      Continue to the component documentation to explore the available components, utilities, and
+      customization options.
+    </p>
+  </section>
+</DocsLayout>

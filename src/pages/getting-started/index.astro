@@ -1,0 +1,132 @@
+---
+import DocsLayout from '../../layouts/docs-layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout
+  title="Introduction"
+  page="introduction"
+  nav={[
+    {
+      href: '#intro',
+      label: 'Introduction',
+    },
+    {
+      href: '#why',
+      label: 'Why MiniKit',
+    },
+    {
+      href: '#advantages',
+      label: 'Advantages',
+    },
+    {
+      href: '#start',
+      label: 'Start Now',
+    },
+  ]}
+>
+  <section id="intro">
+    <h1>Introduction</h1>
+
+    <p class="lead">
+      MiniKit is a lightweight, HTML-first design system foundation for building modern web
+      interfaces.
+    </p>
+
+    <p>
+      It provides thoughtfully designed styles for typography, forms, buttons, layouts, and common
+      UI components while staying close to native HTML. MiniKit embraces progressive enhancement,
+      using CSS for presentation and minimal JavaScript only where interaction is required. The
+      result is a fast, accessible, and framework-agnostic toolkit that works with any stack.
+      Designed with simplicity in mind, MiniKit helps developers build consistent interfaces without
+      the complexity, abstraction, or overhead commonly found in larger UI frameworks.
+    </p>
+  </section>
+
+  <section id="why">
+    <h2>Why MiniKit?</h2>
+
+    <p>
+      Many UI frameworks trade simplicity for abstraction, requiring custom APIs, heavy JavaScript
+      runtimes, or complex build tooling. MiniKit takes a different approach by enhancing the
+      platform rather than replacing it. By building on semantic HTML and modern browser features,
+      MiniKit allows developers to create interfaces using familiar markup while benefiting from
+      accessible components and sensible defaults. Its small footprint, minimal JavaScript, and
+      framework-agnostic design make it a practical choice for projects that value performance,
+      maintainability, and long-term simplicity.
+    </p>
+
+    <p>
+      Whether you're building a static website, documentation site, internal tool, or full web
+      application, MiniKit provides a solid foundation without getting in your way.
+    </p>
+  </section>
+
+  <section id="advantages">
+    <h2>Advantages of MiniKit</h2>
+
+    <div class="advantages-grid">
+      <article>
+        <h3>HTML First</h3>
+
+        <p>Build interfaces using semantic HTML instead of framework-specific abstractions.</p>
+      </article>
+
+      <article>
+        <h3>Tiny Bundle</h3>
+
+        <p>Approximately 6.4 KB of CSS and 1.8 KB of JavaScript.</p>
+      </article>
+
+      <article>
+        <h3>Accessible</h3>
+
+        <p>Components include keyboard support and sensible accessibility defaults.</p>
+      </article>
+
+      <article>
+        <h3>Framework Agnostic</h3>
+
+        <p>Works with Astro, React, Vue, HTMX, Alpine.js, or plain HTML.</p>
+      </article>
+
+      <article>
+        <h3>Zero Dependencies</h3>
+
+        <p>No runtime dependencies and no unnecessary complexity.</p>
+      </article>
+
+      <article>
+        <h3>Customizable</h3>
+
+        <p>Easily adapt colors, spacing, typography, and component styles.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="start">
+    <h2>Start Now</h2>
+
+    <p>Ready to start building with MiniKit?</p>
+
+    <div class="start-grid">
+      <a href={`${base}installation/`} data-card>
+        <h3>Installation</h3>
+
+        <p>Add MiniKit to your project using npm or a CDN.</p>
+      </a>
+
+      <a href={`${base}customization/how/`} data-card>
+        <h3>Customization</h3>
+
+        <p>Learn how to customize MiniKit using CSS variables.</p>
+      </a>
+
+      <a href={`${base}components/button/`} data-card>
+        <h3>Components</h3>
+
+        <p>Explore the component library and usage examples.</p>
+      </a>
+    </div>
+  </section>
+</DocsLayout>

@@ -1,0 +1,263 @@
+---
+import ComponentLayout from "../../../layouts/component-layout.astro";
+
+import Example from "../../../components/example.astro";
+---
+
+<ComponentLayout
+  slug="spinner"
+  title="Spinner"
+  description="Display a loading indicator while content or operations are in progress."
+  nav={[
+    {
+      href: "#overview",
+      label: "Overview",
+    },
+    {
+      href: "#basic",
+      label: "Basic Usage",
+    },
+    {
+      href: "#sizes",
+      label: "Sizes",
+    },
+    {
+      href: "#overlay",
+      label: "Overlay",
+    },
+    {
+      href: "#accessibility",
+      label: "Accessibility",
+    },
+    {
+      href: "#api",
+      label: "API",
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Spinners communicate that an operation is currently in progress.
+      They are commonly used while loading content, submitting forms,
+      fetching data, or processing background tasks.
+    </p>
+
+    <p>
+      MiniKit builds on the native
+      <code>aria-busy</code> attribute, allowing assistive
+      technologies to understand when an interface is busy while
+      automatically displaying a visual loading indicator.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>
+      Add the
+      <code>aria-busy="true"</code>
+      attribute to display a loading spinner.
+    </p>
+
+    <Example
+      code={`<div aria-busy="true"></div>`}
+    >
+      <div aria-busy="true"></div>
+    </Example>
+
+    <p>
+      Remove the
+      <code>aria-busy</code>
+      attribute or set it to
+      <code>false</code>
+      once loading has completed.
+    </p>
+  </section>
+
+  <section id="sizes">
+    <h2>Sizes</h2>
+
+    <p>
+      MiniKit provides small, default, and large spinner sizes using
+      the
+      <code>data-spinner</code>
+      attribute.
+    </p>
+
+    <Example
+      code={`<div class="hstack">
+  <div
+    aria-busy="true"
+    data-spinner="small"
+  ></div>
+
+  <div
+    aria-busy="true"
+  ></div>
+
+  <div
+    aria-busy="true"
+    data-spinner="large"
+  ></div>
+</div>`}
+    >
+      <div class="hstack">
+        <div
+          aria-busy="true"
+          data-spinner="small"
+        ></div>
+
+        <div
+          aria-busy="true"
+        ></div>
+
+        <div
+          aria-busy="true"
+          data-spinner="large"
+        ></div>
+      </div>
+    </Example>
+
+    <p>
+      Choose a spinner size that matches the surrounding interface and
+      the importance of the loading state.
+    </p>
+  </section>
+
+  <section id="overlay">
+    <h2>Overlay Spinner</h2>
+
+    <p>
+      Display a centered loading indicator over existing content using
+      the
+      <code>overlay</code>
+      modifier.
+    </p>
+
+    <Example
+      code={`<div
+  data-card
+  aria-busy="true"
+  data-spinner="overlay"
+>
+  <h3>
+    Loading Dashboard
+  </h3>
+
+  <p>
+    Please wait while your data is being loaded.
+  </p>
+</div>`}
+    >
+      <div
+        data-card
+        aria-busy="true"
+        data-spinner="overlay"
+      >
+        <h3>
+          Loading Dashboard
+        </h3>
+
+        <p>
+          Please wait while your data is being loaded.
+        </p>
+      </div>
+    </Example>
+
+    <p>
+      Overlay spinners dim the underlying content while preventing user
+      interaction until the operation has completed.
+    </p>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      MiniKit uses the standard
+      <code>aria-busy</code>
+      attribute, allowing assistive technologies to announce that a
+      region is currently updating.
+    </p>
+
+    <ul>
+      <li>
+        Apply
+        <code>aria-busy="true"</code>
+        only while content is actively loading.
+      </li>
+
+      <li>
+        Remove the attribute immediately after loading completes.
+      </li>
+
+      <li>
+        Pair loading indicators with descriptive text whenever users may
+        wait more than a few seconds.
+      </li>
+
+      <li>
+        Use progress indicators instead of spinners whenever completion
+        progress can be measured.
+      </li>
+    </ul>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <code>aria-busy="true"</code>
+          </td>
+
+          <td>
+            Displays the loading spinner and marks the element as busy.
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <code>data-spinner="small"</code>
+          </td>
+
+          <td>
+            Displays a compact spinner.
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <code>data-spinner="large"</code>
+          </td>
+
+          <td>
+            Displays a larger spinner.
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <code>data-spinner="overlay"</code>
+          </td>
+
+          <td>
+            Centers the spinner over the element while dimming its
+            contents.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

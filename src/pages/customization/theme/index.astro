@@ -1,0 +1,182 @@
+---
+import DocsLayout from '../../../layouts/docs-layout.astro';
+import CodeBlock from '../../../components/code-block.astro';
+---
+
+<DocsLayout
+  title="Theme"
+  page="theme"
+  nav={[
+    {
+      href: '#intro',
+      label: 'Introduction',
+    },
+    {
+      href: '#variables',
+      label: 'Theme Variables',
+    },
+    {
+      href: '#custom',
+      label: 'Custom Theme',
+    },
+    {
+      href: '#dark',
+      label: 'Dark Mode',
+    },
+    {
+      href: '#extend',
+      label: 'Extending Themes',
+    },
+  ]}
+>
+  <section id="intro">
+    <h1>Theming</h1>
+
+    <p class="lead">MiniKit uses CSS variables to power its color system.</p>
+
+    <p>
+      Every component derives its colors from a small set of semantic theme variables. By overriding
+      these variables, you can completely change the appearance of the library without modifying
+      component styles.
+    </p>
+
+    <p>
+      This approach keeps themes consistent and makes it easy to build custom design systems on top
+      of MiniKit.
+    </p>
+  </section>
+
+  <section id="variables">
+    <h2>Theme Variables</h2>
+
+    <p>
+      The following variables define MiniKit's semantic color system. Components reference these
+      variables internally instead of using hard-coded colors.
+    </p>
+
+    <CodeBlock
+      code={`:root {
+  --mk-color-bg: #ffffff;
+  --mk-color-fg: #09090b;
+
+  --mk-color-card: #ffffff;
+  --mk-color-card-fg: #09090b;
+
+  --mk-color-primary: #57534e;
+  --mk-color-primary-fg: #ffffff;
+
+  --mk-color-secondary: #f4f4f5;
+  --mk-color-secondary-fg: #3f3f46;
+
+  --mk-color-muted: #f4f4f5;
+  --mk-color-muted-fg: #71717a;
+
+  --mk-color-faint: #fafafa;
+  --mk-color-faint-fg: #a1a1aa;
+
+  --mk-color-success: #008032;
+  --mk-color-success-fg: #ffffff;
+
+  --mk-color-warning: #a65b00;
+  --mk-color-warning-fg: #ffffff;
+
+  --mk-color-danger: #d32f2f;
+  --mk-color-danger-fg: #ffffff;
+
+  --mk-color-border: #d4d4d8;
+  --mk-color-input: #d4d4d8;
+  --mk-color-ring: #57534e;
+}`}
+    />
+
+    <p>
+      These variables control the appearance of buttons, cards, forms, alerts, navigation, and every
+      other component in the library.
+    </p>
+  </section>
+
+  <section id="custom">
+    <h2>Creating a Custom Theme</h2>
+
+    <p>To create your own theme, redefine the variables in a stylesheet loaded after MiniKit.</p>
+
+    <CodeBlock
+      code={`:root {
+  --mk-color-primary: #2563eb;
+  --mk-color-primary-fg: #ffffff;
+
+  --mk-color-ring: #2563eb;
+
+  --mk-color-success: #16a34a;
+  --mk-color-warning: #d97706;
+  --mk-color-danger: #dc2626;
+}`}
+    />
+
+    <p>
+      Since components consume semantic variables, updating a few values can change the appearance
+      of the entire interface.
+    </p>
+  </section>
+
+  <section id="dark">
+    <h2>Dark Mode</h2>
+
+    <p>
+      MiniKit uses the <code>data-theme</code> attribute to switch between themes.
+    </p>
+
+    <CodeBlock code={`<html data-theme="dark">`} />
+
+    <p>To customize dark mode, redefine theme variables within the dark theme scope.</p>
+
+    <CodeBlock
+      code={`[data-theme="dark"] {
+  --mk-color-bg: #09090b;
+  --mk-color-fg: #fafafa;
+
+  --mk-color-card: #18181b;
+  --mk-color-card-fg: #fafafa;
+
+  --mk-color-border: #27272a;
+
+  --mk-color-primary: #a78bfa;
+  --mk-color-primary-fg: #09090b;
+}`}
+    />
+
+    <p>Components automatically inherit the updated values when the theme changes.</p>
+  </section>
+
+  <section id="extend">
+    <h2>Extending Themes</h2>
+
+    <p>
+      MiniKit does not limit you to a single light and dark theme. Additional themes can be created
+      by defining custom scopes and overriding the same semantic variables.
+    </p>
+
+    <CodeBlock
+      code={`[data-theme="ocean"] {
+  --mk-color-primary: #0284c7;
+  --mk-color-primary-fg: #ffffff;
+
+  --mk-color-bg: #f0f9ff;
+  --mk-color-fg: #082f49;
+}
+
+[data-theme="forest"] {
+  --mk-color-primary: #15803d;
+  --mk-color-primary-fg: #ffffff;
+
+  --mk-color-bg: #f0fdf4;
+  --mk-color-fg: #14532d;
+}`}
+    />
+
+    <p>
+      Because every component relies on semantic design tokens, creating multiple branded themes
+      requires very little CSS.
+    </p>
+  </section>
+</DocsLayout>

@@ -1,0 +1,101 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches:
+      - docs
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+
+    outputs:
+      deploy: ${{ steps.check.outputs.deploy }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check documentation version
+        id: check
+        shell: bash
+        run: |
+          CURRENT=$(node -p "require('./package.json').version")
+
+          if git cat-file -e HEAD^:package.json 2>/dev/null; then
+            PREVIOUS=$(git show HEAD^:package.json | node -pe "JSON.parse(require('fs').readFileSync(0, 'utf8')).version")
+          else
+            PREVIOUS=""
+          fi
+
+          echo "Current version : $CURRENT"
+          echo "Previous version: $PREVIOUS"
+
+          if [ "$CURRENT" != "$PREVIOUS" ]; then
+            echo "Version changed. Deploying..."
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Version unchanged. Skipping deployment."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    needs: version-check
+    if: needs.version-check.outputs.deploy == 'true'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: needs.build.result == 'success'
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

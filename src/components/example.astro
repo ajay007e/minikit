@@ -1,0 +1,37 @@
+---
+import CodeBlock from './code-block.astro';
+interface Props {
+  title?: string;
+  code: string;
+}
+
+const { title, code } = Astro.props;
+
+const id = crypto.randomUUID();
+---
+
+<section class="example">
+  {title && <h3>{title}</h3>}
+
+  <div class="example-tabs">
+    <input checked type="radio" name={`example-${id}`} id={`preview-${id}`} />
+
+    <input type="radio" name={`example-${id}`} id={`code-${id}`} />
+
+    <div class="example-tablist">
+      <label for={`preview-${id}`}>Preview</label>
+
+      <label for={`code-${id}`}>Code</label>
+    </div>
+
+    <div class="example-panels">
+      <div class="example-panel example-preview">
+        <slot />
+      </div>
+
+      <div class="example-panel example-code">
+        <CodeBlock code={code} />
+      </div>
+    </div>
+  </div>
+</section>

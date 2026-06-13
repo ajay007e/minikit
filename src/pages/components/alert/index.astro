@@ -1,0 +1,157 @@
+---
+import ComponentLayout from '../../../layouts/component-layout.astro';
+
+import Example from '../../../components/example.astro';
+
+const basicAlert = `<div role="alert">
+  This is a default alert.
+</div>`;
+
+const successAlert = `<div
+  role="alert"
+  data-variant="success"
+>
+  Changes saved successfully.
+</div>`;
+
+const warningAlert = `<div
+  role="alert"
+  data-variant="warning"
+>
+  Please review your input before continuing.
+</div>`;
+
+const dangerAlert = `<div
+  role="alert"
+  data-variant="danger"
+>
+  Something went wrong.
+</div>`;
+---
+
+<ComponentLayout
+  slug="alert"
+  title="Alert"
+  description="Display important messages and status information."
+  nav={[
+    {
+      href: '#overview',
+      label: 'Overview',
+    },
+    {
+      href: '#basic',
+      label: 'Basic Usage',
+    },
+    {
+      href: '#variants',
+      label: 'Variants',
+    },
+    {
+      href: '#accessibility',
+      label: 'Accessibility',
+    },
+    {
+      href: '#api',
+      label: 'API',
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Alerts communicate important information to users. They can be used to display status updates,
+      warnings, validation messages, errors, and success feedback.
+    </p>
+
+    <p>
+      MiniKit provides semantic alert variants that help communicate intent while maintaining a
+      consistent appearance across your application.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>
+      Create an alert using the <code>role="alert"</code> attribute.
+    </p>
+
+    <Example code={basicAlert}>
+      <div role="alert">This is a default alert.</div>
+    </Example>
+  </section>
+
+  <section id="variants">
+    <h2>Variants</h2>
+
+    <p>Alerts support multiple variants for communicating different types of information.</p>
+
+    <h3>Success</h3>
+
+    <Example code={successAlert}>
+      <div role="alert" data-variant="success">Changes saved successfully.</div>
+    </Example>
+
+    <h3>Warning</h3>
+
+    <Example code={warningAlert}>
+      <div role="alert" data-variant="warning">Please review your input before continuing.</div>
+    </Example>
+
+    <h3>Danger</h3>
+
+    <Example code={dangerAlert}>
+      <div role="alert" data-variant="danger">Something went wrong.</div>
+    </Example>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      The <code>alert</code> role communicates important information to assistive technologies and should
+      be used for messages that require immediate attention.
+    </p>
+
+    <p>
+      Avoid relying solely on color to communicate meaning. Alert content should clearly describe
+      the status, outcome, or action required.
+    </p>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>role="alert"</code></td>
+          <td>Creates an alert component.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-variant="success"</code></td>
+          <td>Applies success styling.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-variant="warning"</code></td>
+          <td>Applies warning styling.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-variant="danger"</code></td>
+          <td>Applies danger styling.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

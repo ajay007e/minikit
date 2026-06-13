@@ -1,0 +1,437 @@
+---
+import ComponentLayout from "../../../layouts/component-layout.astro";
+
+import Example from "../../../components/example.astro";
+import CodeBlock from "../../../components/code-block.astro";
+---
+
+<ComponentLayout
+  slug="table"
+  title="Table"
+  description="Display structured data using semantic HTML tables."
+  nav={[
+    {
+      href: "#overview",
+      label: "Overview",
+    },
+    {
+      href: "#basic",
+      label: "Basic Usage",
+    },
+    {
+      href: "#alignment",
+      label: "Content Alignment",
+    },
+    {
+      href: "#responsive",
+      label: "Responsive Tables",
+    },
+    {
+      href: "#accessibility",
+      label: "Accessibility",
+    },
+    {
+      href: "#api",
+      label: "API",
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Tables present structured information using rows and columns,
+      making them ideal for datasets, reports, pricing information, and
+      comparisons.
+    </p>
+
+    <p>
+      MiniKit styles native HTML tables while preserving semantic
+      markup, accessibility, and browser behavior.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>
+      Build tables using standard HTML elements including
+      <code>table</code>,
+      <code>thead</code>,
+      <code>tbody</code>,
+      <code>tr</code>,
+      <code>th</code>,
+      and
+      <code>td</code>.
+    </p>
+
+    <Example
+      code={`<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+
+      <th>
+        Role
+      </th>
+
+      <th>
+        Status
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        John Doe
+      </td>
+
+      <td>
+        Developer
+      </td>
+
+      <td>
+        Active
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Jane Smith
+      </td>
+
+      <td>
+        Designer
+      </td>
+
+      <td>
+        Offline
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Alex Brown
+      </td>
+
+      <td>
+        Product Manager
+      </td>
+
+      <td>
+        Active
+      </td>
+    </tr>
+  </tbody>
+</table>`}
+    >
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Name
+            </th>
+
+            <th>
+              Role
+            </th>
+
+            <th>
+              Status
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+              John Doe
+            </td>
+
+            <td>
+              Developer
+            </td>
+
+            <td>
+              Active
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Jane Smith
+            </td>
+
+            <td>
+              Designer
+            </td>
+
+            <td>
+              Offline
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Alex Brown
+            </td>
+
+            <td>
+              Product Manager
+            </td>
+
+            <td>
+              Active
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </Example>
+
+    <p>
+      Use table headers to describe the contents of each column and keep
+      related data grouped within the table body.
+    </p>
+  </section>
+
+  <section id="alignment">
+    <h2>Content Alignment</h2>
+
+    <p>
+      Text values are typically left-aligned, while numeric values are
+      easier to compare when aligned to the right.
+    </p>
+
+    <Example
+      code={`<table>
+  <thead>
+    <tr>
+      <th>
+        Product
+      </th>
+
+      <th class="text-right">
+        Price
+      </th>
+
+      <th class="text-right">
+        Stock
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        Keyboard
+      </td>
+
+      <td class="text-right">
+        $89
+      </td>
+
+      <td class="text-right">
+        24
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Mouse
+      </td>
+
+      <td class="text-right">
+        $49
+      </td>
+
+      <td class="text-right">
+        56
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Monitor
+      </td>
+
+      <td class="text-right">
+        $399
+      </td>
+
+      <td class="text-right">
+        12
+      </td>
+    </tr>
+  </tbody>
+</table>`}
+    >
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Product
+            </th>
+
+            <th class="text-right">
+              Price
+            </th>
+
+            <th class="text-right">
+              Stock
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>
+              Keyboard
+            </td>
+
+            <td class="text-right">
+              $89
+            </td>
+
+            <td class="text-right">
+              24
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Mouse
+            </td>
+
+            <td class="text-right">
+              $49
+            </td>
+
+            <td class="text-right">
+              56
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Monitor
+            </td>
+
+            <td class="text-right">
+              $399
+            </td>
+
+            <td class="text-right">
+              12
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </Example>
+
+    <p>
+      Consistent alignment improves readability, especially when working
+      with numerical data.
+    </p>
+  </section>
+
+  <section id="responsive">
+    <h2>Responsive Tables</h2>
+
+    <p>
+      Large tables may overflow on smaller screens. Wrap them inside a
+      horizontally scrollable container when necessary.
+    </p>
+
+    <CodeBlock
+      code={`<div style="overflow-x:auto;">
+  <table>
+    ...
+  </table>
+</div>`}
+    />
+
+    <p>
+      This approach preserves the table layout while allowing users to
+      scroll horizontally on smaller devices.
+    </p>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      Use semantic table elements so assistive technologies can
+      understand relationships between rows and columns.
+    </p>
+
+    <ul>
+      <li>Always include table headers using <code>th</code>.</li>
+
+      <li>
+        Use <code>thead</code>, <code>tbody</code>, and
+        <code>tfoot</code> where appropriate.
+      </li>
+
+      <li>
+        Add a <code>caption</code> for complex tables that require
+        additional context.
+      </li>
+
+      <li>
+        Avoid using tables for layout purposes.
+      </li>
+    </ul>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Element</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>table</code></td>
+          <td>Defines the table container.</td>
+        </tr>
+
+        <tr>
+          <td><code>thead</code></td>
+          <td>Groups table header rows.</td>
+        </tr>
+
+        <tr>
+          <td><code>tbody</code></td>
+          <td>Groups table body rows.</td>
+        </tr>
+
+        <tr>
+          <td><code>tr</code></td>
+          <td>Defines a table row.</td>
+        </tr>
+
+        <tr>
+          <td><code>th</code></td>
+          <td>Defines a table header cell.</td>
+        </tr>
+
+        <tr>
+          <td><code>td</code></td>
+          <td>Defines a standard table cell.</td>
+        </tr>
+
+        <tr>
+          <td><code>caption</code></td>
+          <td>Provides a title or description for the table.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

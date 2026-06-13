@@ -1,0 +1,197 @@
+---
+import ComponentLayout from '../../../layouts/component-layout.astro';
+
+import Example from '../../../components/example.astro';
+
+const basicAccordion = `<details>
+  <summary>
+    What is MiniKit?
+  </summary>
+
+  <p>
+    MiniKit is a lightweight HTML-first CSS and JavaScript library.
+  </p>
+</details>`;
+
+const multipleAccordion = `<details>
+  <summary>
+    Installation
+  </summary>
+
+  <p>
+    Install MiniKit using npm or a CDN.
+  </p>
+</details>
+
+<details>
+  <summary>
+    Customization
+  </summary>
+
+  <p>
+    Customize MiniKit using CSS variables.
+  </p>
+</details>
+
+<details>
+  <summary>
+    Components
+  </summary>
+
+  <p>
+    MiniKit includes a growing collection of UI components.
+  </p>
+</details>`;
+
+const openAccordion = `<details open>
+  <summary>
+    Expanded by Default
+  </summary>
+
+  <p>
+    This accordion item starts opened.
+  </p>
+</details>`;
+---
+
+<ComponentLayout
+  slug="accordion"
+  title="Accordion"
+  description="Show and hide content using native disclosure elements."
+  nav={[
+    {
+      href: '#overview',
+      label: 'Overview',
+    },
+    {
+      href: '#basic',
+      label: 'Basic Usage',
+    },
+    {
+      href: '#multiple',
+      label: 'Multiple Items',
+    },
+    {
+      href: '#open',
+      label: 'Default Open',
+    },
+    {
+      href: '#accessibility',
+      label: 'Accessibility',
+    },
+    {
+      href: '#api',
+      label: 'API',
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Accordions allow users to reveal and hide related content without leaving the current page.
+      They are commonly used for FAQs, documentation, settings panels, and content that benefits
+      from progressive disclosure.
+    </p>
+
+    <p>
+      MiniKit styles the native
+      <code>&lt;details&gt;</code> and
+      <code>&lt;summary&gt;</code> elements, providing an accessible accordion experience with built-in
+      keyboard and screen reader support.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>Create an accordion using the native disclosure elements.</p>
+
+    <Example code={basicAccordion}>
+      <details>
+        <summary>What is MiniKit?</summary>
+
+        <p>MiniKit is a lightweight HTML-first CSS and JavaScript library.</p>
+      </details>
+    </Example>
+  </section>
+
+  <section id="multiple">
+    <h2>Multiple Items</h2>
+
+    <p>
+      Multiple accordion items can be grouped together to organize content into expandable sections.
+    </p>
+
+    <Example code={multipleAccordion}>
+      <details>
+        <summary>Installation</summary>
+
+        <p>Install MiniKit using npm or a CDN.</p>
+      </details>
+
+      <details>
+        <summary>Customization</summary>
+
+        <p>Customize MiniKit using CSS variables.</p>
+      </details>
+
+      <details>
+        <summary>Components</summary>
+
+        <p>MiniKit includes a growing collection of UI components.</p>
+      </details>
+    </Example>
+  </section>
+
+  <section id="open">
+    <h2>Default Open</h2>
+
+    <p>
+      Use the <code>open</code> attribute to expand an accordion item by default.
+    </p>
+
+    <Example code={openAccordion}>
+      <details open>
+        <summary>Expanded by Default</summary>
+
+        <p>This accordion item starts opened.</p>
+      </details>
+    </Example>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      MiniKit relies on the native
+      <code>&lt;details&gt;</code> element, which provides built-in keyboard navigation and screen reader
+      support in modern browsers.
+    </p>
+
+    <p>
+      Summary text should clearly communicate the content that will be revealed when the accordion
+      is expanded.
+    </p>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>open</code></td>
+          <td>Expands the accordion item by default.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

@@ -1,0 +1,209 @@
+---
+import ComponentLayout from "../../../layouts/component-layout.astro";
+
+import Example from "../../../components/example.astro";
+
+const basicExample = `<button
+  data-tooltip="Save changes">
+  Save
+</button>`;
+
+const placementExample = `<button
+  data-tooltip="Top tooltip">
+  Top
+</button>
+
+<button
+  data-tooltip="Bottom tooltip"
+  data-tooltip-placement="bottom">
+  Bottom
+</button>
+
+<button
+  data-tooltip="Left tooltip"
+  data-tooltip-placement="left">
+  Left
+</button>
+
+<button
+  data-tooltip="Right tooltip"
+  data-tooltip-placement="right">
+  Right
+</button>`;
+---
+
+
+<ComponentLayout
+  slug="tooltip"
+  title="Tooltip"
+  description="Display contextual information when users hover or focus an element."
+  nav={[
+    {
+      href: "#overview",
+      label: "Overview",
+    },
+    {
+      href: "#usage",
+      label: "Basic Usage",
+    },
+    {
+      href: "#placement",
+      label: "Placement",
+    },
+    {
+      href: "#accessibility",
+      label: "Accessibility",
+    },
+    {
+      href: "#api",
+      label: "API",
+    },
+  ]}
+>
+
+<section id="overview">
+  <h2>Overview</h2>
+
+  <p>
+    Tooltips provide short contextual information when users hover
+    or focus an element.
+  </p>
+
+  <p>
+    MiniKit tooltips are implemented entirely with CSS while the
+    JavaScript automatically adds accessibility attributes for
+    screen readers.
+  </p>
+</section>
+
+<section id="usage">
+  <h2>Basic Usage</h2>
+
+  <p>
+    Add the
+    <code>data-tooltip</code>
+    attribute to any interactive element.
+  </p>
+
+  <Example code={basicExample}>
+    <button
+      data-tooltip="Save changes"
+    >
+      Save
+    </button>
+  </Example>
+
+  <p>
+    The tooltip is shown when the element is hovered with a mouse
+    or receives keyboard focus.
+  </p>
+</section>
+
+<section id="placement">
+  <h2>Placement</h2>
+
+  <p>
+    Tooltips are displayed above elements by default. Use
+    <code>data-tooltip-placement</code>
+    to change the position.
+  </p>
+
+  <Example code={placementExample}>
+    <div class="hstack">
+      <button
+        data-tooltip="Top tooltip"
+      >
+        Top
+      </button>
+
+      <button
+        data-tooltip="Bottom tooltip"
+        data-tooltip-placement="bottom"
+      >
+        Bottom
+      </button>
+
+      <button
+        data-tooltip="Left tooltip"
+        data-tooltip-placement="left"
+      >
+        Left
+      </button>
+
+      <button
+        data-tooltip="Right tooltip"
+        data-tooltip-placement="right"
+      >
+        Right
+      </button>
+    </div>
+  </Example>
+</section>
+
+<section id="accessibility">
+  <h2>Accessibility</h2>
+
+  <p>
+    MiniKit automatically applies an
+    <code>aria-label</code>
+    when one is not already present, ensuring tooltip text is
+    available to assistive technologies.
+  </p>
+
+  <ul>
+    <li>
+      Tooltips are available on both hover and keyboard focus.
+    </li>
+
+    <li>
+      Provide concise, descriptive tooltip text.
+    </li>
+
+    <li>
+      If an element already has an
+      <code>aria-label</code>,
+      MiniKit preserves it.
+    </li>
+  </ul>
+</section>
+
+<section id="api">
+  <h2>API</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><code>data-tooltip</code></td>
+        <td>Tooltip text displayed on hover and focus.</td>
+      </tr>
+
+      <tr>
+        <td><code>data-tooltip-placement</code></td>
+        <td>
+          Optional placement:
+          <code>top</code>,
+          <code>bottom</code>,
+          <code>left</code>,
+          or
+          <code>right</code>.
+        </td>
+      </tr>
+
+      <tr>
+        <td><code>aria-label</code></td>
+        <td>
+          Optional accessible label. Automatically generated when omitted.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+</ComponentLayout>

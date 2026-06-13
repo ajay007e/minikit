@@ -1,0 +1,247 @@
+---
+import ComponentLayout from '../../../layouts/component-layout.astro';
+
+import Example from '../../../components/example.astro';
+import CodeBlock from '../../../components/code-block.astro';
+
+const basicDialog = `<button onclick="basicDialog.showModal()">
+  Open Dialog
+</button>
+
+<dialog id="basicDialog">
+  <header>
+    <h3>Dialog Title</h3>
+
+    <p>
+      Optional dialog description.
+    </p>
+  </header>
+
+  <section>
+    <p>
+      Dialog content goes here.
+    </p>
+  </section>
+
+  <footer>
+    <form method="dialog">
+      <button>
+        Close
+      </button>
+    </form>
+  </footer>
+</dialog>`;
+
+const smallDialog = `<dialog data-size="small">
+  ...
+</dialog>`;
+
+const largeDialog = `<dialog data-size="large">
+  ...
+</dialog>`;
+
+const fullDialog = `<dialog data-size="full">
+  ...
+</dialog>`;
+---
+
+<ComponentLayout
+  slug="dialog"
+  title="Dialog"
+  description="Display modal content that requires user attention."
+  nav={[
+    {
+      href: '#overview',
+      label: 'Overview',
+    },
+    {
+      href: '#basic',
+      label: 'Basic Usage',
+    },
+    {
+      href: '#sizes',
+      label: 'Sizes',
+    },
+    {
+      href: '#structure',
+      label: 'Structure',
+    },
+    {
+      href: '#accessibility',
+      label: 'Accessibility',
+    },
+    {
+      href: '#api',
+      label: 'API',
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Dialogs present content that requires user attention before returning to the main interface.
+      They are commonly used for confirmations, forms, settings, and other focused interactions.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>
+      Open dialogs using the native
+      <code>showModal()</code> method.
+    </p>
+
+    <Example code={basicDialog}>
+      <button onclick="document.getElementById('dialog-demo').showModal()">Open Dialog</button>
+
+      <dialog id="dialog-demo">
+        <header>
+          <h3>Dialog Title</h3>
+
+          <p>Optional dialog description.</p>
+        </header>
+
+        <section>
+          <p>Dialog content goes here.</p>
+        </section>
+
+        <footer>
+          <form method="dialog">
+            <button>Close</button>
+          </form>
+        </footer>
+      </dialog>
+    </Example>
+  </section>
+
+  <section id="sizes">
+    <h2>Sizes</h2>
+
+    <p>Dialogs support three optional size modifiers.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>data-size="small"</code></td>
+          <td>Compact dialog width.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="large"</code></td>
+          <td>Wider dialog layout.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="full"</code></td>
+          <td>Full-screen style dialog.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <CodeBlock code={smallDialog} />
+
+    <CodeBlock code={largeDialog} />
+
+    <CodeBlock code={fullDialog} />
+  </section>
+
+  <section id="structure">
+    <h2>Structure</h2>
+
+    <p>
+      Dialogs can contain a header, content area, and footer. MiniKit automatically styles these
+      sections when they are direct children of the dialog.
+    </p>
+
+    <CodeBlock
+      code={`<dialog>
+  <header>
+    <h3>Title</h3>
+
+    <p>
+      Description
+    </p>
+  </header>
+
+  <section>
+    Content
+  </section>
+
+  <footer>
+    <button>
+      Cancel
+    </button>
+
+    <button>
+      Confirm
+    </button>
+  </footer>
+</dialog>`}
+    />
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      MiniKit uses the native
+      <code>&lt;dialog&gt;</code> element, which provides built-in focus management and keyboard support
+      in modern browsers.
+    </p>
+
+    <p>Always provide a clear title and ensure users have an obvious way to dismiss the dialog.</p>
+
+    <p>
+      For forms and confirmations, use meaningful action labels rather than generic button text.
+    </p>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>data-size="small"</code></td>
+          <td>Small dialog width.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="large"</code></td>
+          <td>Large dialog width.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="full"</code></td>
+          <td>Full-screen dialog.</td>
+        </tr>
+
+        <tr>
+          <td><code>showModal()</code></td>
+          <td>Opens the dialog as a modal.</td>
+        </tr>
+
+        <tr>
+          <td><code>close()</code></td>
+          <td>Closes the dialog.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

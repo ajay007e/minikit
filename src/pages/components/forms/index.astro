@@ -1,0 +1,888 @@
+---
+import ComponentLayout from '../../../layouts/component-layout.astro';
+
+import Example from '../../../components/example.astro';
+
+const selectExample = `<select>
+  <option>
+    Choose an option
+  </option>
+
+  <option>
+    Option 1
+  </option>
+
+  <option>
+    Option 2
+  </option>
+</select>`;
+
+const checkboxExample = `<label>
+  <input type="checkbox" />
+
+  Accept terms and conditions
+</label>`;
+
+const statesExample = `<input
+  type="text"
+  value="Disabled input"
+  disabled
+/>
+
+<input
+  type="text"
+  value="Readonly input"
+  readonly
+/>
+
+<input
+  type="email"
+  placeholder="Required field"
+  required
+/>`;
+
+const completeForm = `<form>
+  <label for="name">
+    Full Name
+  </label>
+
+  <input
+    id="name"
+    type="text"
+    placeholder="John Doe"
+  />
+
+  <label for="email">
+    Email Address
+  </label>
+
+  <input
+    id="email"
+    type="email"
+    placeholder="john@example.com"
+  />
+
+  <label for="message">
+    Message
+  </label>
+
+  <textarea
+    id="message"
+    rows="4"
+  ></textarea>
+
+  <label>
+    <input type="checkbox" />
+
+    Subscribe to updates
+  </label>
+
+  <button type="submit">
+    Submit
+  </button>
+</form>`;
+---
+
+<ComponentLayout
+  slug="forms"
+  title="Forms"
+  description="Collect and validate user input using native form controls."
+  nav={[
+    { href: '#overview', label: 'Overview' },
+    { href: '#field', label: 'Field Structure' },
+    { href: '#text', label: 'Text Input' },
+    { href: '#email', label: 'Email Input' },
+
+    { href: '#password', label: 'Password' },
+
+    { href: '#validation', label: 'Validation' },
+
+    { href: '#textarea', label: 'Textarea' },
+
+    { href: '#select', label: 'Select' },
+
+    { href: '#checkbox', label: 'Checkbox' },
+    { href: '#radio', label: 'Radio Group' },
+
+    { href: '#file', label: 'File Input' },
+
+    { href: '#date', label: 'Date' },
+
+    { href: '#datetime', label: 'Date & Time' },
+
+    { href: '#range', label: 'Range' },
+
+    { href: '#switch', label: 'Switch' },
+
+    { href: '#states', label: 'States' },
+
+    { href: '#example', label: 'Complete Form' },
+
+    { href: '#accessibility', label: 'Accessibility' },
+
+    { href: '#api', label: 'API' },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Forms are the primary way users interact with an application by entering, editing, and
+      submitting information. MiniKit provides consistent styling for native HTML form controls
+      while preserving browser behavior and accessibility.
+    </p>
+
+    <p>
+      Rather than introducing custom components, MiniKit enhances standard HTML elements such as
+      inputs, textareas, selects, and buttons. This keeps forms lightweight, framework agnostic, and
+      familiar to every developer.
+    </p>
+
+    <p>
+      MiniKit also includes helper patterns for field layouts, validation, hints, switches, and
+      grouped controls to help build consistent user interfaces.
+    </p>
+  </section>
+
+  <section id="field">
+    <h2>Field Structure</h2>
+
+    <p>
+      MiniKit recommends wrapping each control inside a
+
+      <code>data-field</code> container. This groups the label, control, hints, and validation messages
+      into a single reusable structure.
+    </p>
+
+    <Example
+      code={`<label data-field>
+
+  Name
+
+
+
+  <input
+
+    type="text"
+
+    placeholder="Enter your name"
+
+  />
+
+</label>`}
+    >
+      <label data-field>
+        Name
+
+        <input type="text" placeholder="Enter your name" />
+      </label>
+    </Example>
+
+    <p>
+      Keeping related elements together improves readability and makes forms easier to maintain as
+      they grow.
+    </p>
+  </section>
+
+  <section id="text">
+    <h2>Text Input</h2>
+
+    <p>
+      Text inputs are used to collect short, single-line values such as names, usernames, titles, or
+      search terms.
+    </p>
+
+    <Example
+      code={`<label data-field>
+
+  Name
+
+
+
+  <input
+
+    type="text"
+
+    placeholder="Enter your name"
+
+  />
+
+</label>`}
+    >
+      <label data-field>
+        Name
+
+        <input type="text" placeholder="Enter your name" />
+      </label>
+    </Example>
+
+    <p>
+      Use clear labels and meaningful placeholder text to help users understand the expected input.
+    </p>
+  </section>
+
+  <section id="email">
+    <h2>Email Input</h2>
+
+    <p>
+      Email fields provide optimized keyboards on mobile devices and enable built-in browser
+      validation.
+    </p>
+
+    <Example
+      code={`<label data-field>
+
+  Email
+
+
+
+  <input
+
+    type="email"
+
+    placeholder="you@example.com"
+
+  />
+
+</label>`}
+    >
+      <label data-field>
+        Email
+
+        <input type="email" placeholder="you@example.com" />
+      </label>
+    </Example>
+
+    <p>
+      Whenever possible, prefer the
+
+      <code>email</code> input type over a generic text field.
+    </p>
+  </section>
+
+  <section id="password">
+    <h2>Password Input</h2>
+
+    <p>Password fields should include helpful guidance whenever password requirements exist.</p>
+
+    <Example
+      code={`<label data-field>
+
+  Password
+
+
+
+  <input
+
+    type="password"
+
+    aria-describedby="password-hint"
+
+  />
+
+
+
+  <small
+
+    id="password-hint"
+
+    data-hint
+
+  >
+
+    Must contain at least 8 characters.
+
+  </small>
+
+</label>`}
+    >
+      <label data-field>
+        Password
+
+        <input type="password" aria-describedby="password-hint" />
+
+        <small id="password-hint" data-hint>Must contain at least 8 characters.</small>
+      </label>
+    </Example>
+
+    <p>Use helper text to communicate password requirements before the user submits the form.</p>
+  </section>
+
+  <section id="validation">
+    <h2>Validation</h2>
+
+    <p>
+      Display validation errors directly beneath the associated field. MiniKit provides an error
+      field pattern that combines the label, invalid input, and descriptive error message.
+    </p>
+
+    <Example
+      code={`<div data-field="error">
+
+  <label for="error-input">
+
+    Email
+
+  </label>
+
+
+
+  <input
+
+    id="error-input"
+
+    type="email"
+
+    aria-invalid="true"
+
+    aria-describedby="error-message"
+
+    value="invalid-email"
+
+  />
+
+
+
+  <div
+
+    id="error-message"
+
+    class="error"
+
+    role="status"
+
+  >
+
+    Please enter a valid email address.
+
+  </div>
+
+</div>`}
+    >
+      <div data-field="error">
+        <label for="error-input">Email</label>
+
+        <input
+          id="error-input"
+          type="email"
+          aria-invalid="true"
+          aria-describedby="error-message"
+          value="invalid-email"
+        />
+
+        <div id="error-message" class="error" role="status">
+          Please enter a valid email address.
+        </div>
+      </div>
+    </Example>
+
+    <p>
+      Associate error messages with the corresponding control using
+
+      <code>aria-describedby</code> and mark invalid fields with
+
+      <code>aria-invalid="true"</code>.
+    </p>
+  </section>
+  <section id="textarea">
+    <h2>Textarea</h2>
+
+    <p>Use a textarea for multi-line user input.</p>
+
+    <Example
+      code={`<label data-field>
+
+  Message
+
+
+
+  <textarea
+
+    rows="4"
+
+    placeholder="Your message..."
+
+  ></textarea>
+
+</label>`}
+    >
+      <label data-field>
+        Message
+
+        <textarea rows="4" placeholder="Your message..."></textarea>
+      </label>
+    </Example>
+  </section>
+
+  <section id="select">
+    <h2>Select</h2>
+
+    <p>Select menus allow users to choose a single option from a list.</p>
+
+    <Example code={selectExample}>
+      <select>
+        <option>Choose an option</option>
+
+        <option>Option 1</option>
+
+        <option>Option 2</option>
+      </select>
+    </Example>
+  </section>
+
+  <section id="checkbox">
+    <h2>Checkbox</h2>
+
+    <p>Checkboxes allow users to select one or more options.</p>
+
+    <Example code={checkboxExample}>
+      <label>
+        <input type="checkbox" />
+
+        Accept terms and conditions
+      </label>
+    </Example>
+  </section>
+
+  <section id="radio">
+    <h2>Radio Group</h2>
+
+    <p>
+      Radio buttons allow users to choose a single option from a group of mutually exclusive
+      choices.
+    </p>
+
+    <Example
+      code={`<fieldset class="hstack">
+
+  <legend>
+
+    Preferred Plan
+
+  </legend>
+
+
+
+  <label>
+
+    <input
+
+      type="radio"
+
+      name="plan"
+
+    />
+
+
+
+    Starter
+
+  </label>
+
+
+
+  <label>
+
+    <input
+
+      type="radio"
+
+      name="plan"
+
+    />
+
+
+
+    Professional
+
+  </label>
+
+
+
+  <label>
+
+    <input
+
+      type="radio"
+
+      name="plan"
+
+    />
+
+
+
+    Enterprise
+
+  </label>
+
+</fieldset>`}
+    >
+      <fieldset class="hstack">
+        <legend>Preferred Plan</legend>
+
+        <label>
+          <input type="radio" name="plan-demo" />
+
+          Starter
+        </label>
+
+        <label>
+          <input type="radio" name="plan-demo" />
+
+          Professional
+        </label>
+
+        <label>
+          <input type="radio" name="plan-demo" />
+
+          Enterprise
+        </label>
+      </fieldset>
+    </Example>
+
+    <p>
+      Group related radio buttons inside a fieldset and provide a legend describing the available
+      choices.
+    </p>
+  </section>
+
+  <section id="file">
+    <h2>File Input</h2>
+
+    <p>File inputs allow users to upload one or more files from their device.</p>
+
+    <Example
+      code={`<label data-field>
+
+  File
+
+
+
+  <input type="file" />
+
+</label>`}
+    >
+      <label data-field>
+        File
+
+        <input type="file" />
+      </label>
+    </Example>
+
+    <p>Use descriptive labels so users understand the expected file type or upload requirements.</p>
+  </section>
+
+  <section id="date">
+    <h2>Date Input</h2>
+
+    <p>Date inputs allow users to select a calendar date using the browser's native date picker.</p>
+
+    <Example
+      code={`<label data-field>
+
+  Date
+
+
+
+  <input type="date" />
+
+</label>`}
+    >
+      <label data-field>
+        Date
+
+        <input type="date" />
+      </label>
+    </Example>
+
+    <p>Native date pickers provide a familiar experience across desktop and mobile devices.</p>
+  </section>
+
+  <section id="datetime">
+    <h2>Date &amp; Time</h2>
+
+    <p>Use datetime inputs when both a calendar date and time are required.</p>
+
+    <Example
+      code={`<label data-field>
+
+  Meeting Time
+
+
+
+  <input type="datetime-local" />
+
+</label>`}
+    >
+      <label data-field>
+        Meeting Time
+
+        <input type="datetime-local" />
+      </label>
+    </Example>
+
+    <p>The browser provides a native interface for selecting both values together.</p>
+  </section>
+
+  <section id="range">
+    <h2>Range Slider</h2>
+
+    <p>
+      Range sliders allow users to select a numeric value within a fixed interval. They are commonly
+      used for settings such as volume, brightness, opacity, or zoom level.
+    </p>
+
+    <Example
+      code={`<label data-field>
+  Volume
+
+  <input
+    type="range"
+    min="0"
+    max="100"
+    value="50"
+  />
+
+  <span data-hint>
+    Adjust the output volume.
+  </span>
+</label>`}
+    >
+      <label data-field>
+        Volume
+
+        <input type="range" min="0" max="100" value="50" />
+
+        <span data-hint>Adjust the output volume.</span>
+      </label>
+    </Example>
+
+    <p>
+      Specify the minimum, maximum, and initial value using the
+      <code>min</code>, <code>max</code>, and <code>value</code>
+      attributes. Use helper text to explain what the selected value represents when additional context
+      is helpful.
+    </p>
+  </section>
+  <section id="switch">
+    <h2>Switch</h2>
+
+    <p>
+      Switches represent settings that can be turned on or off. They use a checkbox with <code>
+        role="switch"
+      </code>.
+    </p>
+
+    <Example
+      code={`<label data-field>
+
+  Enable notifications
+
+
+
+  <input
+
+    type="checkbox"
+
+    role="switch"
+
+  />
+
+
+
+  <span data-hint>
+
+    Receive email notifications.
+
+  </span>
+
+</label>`}
+    >
+      <label data-field>
+        Enable notifications
+
+        <input type="checkbox" role="switch" />
+
+        <span data-hint>Receive email notifications.</span>
+      </label>
+    </Example>
+
+    <p>
+      Switches are best suited for immediately applied settings, whereas checkboxes are commonly
+      used within forms before submission.
+    </p>
+  </section>
+
+  <section id="states">
+    <h2>States</h2>
+
+    <p>Form controls support disabled, readonly, and required states.</p>
+
+    <Example code={statesExample}>
+      <div class="vstack">
+        <input type="text" value="Disabled input" disabled />
+
+        <input type="text" value="Readonly input" readonly />
+
+        <input type="email" placeholder="Required field" required />
+      </div>
+    </Example>
+  </section>
+
+  <section id="example">
+    <h2>Complete Form</h2>
+    <p>
+      A complete form combines labels, helper text, validation, different field types, and actions
+      into a consistent user experience.
+    </p>
+
+    <Example code={completeForm}>
+      <form>
+        <label data-field>
+          Name
+
+          <input type="text" placeholder="Enter your name" />
+        </label>
+
+        <label data-field>
+          Email
+
+          <input type="email" placeholder="you@example.com" />
+        </label>
+
+        <label data-field>
+          Password
+
+          <input type="password" aria-describedby="password-demo" />
+
+          <small id="password-demo" data-hint>Must contain at least 8 characters.</small>
+        </label>
+
+        <div data-field>
+          <label>Country</label>
+
+          <select>
+            <option>Select a country</option>
+
+            <option>Australia</option>
+
+            <option>Canada</option>
+
+            <option>United Kingdom</option>
+          </select>
+        </div>
+
+        <label data-field>
+          Message
+
+          <textarea rows="4" placeholder="Your message..."></textarea>
+        </label>
+
+        <label data-field>
+          <input type="checkbox" />
+
+          I agree to the terms and conditions
+
+          <span data-hint>Required before submitting.</span>
+        </label>
+
+        <button type="submit">Submit</button>
+      </form>
+    </Example>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      Associate every form control with a visible label. Labels improve usability for everyone and
+      are required by assistive technologies.
+    </p>
+
+    <ul>
+      <li>Always provide a label for every control.</li>
+
+      <li>Use <code>aria-describedby</code> for helper and error text.</li>
+
+      <li>Mark invalid controls using <code>aria-invalid="true"</code>.</li>
+
+      <li>
+        Group related radio buttons using <code>fieldset</code> and <code>legend</code>.
+      </li>
+
+      <li>Do not rely solely on placeholder text.</li>
+
+      <li>Use meaningful button labels such as "Save Changes" or "Create Account".</li>
+    </ul>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Element</th>
+
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>data-field</code></td>
+
+          <td>Groups labels, controls, hints, and validation messages.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-field="error"</code></td>
+
+          <td>Displays a field in its error state.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-hint</code></td>
+
+          <td>Displays helper text below a control.</td>
+        </tr>
+
+        <tr>
+          <td><code>role="switch"</code></td>
+
+          <td>Transforms a checkbox into a switch.</td>
+        </tr>
+
+        <tr>
+          <td><code>aria-invalid="true"</code></td>
+
+          <td>Marks a control as invalid.</td>
+        </tr>
+
+        <tr>
+          <td><code>aria-describedby</code></td>
+
+          <td>Associates helper or validation text with a form control.</td>
+        </tr>
+
+        <tr>
+          <td><code>required</code></td>
+
+          <td>Marks a field as mandatory.</td>
+        </tr>
+
+        <tr>
+          <td><code>disabled</code></td>
+
+          <td>Disables user interaction.</td>
+        </tr>
+
+        <tr>
+          <td><code>readonly</code></td>
+
+          <td>Allows viewing while preventing editing.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

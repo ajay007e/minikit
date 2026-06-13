@@ -1,0 +1,156 @@
+---
+import ComponentLayout from '../../../layouts/component-layout.astro';
+import Example from '../../../components/example.astro';
+
+const basicButton = `<button>Click me</button>`;
+
+const variants = `
+<button>Primary</button>
+<button data-variant="secondary">Secondary</button>
+<button data-variant="success">Success</button>
+<button data-variant="danger">Danger</button>
+`;
+
+const outlines = `
+<button class="outline">Outline</button>
+<button data-variant="secondary" class="outline">Outline Secondary</button>
+`;
+
+const sizes = `
+<button class="small">Small</button>
+<button>Default</button>
+<button class="large">Large</button>
+`;
+
+const disabled = `
+<button disabled>Disabled</button>
+<button data-variant="secondary" disabled>
+  Disabled Secondary
+</button>
+`;
+
+const iconButtons = `
+<button class="icon" aria-label="Settings">
+  ⚙️
+</button>
+
+<button class="icon outline" aria-label="Search">
+  🔍
+</button>
+`;
+
+const buttonGroup = `
+<div class="hstack">
+  <button>Left</button>
+  <button data-variant="secondary">Middle</button>
+  <button class="outline">Right</button>
+</div>
+`;
+---
+
+<ComponentLayout
+  slug="button"
+  title="Button"
+  description="Trigger actions and interactions."
+  nav={[
+    { href: '#basic', label: 'Basic Usage' },
+    { href: '#variants', label: 'Variants' },
+    { href: '#outline', label: 'Outline' },
+    { href: '#sizes', label: 'Sizes' },
+    { href: '#disabled', label: 'Disabled' },
+    { href: '#icon', label: 'Icon Buttons' },
+    { href: '#groups', label: 'Button Groups' },
+  ]}
+>
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>Use a button element to trigger actions.</p>
+
+    <Example id="basic-button" code={basicButton}>
+      <button>Click me</button>
+    </Example>
+  </section>
+
+  <section id="variants">
+    <h2>Variants</h2>
+
+    <p>Buttons support multiple visual variants.</p>
+
+    <Example id="button-variants" code={variants}>
+      <div class="hstack">
+        <button>Primary</button>
+
+        <button data-variant="secondary">Secondary</button>
+
+        <button data-variant="success">Success</button>
+
+        <button data-variant="danger">Danger</button>
+      </div>
+    </Example>
+  </section>
+
+  <section id="outline">
+    <h2>Outline Buttons</h2>
+
+    <Example id="outline-buttons" code={outlines}>
+      <div class="hstack">
+        <button class="outline">Outline</button>
+
+        <button data-variant="secondary" class="outline">Outline Secondary</button>
+      </div>
+    </Example>
+  </section>
+
+  <section id="sizes">
+    <h2>Sizes</h2>
+
+    <Example id="button-sizes" code={sizes}>
+      <div class="hstack" style="align-items:center">
+        <button class="small">Small</button>
+
+        <button>Default</button>
+
+        <button class="large">Large</button>
+      </div>
+    </Example>
+  </section>
+
+  <section id="disabled">
+    <h2>Disabled State</h2>
+
+    <Example id="button-disabled" code={disabled}>
+      <div class="hstack">
+        <button disabled>Disabled</button>
+
+        <button data-variant="secondary" disabled>Disabled Secondary</button>
+      </div>
+    </Example>
+  </section>
+
+  <section id="icon">
+    <h2>Icon Buttons</h2>
+
+    <Example id="icon-buttons" code={iconButtons}>
+      <div class="hstack">
+        <button class="icon" aria-label="Settings">⚙️</button>
+
+        <button class="icon outline" aria-label="Search">🔍</button>
+      </div>
+    </Example>
+  </section>
+
+  <section id="groups">
+    <h2>Button Groups</h2>
+
+    <Example id="button-groups" code={buttonGroup}>
+      <div class="hstack">
+        <button>Left</button>
+
+        <button data-variant="secondary">Middle</button>
+
+        <button class="outline">Right</button>
+      </div>
+    </Example>
+  </section>
+</ComponentLayout>

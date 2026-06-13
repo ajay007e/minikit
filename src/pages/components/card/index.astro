@@ -1,0 +1,238 @@
+---
+import ComponentLayout from '../../../layouts/component-layout.astro';
+
+import Example from '../../../components/example.astro';
+
+const basicCard = `<article data-card>
+  <h3>Card Title</h3>
+
+  <p>
+    Card content goes here.
+  </p>
+</article>`;
+
+const cardWithHeader = `<article data-card>
+  <header>
+    <h3>Card Title</h3>
+
+    <p>
+      Optional card description.
+    </p>
+  </header>
+
+  <p>
+    Main card content.
+  </p>
+</article>`;
+
+const cardWithFooter = `<article data-card>
+  <h3>Project Overview</h3>
+
+  <p>
+    Card content with footer actions.
+  </p>
+
+  <footer>
+    <button>
+      View Details
+    </button>
+  </footer>
+</article>`;
+
+const variantsCard = `<div class="vstack">
+  <article data-card>
+    Default Card
+  </article>
+
+  <article
+    data-card
+    class="flat"
+  >
+    Flat Card
+  </article>
+
+  <article
+    data-card
+    class="outline"
+  >
+    Outline Card
+  </article>
+</div>`;
+---
+
+<ComponentLayout
+  slug="card"
+  title="Card"
+  description="Display related content inside a flexible container."
+  nav={[
+    {
+      href: '#overview',
+      label: 'Overview',
+    },
+    {
+      href: '#basic',
+      label: 'Basic Usage',
+    },
+    {
+      href: '#header',
+      label: 'Header',
+    },
+    {
+      href: '#footer',
+      label: 'Footer',
+    },
+    {
+      href: '#variants',
+      label: 'Variants',
+    },
+    {
+      href: '#accessibility',
+      label: 'Accessibility',
+    },
+    {
+      href: '#api',
+      label: 'API',
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Cards group related content into a visually distinct container. They are useful for
+      dashboards, lists, settings pages, pricing tables, blog posts, and other structured content.
+    </p>
+
+    <p>
+      MiniKit cards provide consistent spacing, borders, and visual hierarchy while remaining
+      flexible enough for many layouts.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>
+      Create a card using the <code>data-card</code> attribute.
+    </p>
+
+    <Example code={basicCard}>
+      <article data-card>
+        <h3>Card Title</h3>
+
+        <p>Card content goes here.</p>
+      </article>
+    </Example>
+  </section>
+
+  <section id="header">
+    <h2>Card Header</h2>
+
+    <p>
+      Use a <code>header</code> element to provide a title and supporting information.
+    </p>
+
+    <Example code={cardWithHeader}>
+      <article data-card>
+        <header>
+          <h3>Card Title</h3>
+
+          <p>Optional card description.</p>
+        </header>
+
+        <p>Main card content.</p>
+      </article>
+    </Example>
+  </section>
+
+  <section id="footer">
+    <h2>Card Footer</h2>
+
+    <p>
+      Use a <code>footer</code> element for actions and supplementary content.
+    </p>
+
+    <Example code={cardWithFooter}>
+      <article data-card>
+        <h3>Project Overview</h3>
+
+        <p>Card content with footer actions.</p>
+
+        <footer>
+          <button>View Details</button>
+        </footer>
+      </article>
+    </Example>
+  </section>
+
+  <section id="variants">
+    <h2>Variants</h2>
+
+    <p>Cards support flat and outline variants for different visual emphasis levels.</p>
+
+    <Example code={variantsCard}>
+      <div class="vstack">
+        <article data-card>Default Card</article>
+
+        <article data-card class="flat">Flat Card</article>
+
+        <article data-card class="outline">Outline Card</article>
+      </div>
+    </Example>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      Cards are presentation containers and do not provide semantic meaning by themselves. Use
+      appropriate HTML elements such as
+      <code>article</code>, <code>section</code>, and headings to communicate structure.
+    </p>
+
+    <p>
+      Interactive cards should contain properly labeled links and buttons rather than relying on
+      click handlers attached to the entire card.
+    </p>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>data-card</code></td>
+          <td>Creates a card component.</td>
+        </tr>
+
+        <tr>
+          <td><code>flat</code></td>
+          <td>Removes the card shadow.</td>
+        </tr>
+
+        <tr>
+          <td><code>outline</code></td>
+          <td>Uses a transparent background.</td>
+        </tr>
+
+        <tr>
+          <td><code>header</code></td>
+          <td>Adds structured card header content.</td>
+        </tr>
+
+        <tr>
+          <td><code>footer</code></td>
+          <td>Adds structured card footer content.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

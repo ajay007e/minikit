@@ -1,0 +1,372 @@
+---
+import ComponentLayout from "../../../layouts/component-layout.astro";
+
+import Example from "../../../components/example.astro";
+---
+
+<ComponentLayout
+  slug="tabs"
+  title="Tabs"
+  description="Organize related content into multiple views without leaving the current page."
+  nav={[
+    {
+      href: "#overview",
+      label: "Overview",
+    },
+    {
+      href: "#basic",
+      label: "Basic Usage",
+    },
+    {
+      href: "#default",
+      label: "Default Tab",
+    },
+    {
+      href: "#disabled",
+      label: "Disabled Tabs",
+    },
+    {
+      href: "#accessibility",
+      label: "Accessibility",
+    },
+    {
+      href: "#api",
+      label: "API",
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Tabs organize related information into separate views, allowing
+      users to switch between sections without leaving the current page.
+    </p>
+
+    <p>
+      MiniKit provides an accessible tabs component with keyboard
+      navigation, automatic ARIA management, and synchronized tab
+      panels.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>
+      Wrap your tabs inside an
+      <code>mk-tabs</code>
+      element. Place the tab buttons inside a
+      <code>role="tablist"</code>
+      container followed by the corresponding tab panels.
+    </p>
+
+    <Example
+      code={`<mk-tabs>
+  <div role="tablist">
+    <button
+      role="tab"
+      aria-selected="true"
+    >
+      HTML
+    </button>
+
+    <button role="tab">
+      CSS
+    </button>
+
+    <button role="tab">
+      JavaScript
+    </button>
+  </div>
+
+  <section role="tabpanel">
+    HTML content
+  </section>
+
+  <section role="tabpanel">
+    CSS content
+  </section>
+
+  <section role="tabpanel">
+    JavaScript content
+  </section>
+</mk-tabs>`}
+    >
+      <mk-tabs>
+        <div role="tablist">
+          <button
+            role="tab"
+            aria-selected="true"
+          >
+            HTML
+          </button>
+
+          <button role="tab">
+            CSS
+          </button>
+
+          <button role="tab">
+            JavaScript
+          </button>
+        </div>
+
+        <section role="tabpanel">
+          HTML is used to structure web pages using semantic elements.
+        </section>
+
+        <section role="tabpanel">
+          CSS controls the presentation, layout, spacing, and appearance
+          of web pages.
+        </section>
+
+        <section role="tabpanel">
+          JavaScript adds dynamic behavior and interactivity to web
+          applications.
+        </section>
+      </mk-tabs>
+    </Example>
+  </section>
+
+  <section id="default">
+    <h2>Default Tab</h2>
+
+    <p>
+      Set the initially active tab using
+      <code>aria-selected="true"</code>.
+      If omitted, MiniKit automatically activates the first tab.
+    </p>
+
+    <Example
+      code={`<mk-tabs>
+  <div role="tablist">
+    <button role="tab">
+      Overview
+    </button>
+
+    <button
+      role="tab"
+      aria-selected="true"
+    >
+      API
+    </button>
+
+    <button role="tab">
+      Examples
+    </button>
+  </div>
+
+  <section role="tabpanel">
+    Overview content.
+  </section>
+
+  <section role="tabpanel">
+    API documentation.
+  </section>
+
+  <section role="tabpanel">
+    Example content.
+  </section>
+</mk-tabs>`}
+    >
+      <mk-tabs>
+        <div role="tablist">
+          <button role="tab">
+            Overview
+          </button>
+
+          <button
+            role="tab"
+            aria-selected="true"
+          >
+            API
+          </button>
+
+          <button role="tab">
+            Examples
+          </button>
+        </div>
+
+        <section role="tabpanel">
+          Overview content.
+        </section>
+
+        <section role="tabpanel">
+          API documentation.
+        </section>
+
+        <section role="tabpanel">
+          Example content.
+        </section>
+      </mk-tabs>
+    </Example>
+  </section>
+
+  <section id="disabled">
+    <h2>Disabled Tabs</h2>
+
+    <p>
+      Disable tabs that are temporarily unavailable using the native
+      <code>disabled</code>
+      attribute.
+    </p>
+
+    <Example
+      code={`<mk-tabs>
+  <div role="tablist">
+    <button
+      role="tab"
+      aria-selected="true"
+    >
+      Available
+    </button>
+
+    <button
+      role="tab"
+      disabled
+    >
+      Coming Soon
+    </button>
+  </div>
+
+  <section role="tabpanel">
+    Available content.
+  </section>
+
+  <section role="tabpanel">
+    Future content.
+  </section>
+</mk-tabs>`}
+    >
+      <mk-tabs>
+        <div role="tablist">
+          <button
+            role="tab"
+            aria-selected="true"
+          >
+            Available
+          </button>
+
+          <button
+            role="tab"
+            disabled
+          >
+            Coming Soon
+          </button>
+        </div>
+
+        <section role="tabpanel">
+          This content is currently available.
+        </section>
+
+        <section role="tabpanel">
+          This section is still under development.
+        </section>
+      </mk-tabs>
+    </Example>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      MiniKit follows the WAI-ARIA Tabs design pattern and includes
+      keyboard navigation out of the box.
+    </p>
+
+    <ul>
+      <li>
+        Navigate between tabs using the
+        <kbd>Left</kbd>
+        and
+        <kbd>Right</kbd>
+        arrow keys.
+      </li>
+
+      <li>
+        Press
+        <kbd>Home</kbd>
+        to move to the first tab.
+      </li>
+
+      <li>
+        Press
+        <kbd>End</kbd>
+        to move to the last tab.
+      </li>
+
+      <li>
+        MiniKit automatically synchronizes
+        <code>aria-selected</code>,
+        <code>aria-controls</code>,
+        and
+        <code>aria-labelledby</code>.
+      </li>
+
+      <li>
+        Inactive panels are automatically hidden using the
+        <code>hidden</code>
+        attribute.
+      </li>
+    </ul>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Element / Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>mk-tabs</code></td>
+          <td>Initializes an accessible tab component.</td>
+        </tr>
+
+        <tr>
+          <td><code>role="tablist"</code></td>
+          <td>Groups related tabs.</td>
+        </tr>
+
+        <tr>
+          <td><code>role="tab"</code></td>
+          <td>Defines an individual tab.</td>
+        </tr>
+
+        <tr>
+          <td><code>role="tabpanel"</code></td>
+          <td>Defines a panel associated with a tab.</td>
+        </tr>
+
+        <tr>
+          <td><code>aria-selected="true"</code></td>
+          <td>Marks the active tab.</td>
+        </tr>
+
+        <tr>
+          <td><code>disabled</code></td>
+          <td>Prevents interaction with a tab.</td>
+        </tr>
+
+        <tr>
+          <td><code>tab-change</code></td>
+          <td>
+            Custom event emitted whenever the active tab changes.
+          </td>
+        </tr>
+
+        <tr>
+          <td><code>activeIndex</code></td>
+          <td>
+            Gets or sets the currently active tab programmatically.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>
