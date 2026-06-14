@@ -4,82 +4,28 @@ import ComponentLayout from '../../../layouts/component-layout.astro';
 import Example from '../../../components/example.astro';
 
 const selectExample = `<select>
-  <option>
-    Choose an option
-  </option>
-
-  <option>
-    Option 1
-  </option>
-
-  <option>
-    Option 2
-  </option>
+  <option>Choose an option</option>
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
 </select>`;
 
 const checkboxExample = `<label>
-  <input type="checkbox" />
-
-  Accept terms and conditions
+  <input type="checkbox" /> Accept terms and conditions
 </label>`;
 
-const statesExample = `<input
-  type="text"
-  value="Disabled input"
-  disabled
-/>
-
-<input
-  type="text"
-  value="Readonly input"
-  readonly
-/>
-
-<input
-  type="email"
-  placeholder="Required field"
-  required
-/>`;
+const statesExample = `<input type="text" value="Disabled input"disabled/>
+<input type="text" value="Readonly input" readonly/>
+<input type="email" placeholder="Required field" required/>`;
 
 const completeForm = `<form>
-  <label for="name">
-    Full Name
-  </label>
-
-  <input
-    id="name"
-    type="text"
-    placeholder="John Doe"
-  />
-
-  <label for="email">
-    Email Address
-  </label>
-
-  <input
-    id="email"
-    type="email"
-    placeholder="john@example.com"
-  />
-
-  <label for="message">
-    Message
-  </label>
-
-  <textarea
-    id="message"
-    rows="4"
-  ></textarea>
-
-  <label>
-    <input type="checkbox" />
-
-    Subscribe to updates
-  </label>
-
-  <button type="submit">
-    Submit
-  </button>
+  <label for="name">Full Name</label>
+  <input id="name" type="text" placeholder="John Doe"/>
+  <label for="email">Email Address</label>
+  <input id="email" type="email" placeholder="john@example.com"/>
+  <label for="message">Message</label>
+  <textarea id="message" rows="4"></textarea>
+  <label><input type="checkbox" />Subscribe to updates</label>
+  <button type="submit">Submit</button>
 </form>`;
 ---
 
@@ -90,36 +36,21 @@ const completeForm = `<form>
   nav={[
     { href: '#overview', label: 'Overview' },
     { href: '#field', label: 'Field Structure' },
-    { href: '#text', label: 'Text Input' },
     { href: '#email', label: 'Email Input' },
-
     { href: '#password', label: 'Password' },
-
     { href: '#validation', label: 'Validation' },
-
     { href: '#textarea', label: 'Textarea' },
-
     { href: '#select', label: 'Select' },
-
     { href: '#checkbox', label: 'Checkbox' },
     { href: '#radio', label: 'Radio Group' },
-
     { href: '#file', label: 'File Input' },
-
     { href: '#date', label: 'Date' },
-
     { href: '#datetime', label: 'Date & Time' },
-
     { href: '#range', label: 'Range' },
-
     { href: '#switch', label: 'Switch' },
-
     { href: '#states', label: 'States' },
-
     { href: '#example', label: 'Complete Form' },
-
     { href: '#accessibility', label: 'Accessibility' },
-
     { href: '#api', label: 'API' },
   ]}
 >
@@ -129,16 +60,9 @@ const completeForm = `<form>
     <p>
       Forms are the primary way users interact with an application by entering, editing, and
       submitting information. MiniKit provides consistent styling for native HTML form controls
-      while preserving browser behavior and accessibility.
-    </p>
-
-    <p>
-      Rather than introducing custom components, MiniKit enhances standard HTML elements such as
-      inputs, textareas, selects, and buttons. This keeps forms lightweight, framework agnostic, and
-      familiar to every developer.
-    </p>
-
-    <p>
+      while preserving browser behavior and accessibility. Rather than introducing custom
+      components, MiniKit enhances standard HTML elements such as inputs, textareas, selects, and
+      buttons. This keeps forms lightweight, framework agnostic, and familiar to every developer.
       MiniKit also includes helper patterns for field layouts, validation, hints, switches, and
       grouped controls to help build consistent user interfaces.
     </p>
@@ -146,34 +70,20 @@ const completeForm = `<form>
 
   <section id="field">
     <h2>Field Structure</h2>
-
     <p>
       MiniKit recommends wrapping each control inside a
-
       <code>data-field</code> container. This groups the label, control, hints, and validation messages
       into a single reusable structure.
     </p>
 
     <Example
       code={`<label data-field>
-
   Name
-
-
-
-  <input
-
-    type="text"
-
-    placeholder="Enter your name"
-
-  />
-
+  <input type="text" placeholder="Enter your name"/>
 </label>`}
     >
       <label data-field>
         Name
-
         <input type="text" placeholder="Enter your name" />
       </label>
     </Example>
@@ -184,46 +94,8 @@ const completeForm = `<form>
     </p>
   </section>
 
-  <section id="text">
-    <h2>Text Input</h2>
-
-    <p>
-      Text inputs are used to collect short, single-line values such as names, usernames, titles, or
-      search terms.
-    </p>
-
-    <Example
-      code={`<label data-field>
-
-  Name
-
-
-
-  <input
-
-    type="text"
-
-    placeholder="Enter your name"
-
-  />
-
-</label>`}
-    >
-      <label data-field>
-        Name
-
-        <input type="text" placeholder="Enter your name" />
-      </label>
-    </Example>
-
-    <p>
-      Use clear labels and meaningful placeholder text to help users understand the expected input.
-    </p>
-  </section>
-
   <section id="email">
     <h2>Email Input</h2>
-
     <p>
       Email fields provide optimized keyboards on mobile devices and enable built-in browser
       validation.
@@ -231,24 +103,12 @@ const completeForm = `<form>
 
     <Example
       code={`<label data-field>
-
   Email
-
-
-
-  <input
-
-    type="email"
-
-    placeholder="you@example.com"
-
-  />
-
+  <input type="email" placeholder="you@example.com"/>
 </label>`}
     >
       <label data-field>
         Email
-
         <input type="email" placeholder="you@example.com" />
       </label>
     </Example>
@@ -262,38 +122,12 @@ const completeForm = `<form>
 
   <section id="password">
     <h2>Password Input</h2>
-
     <p>Password fields should include helpful guidance whenever password requirements exist.</p>
-
     <Example
       code={`<label data-field>
-
   Password
-
-
-
-  <input
-
-    type="password"
-
-    aria-describedby="password-hint"
-
-  />
-
-
-
-  <small
-
-    id="password-hint"
-
-    data-hint
-
-  >
-
-    Must contain at least 8 characters.
-
-  </small>
-
+  <input type="password" aria-describedby="password-hint"/>
+  <small id="password-hint" data-hint>Must contain at least 8 characters.</small>
 </label>`}
     >
       <label data-field>
@@ -318,45 +152,9 @@ const completeForm = `<form>
 
     <Example
       code={`<div data-field="error">
-
-  <label for="error-input">
-
-    Email
-
-  </label>
-
-
-
-  <input
-
-    id="error-input"
-
-    type="email"
-
-    aria-invalid="true"
-
-    aria-describedby="error-message"
-
-    value="invalid-email"
-
-  />
-
-
-
-  <div
-
-    id="error-message"
-
-    class="error"
-
-    role="status"
-
-  >
-
-    Please enter a valid email address.
-
-  </div>
-
+  <label for="error-input">Email</label>
+  <input id="error-input" type="email" aria-invalid="true" aria-describedby="error-message" value="invalid-email"/>
+  <small id="error-message" class="error" role="status">Please enter a valid email address.</small>
 </div>`}
     >
       <div data-field="error">
@@ -370,9 +168,9 @@ const completeForm = `<form>
           value="invalid-email"
         />
 
-        <div id="error-message" class="error" role="status">
+        <small id="error-message" class="error" role="status">
           Please enter a valid email address.
-        </div>
+        </small>
       </div>
     </Example>
 
@@ -391,19 +189,8 @@ const completeForm = `<form>
 
     <Example
       code={`<label data-field>
-
   Message
-
-
-
-  <textarea
-
-    rows="4"
-
-    placeholder="Your message..."
-
-  ></textarea>
-
+  <textarea rows="4"placeholder="Your message..."></textarea>
 </label>`}
     >
       <label data-field>
@@ -454,67 +241,10 @@ const completeForm = `<form>
 
     <Example
       code={`<fieldset class="hstack">
-
-  <legend>
-
-    Preferred Plan
-
-  </legend>
-
-
-
-  <label>
-
-    <input
-
-      type="radio"
-
-      name="plan"
-
-    />
-
-
-
-    Starter
-
-  </label>
-
-
-
-  <label>
-
-    <input
-
-      type="radio"
-
-      name="plan"
-
-    />
-
-
-
-    Professional
-
-  </label>
-
-
-
-  <label>
-
-    <input
-
-      type="radio"
-
-      name="plan"
-
-    />
-
-
-
-    Enterprise
-
-  </label>
-
+  <legend>Preferred Plan</legend>
+  <label><input type="radio" name="plan"/>Starter</label>
+  <label><input type="radio" name="plan"/>Professional</label>
+  <label><input type="radio" name="plan"/>Enterprise</label>
 </fieldset>`}
     >
       <fieldset class="hstack">
@@ -551,17 +281,7 @@ const completeForm = `<form>
 
     <p>File inputs allow users to upload one or more files from their device.</p>
 
-    <Example
-      code={`<label data-field>
-
-  File
-
-
-
-  <input type="file" />
-
-</label>`}
-    >
+    <Example code={`<label data-field>File<input type="file" /></label>`}>
       <label data-field>
         File
 
@@ -577,17 +297,7 @@ const completeForm = `<form>
 
     <p>Date inputs allow users to select a calendar date using the browser's native date picker.</p>
 
-    <Example
-      code={`<label data-field>
-
-  Date
-
-
-
-  <input type="date" />
-
-</label>`}
-    >
+    <Example code={`<label data-field>Date<input type="date" /></label>`}>
       <label data-field>
         Date
 
@@ -603,17 +313,7 @@ const completeForm = `<form>
 
     <p>Use datetime inputs when both a calendar date and time are required.</p>
 
-    <Example
-      code={`<label data-field>
-
-  Meeting Time
-
-
-
-  <input type="datetime-local" />
-
-</label>`}
-    >
+    <Example code={`<label data-field>Meeting Time<input type="datetime-local" /></label>`}>
       <label data-field>
         Meeting Time
 
@@ -635,17 +335,8 @@ const completeForm = `<form>
     <Example
       code={`<label data-field>
   Volume
-
-  <input
-    type="range"
-    min="0"
-    max="100"
-    value="50"
-  />
-
-  <span data-hint>
-    Adjust the output volume.
-  </span>
+  <input type="range" min="0" max="100" value="50"/>
+  <span data-hint>Adjust the output volume.</span>
 </label>`}
     >
       <label data-field>
@@ -653,7 +344,7 @@ const completeForm = `<form>
 
         <input type="range" min="0" max="100" value="50" />
 
-        <span data-hint>Adjust the output volume.</span>
+        <small data-hint>Adjust the output volume.</small>
       </label>
     </Example>
 
@@ -675,32 +366,13 @@ const completeForm = `<form>
 
     <Example
       code={`<label data-field>
-
   Enable notifications
-
-
-
-  <input
-
-    type="checkbox"
-
-    role="switch"
-
-  />
-
-
-
-  <span data-hint>
-
-    Receive email notifications.
-
-  </span>
-
+  <input type="checkbox" role="switch"/>
+  <span data-hint>Receive email notifications.</span>
 </label>`}
     >
       <label data-field>
         Enable notifications
-
         <input type="checkbox" role="switch" />
 
         <span data-hint>Receive email notifications.</span>
@@ -715,9 +387,7 @@ const completeForm = `<form>
 
   <section id="states">
     <h2>States</h2>
-
     <p>Form controls support disabled, readonly, and required states.</p>
-
     <Example code={statesExample}>
       <div class="vstack">
         <input type="text" value="Disabled input" disabled />

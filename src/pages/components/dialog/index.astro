@@ -4,44 +4,80 @@ import ComponentLayout from '../../../layouts/component-layout.astro';
 import Example from '../../../components/example.astro';
 import CodeBlock from '../../../components/code-block.astro';
 
-const basicDialog = `<button onclick="basicDialog.showModal()">
-  Open Dialog
-</button>
+const basicDialog = `<button onclick="basicDialog.showModal()">Open Dialog</button>
 
 <dialog id="basicDialog">
   <header>
     <h3>Dialog Title</h3>
 
-    <p>
-      Optional dialog description.
-    </p>
+    <p>Optional dialog description.</p>
   </header>
 
   <section>
-    <p>
-      Dialog content goes here.
-    </p>
+    <p>Dialog content goes here.</p>
   </section>
 
   <footer>
     <form method="dialog">
-      <button>
-        Close
-      </button>
+      <button>Close</button>
     </form>
   </footer>
 </dialog>`;
 
-const smallDialog = `<dialog data-size="small">
-  ...
+const smallDialog = `<dialog data-size="small" open>
+  <header>
+    <h3>Small Dialog</h3>
+  </header>
+
+  <section>
+    <p>Compact dialog content.</p>
+  </section>
+
+  <footer>
+    <button>Close</button>
+  </footer>
 </dialog>`;
 
-const largeDialog = `<dialog data-size="large">
-  ...
+const largeDialog = `<dialog data-size="large" open>
+  <header>
+    <h3>Large Dialog</h3>
+  </header>
+
+  <section>
+    <p>Large dialog content.</p>
+  </section>
+
+  <footer>
+    <button>Close</button>
+  </footer>
 </dialog>`;
 
-const fullDialog = `<dialog data-size="full">
-  ...
+const fullDialog = `<dialog data-size="full" open>
+  <header>
+    <h3>Full Dialog</h3>
+  </header>
+
+  <section>
+    <p>Full-screen dialog content.</p>
+  </section>
+
+  <footer>
+    <button>Close</button>
+  </footer>
+</dialog>`;
+
+const dialogStructure = `<dialog>
+  <header>
+    <h3>Title</h3>
+    <p>Description</p>
+  </header>
+  <section>
+    <p>Content</p>
+  </section>
+  <footer>
+    <button>Cancel</button>
+    <button>Confirm</button>
+  </footer>
 </dialog>`;
 ---
 
@@ -80,8 +116,10 @@ const fullDialog = `<dialog data-size="full">
     <h2>Overview</h2>
 
     <p>
-      Dialogs present content that requires user attention before returning to the main interface.
+      Dialogs display content that requires user attention before returning to the main interface.
       They are commonly used for confirmations, forms, settings, and other focused interactions.
+      MiniKit builds on the native <code>&lt;dialog&gt;</code> element, providing consistent styling while
+      preserving the browser's built-in accessibility and behavior.
     </p>
   </section>
 
@@ -89,14 +127,14 @@ const fullDialog = `<dialog data-size="full">
     <h2>Basic Usage</h2>
 
     <p>
-      Open dialogs using the native
-      <code>showModal()</code> method.
+      Open a dialog using the native <code>showModal()</code> method and close it with
+      <code>close()</code> or a form using <code>method="dialog"</code>.
     </p>
 
-    <Example code={basicDialog}>
+    <Example title="Basic Dialog" code={basicDialog}>
       <button onclick="document.getElementById('dialog-demo').showModal()">Open Dialog</button>
 
-      <dialog id="dialog-demo">
+      <dialog id="dialog-demo" data-size="full">
         <header>
           <h3>Dialog Title</h3>
 
@@ -115,11 +153,13 @@ const fullDialog = `<dialog data-size="full">
       </dialog>
     </Example>
   </section>
-
   <section id="sizes">
     <h2>Sizes</h2>
 
-    <p>Dialogs support three optional size modifiers.</p>
+    <p>
+      MiniKit provides three optional size modifiers for adapting dialogs to different types of
+      content.
+    </p>
 
     <table>
       <thead>
@@ -132,76 +172,39 @@ const fullDialog = `<dialog data-size="full">
       <tbody>
         <tr>
           <td><code>data-size="small"</code></td>
-          <td>Compact dialog width.</td>
+          <td>Compact width for simple confirmations and short forms.</td>
         </tr>
 
         <tr>
           <td><code>data-size="large"</code></td>
-          <td>Wider dialog layout.</td>
+          <td>Provides additional space for larger layouts and forms.</td>
         </tr>
 
         <tr>
           <td><code>data-size="full"</code></td>
-          <td>Full-screen style dialog.</td>
+          <td>Expands the dialog to fill the viewport.</td>
         </tr>
       </tbody>
     </table>
-
-    <CodeBlock code={smallDialog} />
-
-    <CodeBlock code={largeDialog} />
-
-    <CodeBlock code={fullDialog} />
   </section>
-
   <section id="structure">
     <h2>Structure</h2>
 
     <p>
-      Dialogs can contain a header, content area, and footer. MiniKit automatically styles these
-      sections when they are direct children of the dialog.
+      A dialog typically consists of a header, content area, and footer. MiniKit automatically
+      styles these sections when they are direct children of the
+      <code>&lt;dialog&gt;</code> element.
     </p>
 
-    <CodeBlock
-      code={`<dialog>
-  <header>
-    <h3>Title</h3>
-
-    <p>
-      Description
-    </p>
-  </header>
-
-  <section>
-    Content
+    <CodeBlock code={dialogStructure} />
   </section>
-
-  <footer>
-    <button>
-      Cancel
-    </button>
-
-    <button>
-      Confirm
-    </button>
-  </footer>
-</dialog>`}
-    />
-  </section>
-
   <section id="accessibility">
     <h2>Accessibility</h2>
-
     <p>
-      MiniKit uses the native
-      <code>&lt;dialog&gt;</code> element, which provides built-in focus management and keyboard support
-      in modern browsers.
-    </p>
-
-    <p>Always provide a clear title and ensure users have an obvious way to dismiss the dialog.</p>
-
-    <p>
-      For forms and confirmations, use meaningful action labels rather than generic button text.
+      MiniKit uses the native <code>&lt;dialog&gt;</code> element, which provides built-in focus management
+      and keyboard support in modern browsers. Always provide a descriptive title, clear actions, and
+      an obvious way for users to dismiss the dialog. Use <code>showModal()</code> for modal dialogs and
+      <code>show()</code> when a non-modal dialog is more appropriate.
     </p>
   </section>
 
@@ -211,7 +214,7 @@ const fullDialog = `<dialog data-size="full">
     <table>
       <thead>
         <tr>
-          <th>Attribute</th>
+          <th>Attribute / Method</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -219,17 +222,22 @@ const fullDialog = `<dialog data-size="full">
       <tbody>
         <tr>
           <td><code>data-size="small"</code></td>
-          <td>Small dialog width.</td>
+          <td>Applies the compact dialog layout.</td>
         </tr>
 
         <tr>
           <td><code>data-size="large"</code></td>
-          <td>Large dialog width.</td>
+          <td>Applies the large dialog layout.</td>
         </tr>
 
         <tr>
           <td><code>data-size="full"</code></td>
-          <td>Full-screen dialog.</td>
+          <td>Expands the dialog to fill the viewport.</td>
+        </tr>
+
+        <tr>
+          <td><code>show()</code></td>
+          <td>Opens the dialog without blocking interaction.</td>
         </tr>
 
         <tr>

@@ -1,7 +1,7 @@
 ---
-import ComponentLayout from "../../../layouts/component-layout.astro";
+import ComponentLayout from '../../../layouts/component-layout.astro';
 
-import Example from "../../../components/example.astro";
+import Example from '../../../components/example.astro';
 ---
 
 <ComponentLayout
@@ -10,28 +10,28 @@ import Example from "../../../components/example.astro";
   description="Display a loading indicator while content or operations are in progress."
   nav={[
     {
-      href: "#overview",
-      label: "Overview",
+      href: '#overview',
+      label: 'Overview',
     },
     {
-      href: "#basic",
-      label: "Basic Usage",
+      href: '#basic',
+      label: 'Basic Usage',
     },
     {
-      href: "#sizes",
-      label: "Sizes",
+      href: '#sizes',
+      label: 'Sizes',
     },
     {
-      href: "#overlay",
-      label: "Overlay",
+      href: '#overlay',
+      label: 'Overlay',
     },
     {
-      href: "#accessibility",
-      label: "Accessibility",
+      href: '#accessibility',
+      label: 'Accessibility',
     },
     {
-      href: "#api",
-      label: "API",
+      href: '#api',
+      label: 'API',
     },
   ]}
 >
@@ -39,16 +39,11 @@ import Example from "../../../components/example.astro";
     <h2>Overview</h2>
 
     <p>
-      Spinners communicate that an operation is currently in progress.
-      They are commonly used while loading content, submitting forms,
-      fetching data, or processing background tasks.
-    </p>
-
-    <p>
-      MiniKit builds on the native
-      <code>aria-busy</code> attribute, allowing assistive
-      technologies to understand when an interface is busy while
-      automatically displaying a visual loading indicator.
+      Spinners communicate that an operation is currently in progress. They are commonly used while
+      loading content, submitting forms, fetching data, or processing background tasks. MiniKit
+      builds on the native
+      <code>aria-busy</code> attribute, allowing assistive technologies to understand when an interface
+      is busy while automatically displaying a visual loading indicator.
     </p>
   </section>
 
@@ -61,9 +56,7 @@ import Example from "../../../components/example.astro";
       attribute to display a loading spinner.
     </p>
 
-    <Example
-      code={`<div aria-busy="true"></div>`}
-    >
+    <Example code={`<div aria-busy="true"></div>`}>
       <div aria-busy="true"></div>
     </Example>
 
@@ -78,51 +71,31 @@ import Example from "../../../components/example.astro";
 
   <section id="sizes">
     <h2>Sizes</h2>
-
     <p>
-      MiniKit provides small, default, and large spinner sizes using
-      the
+      MiniKit provides small, default, and large spinner sizes using the
       <code>data-spinner</code>
       attribute.
     </p>
 
     <Example
       code={`<div class="hstack">
-  <div
-    aria-busy="true"
-    data-spinner="small"
-  ></div>
-
-  <div
-    aria-busy="true"
-  ></div>
-
-  <div
-    aria-busy="true"
-    data-spinner="large"
-  ></div>
+  <div aria-busy="true" data-spinner="small"></div>
+  <div aria-busy="true""></div>
+  <div aria-busy="true" data-spinner="large"></div>
 </div>`}
     >
       <div class="hstack">
-        <div
-          aria-busy="true"
-          data-spinner="small"
-        ></div>
+        <div aria-busy="true" data-spinner="small"></div>
 
-        <div
-          aria-busy="true"
-        ></div>
+        <div aria-busy="true"></div>
 
-        <div
-          aria-busy="true"
-          data-spinner="large"
-        ></div>
+        <div aria-busy="true" data-spinner="large"></div>
       </div>
     </Example>
 
     <p>
-      Choose a spinner size that matches the surrounding interface and
-      the importance of the loading state.
+      Choose a spinner size that matches the surrounding interface and the importance of the loading
+      state.
     </p>
   </section>
 
@@ -130,45 +103,27 @@ import Example from "../../../components/example.astro";
     <h2>Overlay Spinner</h2>
 
     <p>
-      Display a centered loading indicator over existing content using
-      the
+      Display a centered loading indicator over existing content using the
       <code>overlay</code>
       modifier.
     </p>
 
     <Example
-      code={`<div
-  data-card
-  aria-busy="true"
-  data-spinner="overlay"
->
-  <h3>
-    Loading Dashboard
-  </h3>
-
-  <p>
-    Please wait while your data is being loaded.
-  </p>
+      code={`<div data-card aria-busy="true" data-spinner="overlay">
+  <h3>Loading Dashboard</h3>
+  <p>Please wait while your data is being loaded.</p>
 </div>`}
     >
-      <div
-        data-card
-        aria-busy="true"
-        data-spinner="overlay"
-      >
-        <h3>
-          Loading Dashboard
-        </h3>
+      <div data-card aria-busy="true" data-spinner="overlay">
+        <h3>Loading Dashboard</h3>
 
-        <p>
-          Please wait while your data is being loaded.
-        </p>
+        <p>Please wait while your data is being loaded.</p>
       </div>
     </Example>
 
     <p>
-      Overlay spinners dim the underlying content while preventing user
-      interaction until the operation has completed.
+      Overlay spinners dim the underlying content while preventing user interaction until the
+      operation has completed.
     </p>
   </section>
 
@@ -178,8 +133,7 @@ import Example from "../../../components/example.astro";
     <p>
       MiniKit uses the standard
       <code>aria-busy</code>
-      attribute, allowing assistive technologies to announce that a
-      region is currently updating.
+      attribute, allowing assistive technologies to announce that a region is currently updating.
     </p>
 
     <ul>
@@ -189,18 +143,15 @@ import Example from "../../../components/example.astro";
         only while content is actively loading.
       </li>
 
+      <li>Remove the attribute immediately after loading completes.</li>
+
       <li>
-        Remove the attribute immediately after loading completes.
+        Pair loading indicators with descriptive text whenever users may wait more than a few
+        seconds.
       </li>
 
       <li>
-        Pair loading indicators with descriptive text whenever users may
-        wait more than a few seconds.
-      </li>
-
-      <li>
-        Use progress indicators instead of spinners whenever completion
-        progress can be measured.
+        Use progress indicators instead of spinners whenever completion progress can be measured.
       </li>
     </ul>
   </section>
@@ -222,9 +173,7 @@ import Example from "../../../components/example.astro";
             <code>aria-busy="true"</code>
           </td>
 
-          <td>
-            Displays the loading spinner and marks the element as busy.
-          </td>
+          <td>Displays the loading spinner and marks the element as busy.</td>
         </tr>
 
         <tr>
@@ -232,9 +181,7 @@ import Example from "../../../components/example.astro";
             <code>data-spinner="small"</code>
           </td>
 
-          <td>
-            Displays a compact spinner.
-          </td>
+          <td>Displays a compact spinner.</td>
         </tr>
 
         <tr>
@@ -242,9 +189,7 @@ import Example from "../../../components/example.astro";
             <code>data-spinner="large"</code>
           </td>
 
-          <td>
-            Displays a larger spinner.
-          </td>
+          <td>Displays a larger spinner.</td>
         </tr>
 
         <tr>
@@ -252,10 +197,7 @@ import Example from "../../../components/example.astro";
             <code>data-spinner="overlay"</code>
           </td>
 
-          <td>
-            Centers the spinner over the element while dimming its
-            contents.
-          </td>
+          <td>Centers the spinner over the element while dimming its contents.</td>
         </tr>
       </tbody>
     </table>

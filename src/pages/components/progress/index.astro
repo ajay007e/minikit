@@ -21,10 +21,7 @@ import Example from '../../../components/example.astro';
       href: '#value',
       label: 'Progress Values',
     },
-    {
-      href: '#sizes',
-      label: 'Sizes',
-    },
+
     {
       href: '#accessibility',
       label: 'Accessibility',
@@ -40,11 +37,7 @@ import Example from '../../../components/example.astro';
 
     <p>
       Progress indicators communicate the completion status of a task, upload, download, or other
-      long-running operation.
-    </p>
-
-    <p>
-      MiniKit styles the native
+      long-running operation. MiniKit styles the native
       <code>&lt;progress&gt;</code> element, providing a consistent appearance while preserving browser
       accessibility and semantics.
     </p>
@@ -58,12 +51,7 @@ import Example from '../../../components/example.astro';
       <code>value</code> and <code>max</code> attributes.
     </p>
 
-    <Example
-      code={`<progress
-  value="40"
-  max="100"
-></progress>`}
-    >
+    <Example code={`<progress value="40" max="100"></progress>`}>
       <progress value="40" max="100"></progress>
     </Example>
   </section>
@@ -78,75 +66,22 @@ import Example from '../../../components/example.astro';
 
     <Example
       code={`<div class="vstack">
-  <progress
-    value="25"
-    max="100"
-  ></progress>
-
-  <progress
-    value="50"
-    max="100"
-  ></progress>
-
-  <progress
-    value="75"
-    max="100"
-  ></progress>
-
-  <progress
-    value="100"
-    max="100"
-  ></progress>
+  <progress value="25" max="100"></progress>
+  <progress value="50" max="100"></progress>
+  <progress value="75" max="100"></progress>
+  <progress value="100" max="100"></progress>
 </div>`}
     >
       <div class="vstack">
         <progress value="25" max="100"></progress>
-
         <progress value="50" max="100"></progress>
-
         <progress value="75" max="100"></progress>
-
         <progress value="100" max="100"></progress>
       </div>
     </Example>
 
     <p>
       Update the <code>value</code> attribute dynamically to reflect progress as an operation completes.
-    </p>
-  </section>
-
-  <section id="sizes">
-    <h2>Sizes</h2>
-
-    <p>Progress elements automatically stretch to fill the available width of their container.</p>
-
-    <Example
-      code={`<div class="vstack">
-  <progress
-    value="35"
-    max="100"
-  ></progress>
-
-  <div style="max-width: 20rem;">
-    <progress
-      value="70"
-      max="100"
-    ></progress>
-  </div>
-</div>`}
-    >
-      <div class="vstack">
-        <progress value="35" max="100"></progress>
-
-        <div style="max-width:20rem;">
-          <progress value="70" max="100"></progress>
-        </div>
-      </div>
-    </Example>
-
-    <p>
-      Control the width using the parent container instead of modifying the progress element
-      directly.
     </p>
   </section>
 

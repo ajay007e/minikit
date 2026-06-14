@@ -3,69 +3,22 @@ import ComponentLayout from '../../../layouts/component-layout.astro';
 
 import Example from '../../../components/example.astro';
 
-const basicBadge = `<span data-badge>
-  Badge
-</span>`;
+const basicBadge = `<span data-badge>Badge</span>`;
 
 const variantsBadge = `<div class="hstack">
-  <span data-badge>
-    Default
-  </span>
-
-  <span
-    data-badge
-    data-variant="secondary"
-  >
-    Secondary
-  </span>
-
-  <span
-    data-badge
-    data-variant="success"
-  >
-    Success
-  </span>
-
-  <span
-    data-badge
-    data-variant="warning"
-  >
-    Warning
-  </span>
-
-  <span
-    data-badge
-    data-variant="danger"
-  >
-    Danger
-  </span>
+  <span data-badge>Default</span>
+  <span data-badge data-variant="secondary">Secondary</span>
+  <span data-badge data-variant="success">Success</span>
+  <span data-badge data-variant="warning">Warning</span>
+  <span data-badge data-variant="danger">Danger</span>
 </div>`;
 
-const outlineBadge = `<span
-  data-badge
-  class="outline"
->
-  Outline
-</span>`;
+const outlineBadge = `<span data-badge class="outline">Outline</span>`;
 
 const sizesBadge = `<div class="hstack">
-  <span
-    data-badge
-    class="small"
-  >
-    Small
-  </span>
-
-  <span data-badge>
-    Default
-  </span>
-
-  <span
-    data-badge
-    class="large"
-  >
-    Large
-  </span>
+  <span data-badge class="small">Small</span>
+  <span data-badge>Default</span>
+  <span data-badge class="large">Large</span>
 </div>`;
 ---
 
@@ -109,9 +62,6 @@ const sizesBadge = `<div class="hstack">
 
     <p>
       Badges are compact visual indicators used to display status, categories, counts, and metadata.
-    </p>
-
-    <p>
       MiniKit provides several badge variants for communicating information while maintaining a
       consistent visual language across your application.
     </p>
@@ -137,13 +87,9 @@ const sizesBadge = `<div class="hstack">
     <Example code={variantsBadge}>
       <div class="hstack">
         <span data-badge>Default</span>
-
         <span data-badge data-variant="secondary">Secondary</span>
-
         <span data-badge data-variant="success">Success</span>
-
         <span data-badge data-variant="warning">Warning</span>
-
         <span data-badge data-variant="danger">Danger</span>
       </div>
     </Example>
@@ -151,7 +97,6 @@ const sizesBadge = `<div class="hstack">
 
   <section id="outline">
     <h2>Outline</h2>
-
     <p>
       Use the <code>outline</code> class for a less prominent appearance.
     </p>
@@ -163,15 +108,11 @@ const sizesBadge = `<div class="hstack">
 
   <section id="sizes">
     <h2>Sizes</h2>
-
     <p>Badges support small and large size modifiers.</p>
-
     <Example code={sizesBadge}>
       <div class="hstack">
         <span data-badge class="small">Small</span>
-
         <span data-badge>Default</span>
-
         <span data-badge class="large">Large</span>
       </div>
     </Example>
@@ -182,12 +123,8 @@ const sizesBadge = `<div class="hstack">
 
     <p>
       Badges should supplement content rather than be the sole method of communicating important
-      information.
-    </p>
-
-    <p>
-      Avoid relying entirely on color to convey meaning. Pair badges with descriptive text whenever
-      possible.
+      information. Avoid relying entirely on color to convey meaning. Pair badges with descriptive
+      text whenever possible.
     </p>
   </section>
 

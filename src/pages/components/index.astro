@@ -1,0 +1,41 @@
+---
+import DocsLayout from '../../layouts/docs-layout.astro';
+import { components } from '../../data/components';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<DocsLayout
+  title="Components"
+  page="components"
+  nav={[
+    {
+      href: '#components',
+      label: 'Components',
+    },
+  ]}
+>
+  <section id="components">
+    <h1>Components</h1>
+    <p class="lead">
+      MiniKit provides a collection of reusable UI components built with semantic HTML, modern CSS,
+      and minimal JavaScript.
+    </p>
+
+    <p>
+      Each component includes usage examples, available variants, and accessibility considerations.
+    </p>
+
+    <div class="component-list">
+      {
+        components.map((component) => (
+          <a href={`${base}${component.href}`} data-card>
+            <h3>{component.title}</h3>
+
+            <p>{component.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</DocsLayout>

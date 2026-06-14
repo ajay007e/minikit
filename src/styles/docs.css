@@ -1,3 +1,5 @@
+@import './code-highlight';
+
 /* Layout */
 
 main {
@@ -257,7 +259,11 @@ main {
   border: 1px solid var(--mk-color-border);
   border-radius: var(--mk-radius-lg);
 
-  background: var(--mk-color-faint);
+  background: var(--mk-editor-bg);
+  color: var(--mk-editor-fg);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 .code-block code {
@@ -525,22 +531,16 @@ input[id^='code-']:checked ~ .example-panels .example-code {
   margin-top: var(--mk-space-8);
 }
 
-.advantages-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
 .start-grid {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 
   gap: var(--mk-space-4);
 }
 
-.advantages-grid article h3,
 .start-grid a h3 {
   margin-bottom: var(--mk-space-2);
 }
 
-.advantages-grid article p,
 .start-grid a p {
   margin: 0;
 
@@ -563,6 +563,78 @@ input[id^='code-']:checked ~ .example-panels .example-code {
   transform: translateY(-2px);
 
   box-shadow: var(--mk-shadow-medium);
+}
+
+/* Features */
+
+.features-list {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: var(--mk-space-6) var(--mk-space-8);
+
+  margin: var(--mk-space-8) 0 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.features-list li {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--mk-space-1);
+
+  padding-left: var(--mk-space-4);
+
+  border-left: 2px solid var(--mk-color-border);
+}
+
+.features-list strong {
+  font-weight: var(--mk-font-semibold);
+}
+
+.features-list span {
+  color: var(--mk-color-muted-fg);
+}
+
+/* Components */
+
+.component-list {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: var(--mk-space-4);
+
+  margin-top: var(--mk-space-8);
+}
+
+.component-list a {
+  color: inherit;
+
+  text-decoration: none;
+
+  transition:
+    transform var(--mk-transition),
+    box-shadow var(--mk-transition);
+}
+
+.component-list a:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--mk-shadow-medium);
+}
+
+.component-list h3 {
+  margin-bottom: var(--mk-space-2);
+}
+
+.component-list p {
+  margin: 0;
+
+  color: var(--mk-color-muted-fg);
 }
 
 /* Responsive */
@@ -615,6 +687,10 @@ input[id^='code-']:checked ~ .example-panels .example-code {
   .component-pagination-next {
     text-align: left;
   }
+
+  .features-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Small Mobile */
@@ -648,7 +724,6 @@ input[id^='code-']:checked ~ .example-panels .example-code {
     padding-top: var(--mk-space-6);
   }
 
-  .advantages-grid,
   .start-grid {
     gap: var(--mk-space-4);
   }

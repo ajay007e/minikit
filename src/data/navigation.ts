@@ -40,10 +40,18 @@ export const navigation = [
 
   {
     title: 'Components',
-    items: components.map((component) => ({
-      title: component.title,
-      href: component.href,
-      page: component.slug,
-    })),
+    items: [
+      {
+        title: 'Overview',
+        href: '/components/',
+        page: 'components',
+      },
+
+      ...components.map((component) => ({
+        title: component.title,
+        href: component.href,
+        page: component.slug,
+      })),
+    ],
   },
 ];

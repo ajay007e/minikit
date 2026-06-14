@@ -3,52 +3,22 @@ import ComponentLayout from '../../../layouts/component-layout.astro';
 
 import Example from '../../../components/example.astro';
 
-const basicAvatar = `<figure data-variant="avatar">
-  AJ
-</figure>`;
+const basicAvatar = `<figure data-variant="avatar">AJ</figure>`;
 
 const imageAvatar = `<figure data-variant="avatar">
-  <img
-    src="https://i.pravatar.cc/100"
-    alt="User avatar"
-  />
+  <img src="https://i.pravatar.cc/100" alt="User avatar"/>
 </figure>`;
 
 const avatarSizes = `<div class="hstack">
-  <figure
-    data-variant="avatar"
-    class="small"
-  >
-    AJ
-  </figure>
-
-  <figure data-variant="avatar">
-    AJ
-  </figure>
-
-  <figure
-    data-variant="avatar"
-    class="large"
-  >
-    AJ
-  </figure>
+  <figure data-variant="avatar" class="small">AJ</figure>
+  <figure data-variant="avatar">AJ</figure>
+  <figure data-variant="avatar" class="large">AJ</figure>
 </div>`;
 
-const avatarGroup = `<figure
-  data-variant="avatar"
-  role="group"
->
-  <figure data-variant="avatar">
-    AJ
-  </figure>
-
-  <figure data-variant="avatar">
-    MK
-  </figure>
-
-  <figure data-variant="avatar">
-    JS
-  </figure>
+const avatarGroup = `<figure data-variant="avatar" role="group">
+  <figure data-variant="avatar">AJ</figure>
+  <figure data-variant="avatar">MK</figure>
+  <figure data-variant="avatar">JN</figure>
 </figure>`;
 ---
 
@@ -92,12 +62,8 @@ const avatarGroup = `<figure
 
     <p>
       Avatars visually represent users, teams, or entities. They can display profile images,
-      initials, or be combined into groups to represent multiple users.
-    </p>
-
-    <p>
-      MiniKit provides avatar components with support for images, initials, sizing options, and
-      grouped layouts.
+      initials, or be combined into groups to represent multiple users. MiniKit provides avatar
+      components with support for images, initials, sizing options, and grouped layouts.
     </p>
   </section>
 
@@ -160,11 +126,8 @@ const avatarGroup = `<figure
 
     <p>
       When displaying user images, provide meaningful alternative text using the <code>alt</code> attribute.
-    </p>
-
-    <p>
-      Initial-based avatars should be accompanied by nearby text when the identity of the user is
-      important to understanding the interface.
+      Initial-based avatars should be accompanied by nearby text when the identity of the user is important
+      to understanding the interface.
     </p>
   </section>
 

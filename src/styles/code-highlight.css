@@ -1,0 +1,53 @@
+@import 'highlight.js/styles/github-dark.css';
+
+:root {
+  --mk-editor-bg: #ffffff;
+  --mk-editor-header-bg: #f8fafc;
+  --mk-editor-border: #e5e7eb;
+  --mk-editor-fg: #1f2937;
+}
+
+[data-theme='dark'] {
+  --mk-editor-bg: #0d1117;
+  --mk-editor-header-bg: #161b22;
+  --mk-editor-border: #30363d;
+  --mk-editor-fg: #e6edf3;
+}
+
+/* highlight.js */
+
+pre code.hljs {
+  padding: 0;
+}
+
+.hljs {
+  background: transparent;
+  color: var(--mk-color-fg);
+}
+
+.hljs-tag,
+.hljs-name {
+  color: var(--mk-color-success);
+}
+
+.hljs-attr,
+.hljs-attribute {
+  color: var(--mk-editor-fg);
+}
+
+.hljs-string {
+  color: var(--mk-color-warning);
+}
+
+.hljs-keyword {
+  color: var(--mk-color-danger);
+}
+
+.hljs-comment {
+  color: var(--mk-color-muted-fg);
+  font-style: italic;
+}
+
+.hljs-punctuation {
+  color: var(--mk-color-muted-fg);
+}

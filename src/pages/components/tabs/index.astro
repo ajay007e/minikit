@@ -1,7 +1,7 @@
 ---
-import ComponentLayout from "../../../layouts/component-layout.astro";
+import ComponentLayout from '../../../layouts/component-layout.astro';
 
-import Example from "../../../components/example.astro";
+import Example from '../../../components/example.astro';
 ---
 
 <ComponentLayout
@@ -10,28 +10,28 @@ import Example from "../../../components/example.astro";
   description="Organize related content into multiple views without leaving the current page."
   nav={[
     {
-      href: "#overview",
-      label: "Overview",
+      href: '#overview',
+      label: 'Overview',
     },
     {
-      href: "#basic",
-      label: "Basic Usage",
+      href: '#basic',
+      label: 'Basic Usage',
     },
     {
-      href: "#default",
-      label: "Default Tab",
+      href: '#default',
+      label: 'Default Tab',
     },
     {
-      href: "#disabled",
-      label: "Disabled Tabs",
+      href: '#disabled',
+      label: 'Disabled Tabs',
     },
     {
-      href: "#accessibility",
-      label: "Accessibility",
+      href: '#accessibility',
+      label: 'Accessibility',
     },
     {
-      href: "#api",
-      label: "API",
+      href: '#api',
+      label: 'API',
     },
   ]}
 >
@@ -39,14 +39,9 @@ import Example from "../../../components/example.astro";
     <h2>Overview</h2>
 
     <p>
-      Tabs organize related information into separate views, allowing
-      users to switch between sections without leaving the current page.
-    </p>
-
-    <p>
-      MiniKit provides an accessible tabs component with keyboard
-      navigation, automatic ARIA management, and synchronized tab
-      panels.
+      Tabs organize related information into separate views, allowing users to switch between
+      sections without leaving the current page. MiniKit provides an accessible tabs component with
+      keyboard navigation, automatic ARIA management, and synchronized tab panels.
     </p>
   </section>
 
@@ -64,51 +59,22 @@ import Example from "../../../components/example.astro";
     <Example
       code={`<mk-tabs>
   <div role="tablist">
-    <button
-      role="tab"
-      aria-selected="true"
-    >
-      HTML
-    </button>
-
-    <button role="tab">
-      CSS
-    </button>
-
-    <button role="tab">
-      JavaScript
-    </button>
+    <button role="tab" aria-selected="true">HTML</button>
+    <button role="tab">CSS</button>
+    <button role="tab">JavaScript</button>
   </div>
-
-  <section role="tabpanel">
-    HTML content
-  </section>
-
-  <section role="tabpanel">
-    CSS content
-  </section>
-
-  <section role="tabpanel">
-    JavaScript content
-  </section>
+  <section role="tabpanel">HTML is used to structure web pages using semantic elements.</section>
+  <section role="tabpanel">CSS controls the presentation, layout, spacing, and appearance of web pages.</section>
+  <section role="tabpanel">JavaScript adds dynamic behavior and interactivity to web applications.</section>
 </mk-tabs>`}
     >
       <mk-tabs>
         <div role="tablist">
-          <button
-            role="tab"
-            aria-selected="true"
-          >
-            HTML
-          </button>
+          <button role="tab" aria-selected="true">HTML</button>
 
-          <button role="tab">
-            CSS
-          </button>
+          <button role="tab">CSS</button>
 
-          <button role="tab">
-            JavaScript
-          </button>
+          <button role="tab">JavaScript</button>
         </div>
 
         <section role="tabpanel">
@@ -116,13 +82,11 @@ import Example from "../../../components/example.astro";
         </section>
 
         <section role="tabpanel">
-          CSS controls the presentation, layout, spacing, and appearance
-          of web pages.
+          CSS controls the presentation, layout, spacing, and appearance of web pages.
         </section>
 
         <section role="tabpanel">
-          JavaScript adds dynamic behavior and interactivity to web
-          applications.
+          JavaScript adds dynamic behavior and interactivity to web applications.
         </section>
       </mk-tabs>
     </Example>
@@ -133,71 +97,36 @@ import Example from "../../../components/example.astro";
 
     <p>
       Set the initially active tab using
-      <code>aria-selected="true"</code>.
-      If omitted, MiniKit automatically activates the first tab.
+      <code>aria-selected="true"</code>. If omitted, MiniKit automatically activates the first tab.
     </p>
 
     <Example
       code={`<mk-tabs>
   <div role="tablist">
-    <button role="tab">
-      Overview
-    </button>
-
-    <button
-      role="tab"
-      aria-selected="true"
-    >
-      API
-    </button>
-
-    <button role="tab">
-      Examples
-    </button>
+    <button role="tab">Overview</button>
+    <button role="tab" aria-selected="true">API</button>
+    <button role="tab">Examples</button>
   </div>
 
-  <section role="tabpanel">
-    Overview content.
-  </section>
-
-  <section role="tabpanel">
-    API documentation.
-  </section>
-
-  <section role="tabpanel">
-    Example content.
-  </section>
+  <section role="tabpanel">Overview content.</section>
+  <section role="tabpanel">API documentation.</section>
+  <section role="tabpanel">Example content.</section>
 </mk-tabs>`}
     >
       <mk-tabs>
         <div role="tablist">
-          <button role="tab">
-            Overview
-          </button>
+          <button role="tab">Overview</button>
 
-          <button
-            role="tab"
-            aria-selected="true"
-          >
-            API
-          </button>
+          <button role="tab" aria-selected="true">API</button>
 
-          <button role="tab">
-            Examples
-          </button>
+          <button role="tab">Examples</button>
         </div>
 
-        <section role="tabpanel">
-          Overview content.
-        </section>
+        <section role="tabpanel">Overview content.</section>
 
-        <section role="tabpanel">
-          API documentation.
-        </section>
+        <section role="tabpanel">API documentation.</section>
 
-        <section role="tabpanel">
-          Example content.
-        </section>
+        <section role="tabpanel">Example content.</section>
       </mk-tabs>
     </Example>
   </section>
@@ -214,54 +143,24 @@ import Example from "../../../components/example.astro";
     <Example
       code={`<mk-tabs>
   <div role="tablist">
-    <button
-      role="tab"
-      aria-selected="true"
-    >
-      Available
-    </button>
-
-    <button
-      role="tab"
-      disabled
-    >
-      Coming Soon
-    </button>
+    <button role="tab" aria-selected="true">Available</button>
+    <button role="tab" disabled>Coming Soon</button>
   </div>
 
-  <section role="tabpanel">
-    Available content.
-  </section>
-
-  <section role="tabpanel">
-    Future content.
-  </section>
+  <section role="tabpanel">Available content.</section>
+  <section role="tabpanel">Future content.</section>
 </mk-tabs>`}
     >
       <mk-tabs>
         <div role="tablist">
-          <button
-            role="tab"
-            aria-selected="true"
-          >
-            Available
-          </button>
+          <button role="tab" aria-selected="true">Available</button>
 
-          <button
-            role="tab"
-            disabled
-          >
-            Coming Soon
-          </button>
+          <button role="tab" disabled>Coming Soon</button>
         </div>
 
-        <section role="tabpanel">
-          This content is currently available.
-        </section>
+        <section role="tabpanel">Available content.</section>
 
-        <section role="tabpanel">
-          This section is still under development.
-        </section>
+        <section role="tabpanel">Future content.</section>
       </mk-tabs>
     </Example>
   </section>
@@ -270,8 +169,8 @@ import Example from "../../../components/example.astro";
     <h2>Accessibility</h2>
 
     <p>
-      MiniKit follows the WAI-ARIA Tabs design pattern and includes
-      keyboard navigation out of the box.
+      MiniKit follows the WAI-ARIA Tabs design pattern and includes keyboard navigation out of the
+      box.
     </p>
 
     <ul>
@@ -298,8 +197,7 @@ import Example from "../../../components/example.astro";
       <li>
         MiniKit automatically synchronizes
         <code>aria-selected</code>,
-        <code>aria-controls</code>,
-        and
+        <code>aria-controls</code>, and
         <code>aria-labelledby</code>.
       </li>
 
@@ -355,16 +253,12 @@ import Example from "../../../components/example.astro";
 
         <tr>
           <td><code>tab-change</code></td>
-          <td>
-            Custom event emitted whenever the active tab changes.
-          </td>
+          <td>Custom event emitted whenever the active tab changes.</td>
         </tr>
 
         <tr>
           <td><code>activeIndex</code></td>
-          <td>
-            Gets or sets the currently active tab programmatically.
-          </td>
+          <td>Gets or sets the currently active tab programmatically.</td>
         </tr>
       </tbody>
     </table>

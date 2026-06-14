@@ -5,58 +5,29 @@ import Example from '../../../components/example.astro';
 
 const basicCard = `<article data-card>
   <h3>Card Title</h3>
-
-  <p>
-    Card content goes here.
-  </p>
+  <p>Card content goes here.</p>
 </article>`;
 
 const cardWithHeader = `<article data-card>
   <header>
     <h3>Card Title</h3>
-
-    <p>
-      Optional card description.
-    </p>
+    <p>Optional card description.</p>
   </header>
-
-  <p>
-    Main card content.
-  </p>
+  <p>Main card content.</p>
 </article>`;
 
 const cardWithFooter = `<article data-card>
   <h3>Project Overview</h3>
-
-  <p>
-    Card content with footer actions.
-  </p>
-
+  <p>Card content with footer actions.</p>
   <footer>
-    <button>
-      View Details
-    </button>
+    <button>View Details</button>
   </footer>
 </article>`;
 
 const variantsCard = `<div class="vstack">
-  <article data-card>
-    Default Card
-  </article>
-
-  <article
-    data-card
-    class="flat"
-  >
-    Flat Card
-  </article>
-
-  <article
-    data-card
-    class="outline"
-  >
-    Outline Card
-  </article>
+  <article data-card>Default Card</article>
+  <article data-card class="flat">Flat Card</article>
+  <article data-card class="outline">Outline Card</article>
 </div>`;
 ---
 
@@ -101,9 +72,6 @@ const variantsCard = `<div class="vstack">
     <p>
       Cards group related content into a visually distinct container. They are useful for
       dashboards, lists, settings pages, pricing tables, blog posts, and other structured content.
-    </p>
-
-    <p>
       MiniKit cards provide consistent spacing, borders, and visual hierarchy while remaining
       flexible enough for many layouts.
     </p>
@@ -187,12 +155,9 @@ const variantsCard = `<div class="vstack">
     <p>
       Cards are presentation containers and do not provide semantic meaning by themselves. Use
       appropriate HTML elements such as
-      <code>article</code>, <code>section</code>, and headings to communicate structure.
-    </p>
-
-    <p>
-      Interactive cards should contain properly labeled links and buttons rather than relying on
-      click handlers attached to the entire card.
+      <code>article</code>, <code>section</code>, and headings to communicate structure. Interactive
+      cards should contain properly labeled links and buttons rather than relying on click handlers
+      attached to the entire card.
     </p>
   </section>
 

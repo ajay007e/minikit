@@ -21,14 +21,6 @@ import Example from '../../components/example.astro';
       label: 'Use from CDN',
     },
     {
-      href: '#css',
-      label: 'Include CSS',
-    },
-    {
-      href: '#js',
-      label: 'Include JavaScript',
-    },
-    {
       href: '#verify',
       label: 'Verify Installation',
     },
@@ -50,7 +42,7 @@ import Example from '../../components/example.astro';
 
     <p>Install MiniKit from npm when using a bundler, framework, or build tool.</p>
 
-    <CodeBlock code={`npm install @ajay007e/minikit`} />
+    <CodeBlock code={`npm install @ajay007e/minikit`} language="shell" />
   </section>
 
   <section id="cdn">
@@ -61,8 +53,8 @@ import Example from '../../components/example.astro';
     <p>Add the stylesheet and JavaScript bundle to your page.</p>
   </section>
 
-  <section id="css">
-    <h2>Include CSS</h2>
+  <section>
+    <h3>Include CSS</h3>
 
     <p>Include the MiniKit stylesheet in the document head.</p>
 
@@ -71,8 +63,8 @@ import Example from '../../components/example.astro';
     />
   </section>
 
-  <section id="js">
-    <h2>Include JavaScript</h2>
+  <section>
+    <h3>Include JavaScript</h3>
 
     <p>Include the JavaScript bundle before the closing body tag.</p>
 

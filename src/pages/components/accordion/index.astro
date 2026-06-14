@@ -4,53 +4,26 @@ import ComponentLayout from '../../../layouts/component-layout.astro';
 import Example from '../../../components/example.astro';
 
 const basicAccordion = `<details>
-  <summary>
-    What is MiniKit?
-  </summary>
-
-  <p>
-    MiniKit is a lightweight HTML-first CSS and JavaScript library.
-  </p>
+  <summary>What is MiniKit?</summary>
+  <p>MiniKit is a lightweight HTML-first CSS and JavaScript library.</p>
 </details>`;
 
 const multipleAccordion = `<details>
-  <summary>
-    Installation
-  </summary>
-
-  <p>
-    Install MiniKit using npm or a CDN.
-  </p>
+  <summary>Installation</summary>
+  <p>Install MiniKit using npm or a CDN.</p>
 </details>
-
 <details>
-  <summary>
-    Customization
-  </summary>
-
-  <p>
-    Customize MiniKit using CSS variables.
-  </p>
+  <summary>Customization</summary>
+  <p>Customize MiniKit using CSS variables.</p>
 </details>
-
 <details>
-  <summary>
-    Components
-  </summary>
-
-  <p>
-    MiniKit includes a growing collection of UI components.
-  </p>
+  <summary>Components</summary>
+  <p>MiniKit includes a growing collection of UI components.</p>
 </details>`;
 
 const openAccordion = `<details open>
-  <summary>
-    Expanded by Default
-  </summary>
-
-  <p>
-    This accordion item starts opened.
-  </p>
+  <summary>Expanded by Default</summary>
+  <p>This accordion item starts opened.</p>
 </details>`;
 ---
 
@@ -91,11 +64,7 @@ const openAccordion = `<details open>
     <p>
       Accordions allow users to reveal and hide related content without leaving the current page.
       They are commonly used for FAQs, documentation, settings panels, and content that benefits
-      from progressive disclosure.
-    </p>
-
-    <p>
-      MiniKit styles the native
+      from progressive disclosure. MiniKit styles the native
       <code>&lt;details&gt;</code> and
       <code>&lt;summary&gt;</code> elements, providing an accessible accordion experience with built-in
       keyboard and screen reader support.
@@ -166,12 +135,8 @@ const openAccordion = `<details open>
     <p>
       MiniKit relies on the native
       <code>&lt;details&gt;</code> element, which provides built-in keyboard navigation and screen reader
-      support in modern browsers.
-    </p>
-
-    <p>
-      Summary text should clearly communicate the content that will be revealed when the accordion
-      is expanded.
+      support in modern browsers. Summary text should clearly communicate the content that will be revealed
+      when the accordion is expanded.
     </p>
   </section>
 

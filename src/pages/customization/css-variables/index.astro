@@ -54,12 +54,8 @@ const base = import.meta.env.BASE_URL;
 
     <p>
       These variables control typography, spacing, sizing, layout, shadows, motion, and other
-      foundational design properties used throughout the library.
-    </p>
-
-    <p>
-      Override them in your own stylesheet to adapt MiniKit to your project without modifying
-      library source files.
+      foundational design properties used throughout the library. Override them in your own
+      stylesheet to adapt MiniKit to your project without modifying library source files.
     </p>
   </section>
 
@@ -158,28 +154,10 @@ const base = import.meta.env.BASE_URL;
     <CodeBlock
       code={`:root {
   --mk-shadow-small: 0 1px 2px rgb(0 0 0 / 0.05);
-
-  --mk-shadow-medium:
-    0 1px 3px rgb(0 0 0 / 0.1),
-    0 1px 2px -1px rgb(0 0 0 / 0.1);
-
-  --mk-shadow-large:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
-
-  --mk-transition-fast: 120ms cubic-bezier(
-    0.4,
-    0,
-    0.2,
-    1
-  );
-
-  --mk-transition: 200ms cubic-bezier(
-    0.4,
-    0,
-    0.2,
-    1
-  );
+  --mk-shadow-medium: 0 1px 3px rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --mk-shadow-large: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --mk-transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --mk-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }`}
     />
 

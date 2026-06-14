@@ -9,14 +9,13 @@ const { page = '' } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
 
-const currentGroup = navigation.find((group) =>
-  group.items.some((item) => item.page === page)
-);
+const currentGroup = navigation.find((group) => group.items.some((item) => item.page === page));
 
 const currentItem = currentGroup?.items.find((item) => item.page === page);
 ---
 
-<header class="mobile-docs-header"
+<header
+  class="mobile-docs-header"
   id="sidebar-toggle"
   role="button"
   tabindex="0"
@@ -24,25 +23,16 @@ const currentItem = currentGroup?.items.find((item) => item.page === page);
   aria-expanded="false"
   aria-controls="mobile-sidebar"
 >
-  <button
-    type="button"
-    class="ghost sidebar-toggle"
-    aria-hidden="true"
-  >
-    <svg
-      viewBox="0 0 24 24"
-      width="20"
-      height="20"
-      aria-hidden="true"
-      focusable="false"
-    >
+  <button type="button" class="ghost sidebar-toggle" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
       <path
         fill="none"
         stroke="currentColor"
         stroke-width="2"
         stroke-linecap="round"
         d="M4 6h16M4 12h16M4 18h16"
-      />
+      >
+      </path>
     </svg>
   </button>
 
@@ -72,20 +62,15 @@ const currentItem = currentGroup?.items.find((item) => item.page === page);
       id="sidebar-close"
       aria-label="Close navigation"
     >
-      <svg
-        viewBox="0 0 24 24"
-        width="20"
-        height="20"
-        aria-hidden="true"
-        focusable="false"
-      >
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
         <path
           fill="none"
           stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           d="M6 6l12 12M18 6L6 18"
-        />
+        >
+        </path>
       </svg>
     </button>
   </div>
@@ -95,7 +80,7 @@ const currentItem = currentGroup?.items.find((item) => item.page === page);
       const hasActiveItem = group.items.some((item) => item.page === page);
 
       return (
-        <details  class="sidebar-group" open={hasActiveItem}>
+        <details class="sidebar-group" open={hasActiveItem}>
           <summary>{group.title}</summary>
 
           <nav>

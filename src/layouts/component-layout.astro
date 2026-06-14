@@ -19,12 +19,13 @@ const index = components.findIndex((component) => component.slug === slug);
 const previous = index > 0 ? components[index - 1] : null;
 
 const next = index < components.length - 1 ? components[index + 1] : null;
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <DocsLayout title={title} description={description} page={slug} nav={nav}>
   <header class="component-header">
     <h1>{title}</h1>
-
     <p class="lead">
       {description}
     </p>
@@ -35,7 +36,7 @@ const next = index < components.length - 1 ? components[index + 1] : null;
   <nav class="component-pagination">
     {
       previous && (
-        <a href={previous.href} class="component-pagination-link">
+        <a href={`${base}${previous.href}`} class="component-pagination-link">
           <span>Previous</span>
           <strong>{previous.title}</strong>
         </a>
@@ -44,7 +45,7 @@ const next = index < components.length - 1 ? components[index + 1] : null;
 
     {
       next && (
-        <a href={next.href} class="component-pagination-link component-pagination-next">
+        <a href={`${base}${next.href}`} class="component-pagination-link component-pagination-next">
           <span>Next</span>
           <strong>{next.title}</strong>
         </a>
