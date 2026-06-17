@@ -1,0 +1,90 @@
+@layer component {
+  mk-dropdown {
+    position: relative;
+
+    > [popover] {
+      position: fixed;
+
+      min-inline-size: 12rem;
+
+      margin: 0;
+      padding: var(--mk-space-1);
+
+      color: var(--mk-color-fg);
+      background: var(--mk-color-card);
+
+      border: 1px solid var(--mk-color-border);
+      border-radius: var(--mk-radius-md);
+
+      box-shadow: var(--mk-shadow-md);
+
+      opacity: 0;
+      transform: translateY(-0.25rem);
+
+      transition:
+        opacity var(--mk-transition-normal),
+        transform var(--mk-transition-normal),
+        overlay var(--mk-transition-normal) allow-discrete,
+        display var(--mk-transition-normal) allow-discrete;
+
+      &:popover-open {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @starting-style {
+        &:popover-open {
+          opacity: 0;
+          transform: translateY(-0.25rem);
+        }
+      }
+
+      hr {
+        margin-block: var(--mk-space-1);
+      }
+    }
+
+    [role="menuitem"] {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--mk-space-2);
+
+      inline-size: 100%;
+
+      padding: var(--mk-space-2) var(--mk-space-3);
+
+      font: inherit;
+      font-size: var(--mk-text-7);
+
+      color: var(--mk-color-fg);
+
+      background: transparent;
+
+      border: none;
+      border-radius: var(--mk-radius-sm);
+
+      text-align: start;
+      text-decoration: none;
+      white-space: nowrap;
+
+      cursor: pointer;
+
+      transition:
+        background-color var(--mk-transition-fast),
+        color var(--mk-transition-fast);
+
+      &:hover,
+      &:focus-visible {
+        background: var(--mk-color-accent);
+        outline: none;
+      }
+
+      &:disabled,
+      &[aria-disabled="true"] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

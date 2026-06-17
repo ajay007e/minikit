@@ -4,14 +4,13 @@
 
     display: flex;
     flex-direction: column;
+    gap: var(--mk-space-2);
 
     margin: 0;
     padding: 0;
 
     border: none;
-
     background: transparent;
-
     overflow: visible;
 
     pointer-events: none;
@@ -35,21 +34,17 @@
 
     &[data-placement="bottom-left"] {
       inset: auto auto var(--mk-space-4) var(--mk-space-4);
-
       flex-direction: column-reverse;
     }
 
     &[data-placement="bottom-center"] {
       inset: auto auto var(--mk-space-4) 50%;
-
       transform: translateX(-50%);
-
       flex-direction: column-reverse;
     }
 
     &[data-placement="bottom-right"] {
       inset: auto var(--mk-space-4) var(--mk-space-4) auto;
-
       flex-direction: column-reverse;
     }
   }
@@ -58,10 +53,10 @@
     --_duration: 300ms;
     --_duration-in: 250ms;
 
+    position: relative;
+
     min-inline-size: 20rem;
     max-inline-size: 28rem;
-
-    margin-block: var(--mk-space-2);
 
     padding: var(--mk-space-5) var(--mk-space-4);
 
@@ -73,23 +68,62 @@
     background-color: var(--mk-color-card);
 
     border: 1px solid var(--mk-color-border);
-
     border-inline-start-width: var(--mk-space-1);
-
     border-radius: var(--mk-radius-md);
 
-    box-shadow: var(--mk-shadow-small);
+    box-shadow: var(--mk-shadow-sm);
 
     transition:
       opacity var(--_duration-in),
       transform var(--_duration-in),
       margin var(--_duration-in);
+
+    > [data-close] {
+      position: absolute;
+
+      inset-block-start: var(--mk-space-3);
+      inset-inline-end: var(--mk-space-3);
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+
+      padding: 0;
+      margin: 0;
+
+      font: inherit;
+      font-size: var(--mk-text-6);
+      line-height: 1;
+
+      color: inherit;
+      background: transparent;
+
+      border: none;
+      border-radius: var(--mk-radius-sm);
+
+      opacity: 0.6;
+
+      cursor: pointer;
+
+      transition:
+        opacity var(--mk-transition-fast),
+        background-color var(--mk-transition-fast);
+
+      &:hover,
+      &:focus-visible {
+        opacity: 1;
+        background-color: var(--mk-color-accent);
+      }
+    }
   }
 
   .toast-title {
     margin-block-end: var(--mk-space-2);
 
-    font-weight: var(--mk-font-semibold);
+    font-weight: var(--mk-weight-semibold);
   }
 
   .toast-message {
@@ -120,27 +154,8 @@
     }
   }
 
-  .toast>[data-close] {
-    margin-inline-start: auto;
-
-    padding: 0;
-
-    border: none;
-
-    background: none;
-
-    cursor: pointer;
-
-    opacity: 0.5;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
   .toast[data-entering] {
     opacity: 0;
-
     transform: translateY(-1rem);
   }
 

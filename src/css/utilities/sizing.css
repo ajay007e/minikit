@@ -1,0 +1,9 @@
+@layer utilities {
+  .w-full {
+    inline-size: 100%;
+  }
+
+  .h-full {
+    block-size: 100%;
+  }
+}

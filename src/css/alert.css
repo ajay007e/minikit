@@ -1,5 +1,5 @@
 @layer component {
-  [role="alert"] {
+  div[role="alert"] {
     position: relative;
 
     display: flex;
@@ -31,8 +31,10 @@
 
       border-inline-start-color: var(--mk-color-danger);
 
-      background-color: light-dark(color-mix(in srgb, var(--mk-color-danger) 8%, transparent),
-          color-mix(in srgb, var(--mk-color-danger) 20%, transparent));
+      background-color: light-dark(
+        color-mix(in srgb, var(--mk-color-danger) 8%, transparent),
+        color-mix(in srgb, var(--mk-color-danger) 20%, transparent)
+      );
     }
 
     &[data-variant="success"] {
@@ -40,8 +42,10 @@
 
       border-inline-start-color: var(--mk-color-success);
 
-      background-color: light-dark(color-mix(in srgb, var(--mk-color-success) 8%, transparent),
-          color-mix(in srgb, var(--mk-color-success) 20%, transparent));
+      background-color: light-dark(
+        color-mix(in srgb, var(--mk-color-success) 8%, transparent),
+        color-mix(in srgb, var(--mk-color-success) 20%, transparent)
+      );
     }
 
     &[data-variant="warning"] {
@@ -49,8 +53,10 @@
 
       border-inline-start-color: var(--mk-color-warning);
 
-      background-color: light-dark(color-mix(in srgb, var(--mk-color-warning) 8%, transparent),
-          color-mix(in srgb, var(--mk-color-warning) 20%, transparent));
+      background-color: light-dark(
+        color-mix(in srgb, var(--mk-color-warning) 8%, transparent),
+        color-mix(in srgb, var(--mk-color-warning) 20%, transparent)
+      );
     }
   }
 }

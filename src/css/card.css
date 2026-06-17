@@ -8,26 +8,26 @@
     border: 1px solid var(--mk-color-border);
     border-radius: var(--mk-radius-md);
 
-    box-shadow: var(--mk-shadow-small);
-  }
+    box-shadow: var(--mk-shadow-sm);
 
-  [data-card]>header {
-    margin-block-end: var(--mk-space-4);
-  }
+    > header {
+      margin-block-end: var(--mk-space-4);
+    }
 
-  [data-card]>footer {
-    margin-block-start: var(--mk-space-4);
-  }
+    > footer {
+      margin-block-start: var(--mk-space-4);
+    }
 
-  [data-card]> :last-child {
-    margin-block-end: 0;
-  }
+    > :last-child {
+      margin-block-end: 0;
+    }
 
-  [data-card].flat {
-    box-shadow: none;
-  }
+    &[data-style="flat"] {
+      box-shadow: none;
+    }
 
-  [data-card].outline {
-    background-color: transparent;
+    &[data-style="outline"] {
+      background-color: transparent;
+    }
   }
 }

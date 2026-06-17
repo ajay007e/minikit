@@ -1,7 +1,6 @@
 @layer theme, base, component, animation, utilities;
 
 @layer base {
-
   *,
   *::before,
   *::after {
@@ -29,15 +28,7 @@
 
   body {
     min-height: 100vh;
-    /* optinal */
-
-    background: var(--mk-color-bg);
-    color: var(--mk-color-fg);
     -webkit-font-smoothing: antialiased;
-  }
-
-  main {
-    padding-block-start: var(--mk-space-8);
   }
 
   img,
@@ -46,8 +37,8 @@
   video,
   canvas {
     display: block;
-    /* optional */
     max-width: 100%;
+    height: auto;
   }
 
   p,
@@ -66,7 +57,7 @@
   h4,
   h5,
   h6 {
-    font-weight: var(--mk-font-semibold);
+    font-weight: var(--mk-weight-semibold);
     line-height: var(--mk-leading-medium);
 
     &:first-child {
@@ -76,32 +67,32 @@
 
   h1 {
     font-size: var(--mk-text-1);
-    margin: var(--mk-space-10) 0 var(--mk-space-6);
+    margin-block: var(--mk-space-10) var(--mk-space-6);
   }
 
   h2 {
     font-size: var(--mk-text-2);
-    margin: var(--mk-space-8) 0 var(--mk-space-5);
+    margin-block: var(--mk-space-8) var(--mk-space-5);
   }
 
   h3 {
     font-size: var(--mk-text-3);
-    margin: var(--mk-space-6) 0 var(--mk-space-4);
+    margin-block: var(--mk-space-6) var(--mk-space-4);
   }
 
   h4 {
     font-size: var(--mk-text-4);
-    margin: var(--mk-space-5) 0 var(--mk-space-3);
+    margin-block: var(--mk-space-5) var(--mk-space-3);
   }
 
   h5 {
     font-size: var(--mk-text-5);
-    margin: var(--mk-space-4) 0 var(--mk-space-2);
+    margin-block: var(--mk-space-4) var(--mk-space-2);
   }
 
   h6 {
     font-size: var(--mk-text-regular);
-    margin: var(--mk-space-4) 0 var(--mk-space-2);
+    margin-block: var(--mk-space-4) var(--mk-space-2);
   }
 
   p {
@@ -116,7 +107,9 @@
     color: var(--mk-color-primary);
     text-decoration: underline;
     text-underline-offset: 2px;
-    transition: color var(--mk-transition-fast);
+    transition:
+      color var(--mk-transition-fast),
+      text-decoration-color var(--mk-transition-fast);
 
     &:hover {
       color: rgb(from var(--mk-color-primary) r g b / 0.8);
@@ -125,7 +118,7 @@
 
   strong,
   b {
-    font-weight: var(--mk-font-semibold);
+    font-weight: var(--mk-weight-semibold);
   }
 
   em,
@@ -148,10 +141,11 @@
   pre {
     font-family: var(--mk-font-mono);
     padding: var(--mk-space-4);
-    background-color: var(--mk-faint);
+    background-color: var(--mk-color-faint);
     border-radius: var(--mk-radius-md);
     overflow-x: auto;
     margin-block-end: var(--mk-space-4);
+    -webkit-overflow-scrolling: touch;
 
     code {
       padding: 0;
@@ -163,15 +157,15 @@
   blockquote {
     border-inline-start: 4px solid var(--mk-color-border);
     padding-inline-start: var(--mk-space-4);
-    margin: var(--mk-space-4) 0;
-    color: var(--mk-muted-fg);
+    margin-block: var(--mk-space-4);
+    color: var(--mk-color-muted-fg);
     font-style: italic;
   }
 
   hr {
     border: none;
     border-top: 1px solid var(--mk-color-border);
-    margin: var(--mk-space-8) 0;
+    margin-block: var(--mk-space-8);
   }
 
   ul,
@@ -190,6 +184,10 @@
 
   li {
     margin-block-end: var(--mk-space-1);
+
+    &:last-child {
+      margin-block-end: 0;
+    }
   }
 
   mark {
@@ -198,17 +196,28 @@
     border-radius: var(--mk-radius-sm);
   }
 
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
   [hidden] {
     display: none;
   }
 
   :focus-visible {
-    outline: 2px solid var(--mk-mk-ring);
+    outline: 2px solid var(--mk-color-ring); /* suggestion to remove this*/
     outline-offset: 2px;
   }
 
   :disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  :target {
+    scroll-margin-block: var(--mk-space-8);
   }
 }

@@ -1,9 +1,12 @@
 @layer base {
-  progress {
+  progress,
+  meter {
+    --_bar-height: 0.5rem;
+
     appearance: none;
 
     inline-size: 100%;
-    block-size: var(--mk-bar-height);
+    block-size: var(--_bar-height);
 
     overflow: hidden;
 
@@ -11,43 +14,30 @@
     border-radius: var(--mk-radius-full);
 
     background-color: var(--mk-color-muted);
+  }
 
+  progress {
     &::-webkit-progress-bar {
       background-color: var(--mk-color-muted);
-
       border-radius: var(--mk-radius-full);
     }
 
     &::-webkit-progress-value {
       background-color: var(--mk-color-primary);
-
       border-radius: var(--mk-radius-full);
 
-      transition: inline-size var(--mk-transition);
+      transition: inline-size var(--mk-transition-normal);
     }
 
     &::-moz-progress-bar {
       background-color: var(--mk-color-primary);
-
       border-radius: var(--mk-radius-full);
     }
   }
 
   meter {
-    appearance: none;
-
-    inline-size: 100%;
-    block-size: var(--mk-bar-height);
-
-    overflow: hidden;
-
-    border: none;
-    border-radius: var(--mk-radius-full);
-
-    background-color: var(--mk-color-muted);
-
     &::-webkit-meter-bar {
-      block-size: var(--mk-bar-height);
+      block-size: var(--_bar-height);
 
       border: none;
       border-radius: var(--mk-radius-full);
@@ -75,7 +65,6 @@
 
     &::-moz-meter-bar {
       background-color: var(--mk-color-success);
-
       border-radius: var(--mk-radius-full);
     }
 

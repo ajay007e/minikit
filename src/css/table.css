@@ -1,9 +1,11 @@
 @layer base {
   [data-table] {
+    display: block;
+
     inline-size: 100%;
     min-inline-size: 320px;
 
-    overflow-x: auto;
+    overflow-inline: auto;
   }
 
   table {
@@ -14,6 +16,16 @@
     font-size: var(--mk-text-7);
   }
 
+  caption {
+    padding-block-end: var(--mk-space-3);
+
+    text-align: start;
+
+    font-weight: var(--mk-weight-medium);
+
+    color: var(--mk-color-muted-fg);
+  }
+
   thead {
     border-block-end: 1px solid var(--mk-color-border);
   }
@@ -21,6 +33,7 @@
   th,
   td {
     overflow-wrap: break-word;
+    vertical-align: top;
   }
 
   th {
@@ -28,7 +41,7 @@
 
     text-align: start;
 
-    font-weight: var(--mk-font-medium);
+    font-weight: var(--mk-weight-medium);
 
     color: var(--mk-color-muted-fg);
   }

@@ -6,141 +6,131 @@
 // - Home / End navigation
 // - ARIA synchronization
 // - Panel visibility management
-//
-// Usage:
-//
-// <mk-tabs>
-//   <div role="tablist">
-//     <button role="tab">General</button>
-//     <button role="tab">Security</button>
-//   </div>
-//
-//   <section role="tabpanel">
-//     ...
-//   </section>
-//
-//   <section role="tabpanel">
-//     ...
-//   </section>
-// </mk-tabs>
 
 import { MkElement } from "./base.js";
 
 class MkTabs extends MkElement {
-    tabs = [];
-    panels = [];
+  static count = 0;
 
-    init() {
-        const tablist = this.$(':scope > [role="tablist"]');
+  uid = ++MkTabs.count;
 
-        if (!tablist) return;
+  tabs = [];
+  panels = [];
 
-        this.tabs = [...tablist.querySelectorAll('[role="tab"]')];
-        this.panels = this.$$(':scope > [role="tabpanel"]');
+  init() {
+    const tablist = this.$(':scope > [role="tablist"]');
 
-        if (!this.tabs.length || !this.panels.length) {
-            return;
-        }
-
-        this.tabs.forEach((tab, index) => {
-            const panel = this.panels[index];
-
-            if (!panel) return;
-
-            const tabId = tab.id || `mk-tab-${index}`;
-            const panelId = panel.id || `mk-panel-${index}`;
-
-            tab.id = tabId;
-            panel.id = panelId;
-
-            tab.setAttribute("aria-controls", panelId);
-            panel.setAttribute("aria-labelledby", tabId);
-        });
-
-        tablist.addEventListener("click", this);
-        tablist.addEventListener("keydown", this);
-
-        const active = this.tabs.findIndex(
-            (tab) => tab.getAttribute("aria-selected") === "true",
-        );
-
-        this.activate(active >= 0 ? active : 0);
+    if (!tablist) {
+      return;
     }
 
-    cleanup() {
-        const tablist = this.$(':scope > [role="tablist"]');
+    this.tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+    this.panels = this.$$(':scope > [role="tabpanel"]');
 
-        if (!tablist) return;
-
-        tablist.removeEventListener("click", this);
-        tablist.removeEventListener("keydown", this);
+    if (!this.tabs.length || !this.panels.length) {
+      return;
     }
 
-    onclick(event) {
-        const tab = event.target.closest('[role="tab"]');
+    this.tabs.forEach((tab, index) => {
+      const panel = this.panels[index];
 
-        if (!tab) return;
+      if (!panel) {
+        return;
+      }
 
-        const index = this.tabs.indexOf(tab);
+      tab.id ||= `mk-tab-${this.uid}-${index}`;
+      panel.id ||= `mk-panel-${this.uid}-${index}`;
 
-        if (index >= 0) {
-            this.activate(index);
-        }
+      tab.setAttribute("aria-controls", panel.id);
+      panel.setAttribute("aria-labelledby", tab.id);
+    });
+
+    tablist.addEventListener("click", this);
+    tablist.addEventListener("keydown", this);
+
+    this.activate(this.activeIndex >= 0 ? this.activeIndex : 0);
+  }
+
+  cleanup() {
+    this.$(':scope > [role="tablist"]')?.removeEventListener("click", this);
+
+    this.$(':scope > [role="tablist"]')?.removeEventListener("keydown", this);
+  }
+
+  onclick(event) {
+    const tab = event.target.closest('[role="tab"]');
+
+    if (!tab || tab.disabled) {
+      return;
     }
 
-    onkeydown(event) {
-        const tab = event.target.closest('[role="tab"]');
+    const index = this.tabs.indexOf(tab);
 
-        if (!tab) return;
-
-        const current = this.tabs.indexOf(tab);
-
-        const next = this.keyNav(
-            event,
-            current,
-            this.tabs.length,
-            "ArrowLeft",
-            "ArrowRight",
-            true,
-        );
-
-        if (next < 0) return;
-
-        this.activate(next);
-        this.tabs[next].focus();
+    if (index < 0 || index === this.activeIndex) {
+      return;
     }
 
-    activate(index) {
-        this.tabs.forEach((tab, i) => {
-            const active = i === index;
+    this.activate(index);
+  }
 
-            tab.setAttribute("aria-selected", String(active));
+  onkeydown(event) {
+    const tab = event.target.closest('[role="tab"]');
 
-            tab.tabIndex = active ? 0 : -1;
-        });
-
-        this.panels.forEach((panel, i) => {
-            panel.hidden = i !== index;
-        });
-
-        this.emit("tab-change", {
-            index,
-            tab: this.tabs[index],
-            panel: this.panels[index],
-        });
+    if (!tab || tab.disabled) {
+      return;
     }
 
-    get activeIndex() {
-        return this.tabs.findIndex(
-            (tab) => tab.getAttribute("aria-selected") === "true",
-        );
+    const enabledTabs = this.tabs.filter((tab) => !tab.disabled);
+
+    const current = enabledTabs.indexOf(tab);
+
+    const next = this.keyNav(
+      event,
+      current,
+      enabledTabs.length,
+      "ArrowLeft",
+      "ArrowRight",
+    );
+
+    if (next < 0) {
+      return;
     }
 
-    set activeIndex(index) {
-        if (index >= 0 && index < this.tabs.length) {
-            this.activate(index);
-        }
+    const target = enabledTabs[next];
+    const index = this.tabs.indexOf(target);
+
+    this.activate(index);
+    target.focus();
+  }
+
+  activate(index) {
+    this.tabs.forEach((tab, i) => {
+      const active = i === index;
+
+      tab.ariaSelected = String(active);
+      tab.tabIndex = active ? 0 : -1;
+    });
+
+    this.panels.forEach((panel, i) => {
+      panel.hidden = i !== index;
+    });
+
+    this.emit("tab-change", {
+      index,
+      tab: this.tabs[index],
+      panel: this.panels[index],
+    });
+  }
+
+  get activeIndex() {
+    return this.tabs.findIndex((tab) => tab.ariaSelected === "true");
+  }
+
+  set activeIndex(index) {
+    if (index >= 0 && index < this.tabs.length) {
+      this.activate(index);
     }
+  }
 }
 
 customElements.define("mk-tabs", MkTabs);

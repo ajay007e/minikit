@@ -1,0 +1,29 @@
+@layer utilities {
+  .text-primary {
+    color: var(--mk-color-primary);
+  }
+
+  .text-muted {
+    color: var(--mk-color-muted-fg);
+  }
+
+  .text-faint {
+    color: var(--mk-color-faint-fg);
+  }
+
+  .text-danger {
+    color: var(--mk-color-danger);
+  }
+
+  .bg-primary {
+    background: var(--mk-color-primary);
+  }
+
+  .bg-muted {
+    background: var(--mk-color-muted);
+  }
+
+  .bg-card {
+    background: var(--mk-color-card);
+  }
+}

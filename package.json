@@ -1,33 +1,33 @@
 {
-    "name": "@ajay007e/minikit",
-    "version": "0.0.2",
-    "description": "A lightweight HTML-first design system foundation with themes, typography, forms, buttons, accessibility, and minimal JavaScript enhancements.",
-    "author": "Ajay Mathew",
-    "license": "MIT",
-    "type": "module",
-    "homepage": "https://github.com/ajay007e/minikit",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ajay007e/minikit.git"
-    },
-    "bugs": {
-        "url": "https://github.com/ajay007e/minikit/issues"
-    },
-    "keywords": [
-        "css",
-        "html",
-        "ui",
-        "frontend",
-        "design-system",
-        "web-components",
-        "accessibility"
-    ],
-    "style": "dist/minikit.min.css",
-    "main": "dist/minikit.min.js",
-    "module": "dist/minikit.min.js",
-    "files": [
-        "dist",
-        "README.md",
-        "LICENSE"
-    ]
+  "name": "@ajay007e/minikit",
+  "version": "0.0.3",
+  "description": "A lightweight HTML-first design system foundation with themes, typography, forms, buttons, accessibility, and minimal JavaScript enhancements.",
+  "author": "Ajay Mathew",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://github.com/ajay007e/minikit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajay007e/minikit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ajay007e/minikit/issues"
+  },
+  "keywords": [
+    "css",
+    "html",
+    "ui",
+    "frontend",
+    "design-system",
+    "web-components",
+    "accessibility"
+  ],
+  "style": "dist/minikit.min.css",
+  "main": "dist/minikit.min.js",
+  "module": "dist/minikit.min.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
 }

@@ -5,9 +5,7 @@
 //
 // Usage:
 //
-// <button
-//   data-tooltip="Save changes">
-// </button>
+// <button data-tooltip="Save changes"></button>
 //
 // Optional:
 //
@@ -16,35 +14,40 @@
 //   aria-label="Save">
 // </button>
 
-function enhance(el) {
-    const text = el.getAttribute("data-tooltip");
+function enhance(element) {
+  const text = element.getAttribute("data-tooltip");
 
-    if (!text) {
-        return;
-    }
+  if (!text || element.hasAttribute("aria-label")) {
+    return;
+  }
 
-    if (!el.hasAttribute("aria-label")) {
-        el.setAttribute("aria-label", text);
-    }
+  element.setAttribute("aria-label", text);
 }
 
 document.querySelectorAll("[data-tooltip]").forEach(enhance);
 
 new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-        for (const node of mutation.addedNodes) {
-            if (!(node instanceof Element)) {
-                continue;
-            }
-
-            if (node.hasAttribute("data-tooltip")) {
-                enhance(node);
-            }
-
-            node.querySelectorAll?.("[data-tooltip]").forEach(enhance);
-        }
+  for (const mutation of mutations) {
+    if (mutation.type === "attributes" && mutation.target instanceof Element) {
+      enhance(mutation.target);
+      continue;
     }
+
+    for (const node of mutation.addedNodes) {
+      if (!(node instanceof Element)) {
+        continue;
+      }
+
+      if (node.hasAttribute("data-tooltip")) {
+        enhance(node);
+      }
+
+      node.querySelectorAll("[data-tooltip]").forEach(enhance);
+    }
+  }
 }).observe(document.body, {
-    childList: true,
-    subtree: true,
+  childList: true,
+  subtree: true,
+  attributes: true,
+  attributeFilter: ["data-tooltip"],
 });

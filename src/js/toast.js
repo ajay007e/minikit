@@ -1,136 +1,180 @@
-const containers = {};
+const containers = new Map();
 
 function getContainer(placement) {
-    if (containers[placement]) {
-        return containers[placement];
-    }
+  if (containers.has(placement)) {
+    return containers.get(placement);
+  }
 
-    const container = document.createElement("div");
+  const container = document.createElement("div");
 
-    container.className = "toast-container";
+  container.className = "toast-container";
 
-    container.setAttribute("popover", "manual");
-    container.setAttribute("data-placement", placement);
+  container.setAttribute("popover", "manual");
+  container.setAttribute("data-placement", placement);
 
-    document.body.appendChild(container);
+  document.body.appendChild(container);
 
-    containers[placement] = container;
+  containers.set(placement, container);
 
-    return container;
+  return container;
 }
 
 function removeToast(toast, container) {
-    if (toast.hasAttribute("data-exiting")) {
-        return;
+  if (toast.hasAttribute("data-exiting")) {
+    return;
+  }
+
+  toast.setAttribute("data-exiting", "");
+
+  const cleanup = () => {
+    toast.remove();
+
+    if (!container.children.length) {
+      container.hidePopover();
     }
+  };
 
-    toast.setAttribute("data-exiting", "");
+  toast.addEventListener("transitionend", cleanup, { once: true });
 
-    const cleanup = () => {
-        toast.remove();
-
-        if (!container.children.length) {
-            container.hidePopover();
-        }
-    };
-
-    toast.addEventListener("transitionend", cleanup, { once: true });
-
-    setTimeout(cleanup, 350);
+  setTimeout(cleanup, 350);
 }
 
 function showToast(toast, options = {}) {
-    const { placement = "top-right", duration = 4000 } = options;
+  const { placement = "top-right", duration = 4000 } = options;
 
-    const container = getContainer(placement);
+  const container = getContainer(placement);
 
-    toast.classList.add("toast");
+  toast.classList.add("toast");
 
-    let timeout;
+  let timeoutId;
 
-    toast.onmouseenter = () => {
-        clearTimeout(timeout);
-    };
+  toast.addEventListener("mouseenter", () => {
+    clearTimeout(timeoutId);
+  });
 
-    toast.onmouseleave = () => {
-        if (duration > 0) {
-            timeout = setTimeout(() => removeToast(toast, container), duration);
-        }
-    };
-
-    toast.setAttribute("data-entering", "");
-
-    container.appendChild(toast);
-    container.showPopover();
-
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            toast.removeAttribute("data-entering");
-        });
-    });
-
+  toast.addEventListener("mouseleave", () => {
     if (duration > 0) {
-        timeout = setTimeout(() => removeToast(toast, container), duration);
+      timeoutId = setTimeout(() => removeToast(toast, container), duration);
     }
+  });
 
-    return toast;
+  toast.addEventListener("click", (event) => {
+    if (event.target.closest("[data-close]")) {
+      clearTimeout(timeoutId);
+      removeToast(toast, container);
+    }
+  });
+
+  toast.setAttribute("data-entering", "");
+
+  container.appendChild(toast);
+  container.showPopover();
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      toast.removeAttribute("data-entering");
+    });
+  });
+
+  if (duration > 0) {
+    timeoutId = setTimeout(() => removeToast(toast, container), duration);
+  }
+
+  return toast;
 }
 
 export function show(message, title = "", options = {}) {
-    const { variant = "info", ...rest } = options;
+  const { variant = "info", closeButton = false, ...rest } = options;
 
-    const toast = document.createElement("output");
+  const toast = document.createElement("output");
 
-    toast.setAttribute("role", "status");
-    toast.setAttribute("data-variant", variant);
+  toast.setAttribute("role", variant === "danger" ? "alert" : "status");
 
-    if (title) {
-        const heading = document.createElement("div");
+  toast.setAttribute("data-variant", variant);
 
-        heading.className = "toast-title";
-        heading.textContent = title;
+  if (title) {
+    const heading = document.createElement("div");
 
-        toast.appendChild(heading);
-    }
+    heading.className = "toast-title";
+    heading.textContent = title;
 
-    const content = document.createElement("div");
+    toast.appendChild(heading);
+  }
 
-    content.className = "toast-message";
-    content.textContent = message;
+  const content = document.createElement("div");
 
-    toast.appendChild(content);
+  content.className = "toast-message";
+  content.textContent = message;
 
-    return showToast(toast, rest);
+  toast.appendChild(content);
+
+  if (closeButton) {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.setAttribute("data-close", "");
+    button.setAttribute("aria-label", "Close");
+
+    button.innerHTML = `
+    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+      <path
+        d="M18 6L6 18M6 6l12 12"
+        stroke="currentColor"
+        stroke-width="2"
+        fill="none"
+        stroke-linecap="round"/>
+    </svg>`;
+
+    toast.appendChild(button);
+  }
+
+  return showToast(toast, rest);
 }
 
 export function showElement(element, options = {}) {
-    let toast;
+  let toast;
 
-    if (element instanceof HTMLTemplateElement) {
-        toast = element.content.firstElementChild?.cloneNode(true);
-    } else if (element) {
-        toast = element.cloneNode(true);
-    }
+  if (element instanceof HTMLTemplateElement) {
+    toast = element.content.firstElementChild?.cloneNode(true);
+  } else if (element) {
+    toast = element.cloneNode(true);
+  }
 
-    if (!toast) {
-        return;
-    }
+  if (!toast) {
+    return;
+  }
 
-    toast.removeAttribute("id");
+  toast.removeAttribute("id");
+  if (options.closeButton) {
+    const button = document.createElement("button");
 
-    return showToast(toast, options);
+    button.type = "button";
+    button.setAttribute("data-close", "");
+    button.setAttribute("aria-label", "Close");
+
+    button.textContent = "×";
+
+    toast.appendChild(button);
+  }
+  return showToast(toast, options);
 }
 
 export function clear(placement) {
-    if (placement && containers[placement]) {
-        containers[placement].replaceChildren();
-        containers[placement].hidePopover();
+  if (placement) {
+    const container = containers.get(placement);
 
-        return;
+    if (!container) {
+      return;
     }
 
-    Object.values(containers).forEach((container) => {
-        container.replaceChildren();
-        container.hidePopover();
-    });
+    container.replaceChildren();
+    container.hidePopover();
+
+    return;
+  }
+
+  containers.forEach((container) => {
+    container.replaceChildren();
+    container.hidePopover();
+  });
 }

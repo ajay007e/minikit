@@ -1,6 +1,5 @@
 @layer animations {
   @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
@@ -10,17 +9,20 @@
       scroll-behavior: auto !important;
     }
 
-    :is(button,
-      [type="submit"],
-      [type="reset"],
-      [type="button"],
-      a.button)[data-loading]::after {
+    :is(
+        button,
+        [type="submit"],
+        [type="reset"],
+        [type="button"],
+        a.button
+      )[data-loading]::after,
+    [aria-busy="true"]::before {
       animation-duration: 2s;
     }
   }
 
   @keyframes mk-spin {
-    to {
+    100% {
       transform: rotate(360deg);
     }
   }

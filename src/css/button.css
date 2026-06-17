@@ -1,5 +1,4 @@
 @layer base {
-
   :is(button, [type="submit"], [type="reset"], [type="button"], a.button),
   ::file-selector-button {
     --_hover: color-mix(in srgb, var(--mk-color-primary), white 25%);
@@ -14,7 +13,7 @@
 
     font: inherit;
     font-size: var(--mk-text-7);
-    font-weight: var(--mk-font-medium);
+    font-weight: var(--mk-weight-medium);
     line-height: var(--mk-leading-normal);
     white-space: nowrap;
 
@@ -25,7 +24,8 @@
 
     border: 1px solid;
     border-radius: var(--mk-radius-md);
-    border-color: rgb(from #fff r g b / 0.15) rgb(from #000 r g b / 0.2) rgb(from #000 r g b / 0.2) rgb(from #fff r g b / 0.15);
+    border-color: rgb(from #fff r g b / 0.15) rgb(from #000 r g b / 0.2)
+      rgb(from #000 r g b / 0.2) rgb(from #fff r g b / 0.15);
 
     user-select: none;
 
@@ -48,7 +48,6 @@
     &:hover:not(:disabled) {
       background-color: var(--_hover);
       opacity: 0.9;
-      /* optional */
     }
 
     &:active:not(:disabled) {
@@ -59,7 +58,8 @@
       --_hover: color-mix(in srgb, var(--mk-color-secondary), black 10%);
       background-color: var(--mk-color-secondary);
       color: var(--mk-color-secondary-fg);
-      border-color: rgb(from #fff r g b / 0.5) rgb(from #000 r g b / 0.1) rgb(from #000 r g b / 0.1) rgb(from #fff r g b / 0.5);
+      border-color: rgb(from #fff r g b / 0.5) rgb(from #000 r g b / 0.1)
+        rgb(from #000 r g b / 0.1) rgb(from #fff r g b / 0.5);
     }
 
     &[data-variant="danger"] {
@@ -69,8 +69,9 @@
       border-color: var(--mk-color-danger);
     }
 
-    &:is(.outline, .ghost) {
+    &:is([data-style="outline"], [data-style="ghost"]) {
       --_hover: var(--mk-color-accent);
+
       background-color: transparent;
       color: var(--mk-color-fg);
 
@@ -80,14 +81,16 @@
       }
 
       &[data-variant="secondary"] {
-        --_hover: color-mix(in srgb,
-            var(--mk-color-secondary),
-            transparent 80%);
+        --_hover: color-mix(
+          in srgb,
+          var(--mk-color-secondary),
+          transparent 80%
+        );
         color: var(--mk-color-secondary-fg);
       }
     }
 
-    &.outline {
+    &[data-style="outline"] {
       border-color: var(--mk-color-border);
 
       &[data-variant="danger"] {
@@ -99,32 +102,34 @@
       }
     }
 
-    &.ghost {
+    &[data-style="ghost"] {
       border-color: transparent;
     }
 
-    &.small {
+    &[data-size="sm"] {
       padding: var(--mk-space-1) var(--mk-space-3);
       font-size: var(--mk-text-8);
     }
 
-    &.large {
-      height: 3rem;
-      padding: 0 var(--mk-space-6);
+    &[data-size="lg"] {
+      block-size: 3rem;
+      padding-inline: var(--mk-space-6);
       font-size: var(--mk-text-regular);
     }
 
-    &.icon {
+    &[data-icon] {
       inline-size: 2.5rem;
       block-size: 2.5rem;
       padding: 0;
 
-      &.small {
-        width: 2rem;
+      &[data-size="sm"] {
+        inline-size: 2rem;
+        block-size: 2rem;
       }
 
-      &.large {
-        width: 3rem;
+      &[data-size="lg"] {
+        inline-size: 3rem;
+        block-size: 3rem;
       }
     }
 
@@ -138,6 +143,7 @@
       inline-size: 1em;
       block-size: 1em;
       flex-shrink: 0;
+
       border: 2px solid currentColor;
       border-inline-end-color: transparent;
       border-radius: 50%;

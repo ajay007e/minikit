@@ -13,33 +13,21 @@
 
     overflow: hidden;
 
-    color: var(--mk-color-primary-fg);
+    color: var(--mk-color-faint);
 
-    background-color: var(--mk-color-faint);
+    background-color: var(--mk-color-faint-fg);
 
     border-radius: var(--mk-radius-full);
 
     font-size: var(--mk-text-7);
-    font-weight: var(--mk-font-medium);
+    font-weight: var(--mk-weight-medium);
 
     flex-shrink: 0;
 
-    >img {
+    > img {
       inline-size: 100%;
       block-size: 100%;
       object-fit: cover;
-    }
-
-    >figcaption {
-      display: none;
-    }
-
-    &.small {
-      --_size: 2rem;
-    }
-
-    &.large {
-      --_size: 3.25rem;
     }
   }
 
@@ -51,7 +39,7 @@
 
     margin: 0;
 
-    >figure[data-variant="avatar"] {
+    > figure[data-variant="avatar"] {
       --_size: inherit;
 
       isolation: isolate;
@@ -65,21 +53,25 @@
       }
     }
 
-    &.small {
-      --_size: 2rem;
-
-      >figure[data-variant="avatar"] {
+    &[data-size="sm"] {
+      > figure[data-variant="avatar"] {
         margin-inline-end: calc(var(--mk-space-4) * -0.8);
         border-width: 1px;
       }
     }
 
-    &.large {
-      --_size: 3.25rem;
-
-      >figure[data-variant="avatar"] {
+    &[data-size="lg"] {
+      > figure[data-variant="avatar"] {
         margin-inline-end: calc(var(--mk-space-6) * -1);
       }
     }
+  }
+
+  figure[data-variant="avatar"][data-size="sm"] {
+    --_size: 2rem;
+  }
+
+  figure[data-variant="avatar"][data-size="lg"] {
+    --_size: 3.25rem;
   }
 }

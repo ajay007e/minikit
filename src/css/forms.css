@@ -2,24 +2,29 @@
   label {
     display: block;
     font-size: var(--mk-text-7);
-    font-weight: var(--mk-font-medium);
+    font-weight: var(--mk-weight-medium);
+    margin: var(--mk-space-2) 0;
 
     &:has(input:where([type="checkbox"], [type="radio"])) {
       display: inline-flex;
       align-items: center;
       gap: var(--mk-space-2);
       row-gap: 0;
-      font-weight: var(--mk-font-normal);
+      font-weight: var(--mk-weight-normal);
     }
   }
 
-  :where(input:not([type="checkbox"],
+  :where(
+    input:not(
+      [type="checkbox"],
       [type="radio"],
       [type="range"],
       [type="file"],
-      [type="color"]),
+      [type="color"]
+    ),
     textarea,
-    select) {
+    select
+  ) {
     inline-size: 100%;
     margin-block-start: var(--mk-space-1);
     padding: var(--mk-space-2) var(--mk-space-3);
@@ -123,12 +128,12 @@
     }
 
     &[role="switch"] {
-      --switch-height: calc(var(--mk-bar-height) * 3);
-      --switch-inset: 2px;
-      --switch-thumb: calc(var(--switch-height) - var(--switch-inset) * 3);
+      --_height: calc(var(--mk-bar-height) * 3);
+      --_inset: 2px;
+      --_thumb: calc(var(--_height) - var(--_inset) * 3);
 
-      inline-size: calc(var(--switch-height) * 2);
-      block-size: var(--switch-height);
+      inline-size: calc(var(--_height) * 2);
+      block-size: var(--_height);
       border-radius: var(--mk-radius-full);
       background-color: var(--mk-color-input);
 
@@ -136,14 +141,14 @@
         content: "";
         position: absolute;
         inset-block-start: 50%;
-        inset-inline-start: var(--switch-inset);
+        inset-inline-start: var(--_inset);
         transform: translateY(-50%);
-        inline-size: var(--switch-thumb);
-        block-size: var(--switch-thumb);
+        inline-size: var(--_thumb);
+        block-size: var(--_thumb);
         background-color: var(--mk-color-bg);
         border-radius: var(--mk-radius-full);
-        transition: transform var(--mk-transition);
-        box-shadow: var(--mk-shadow-small);
+        transition: transform var(--mk-transition-normal);
+        box-shadow: var(--mk-shadow-sm);
       }
 
       &:checked {
@@ -154,7 +159,7 @@
         }
 
         &::before {
-          transform: translateY(-50%) translateX(var(--switch-height));
+          transform: translateY(-50%) translateX(var(--_height));
         }
       }
     }
@@ -168,8 +173,10 @@
     }
   }
 
-  :where(input:where([type="checkbox"], [type="radio"], [type="range"]),
-    select):not(:disabled),
+  :where(
+    input:where([type="checkbox"], [type="radio"], [type="range"]),
+    select
+  ):not(:disabled),
   label:has(input:where([type="checkbox"], [type="radio"]):not(:disabled)) {
     cursor: pointer;
   }
@@ -196,6 +203,17 @@
     }
   }
 
+  label > small {
+    display: block;
+    margin-block-start: var(--mk-space-1);
+    color: var(--mk-color-muted-fg);
+  }
+
+  :where(input, textarea, select):is([aria-invalid="true"], :user-invalid)
+    + small {
+    color: var(--mk-color-danger);
+  }
+
   fieldset {
     border: 1px solid var(--mk-color-border);
     border-radius: var(--mk-radius-md);
@@ -205,7 +223,7 @@
 
   legend {
     font-size: var(--mk-text-7);
-    font-weight: var(--mk-font-medium);
+    font-weight: var(--mk-weight-medium);
     padding-inline: var(--mk-space-2);
   }
 }
