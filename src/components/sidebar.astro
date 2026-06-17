@@ -23,7 +23,7 @@ const currentItem = currentGroup?.items.find((item) => item.page === page);
   aria-expanded="false"
   aria-controls="mobile-sidebar"
 >
-  <button type="button" class="ghost sidebar-toggle" aria-hidden="true">
+  <button type="button" data-style="ghost" class="sidebar-toggle" aria-hidden="true">
     <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
       <path
         fill="none"
@@ -58,7 +58,8 @@ const currentItem = currentGroup?.items.find((item) => item.page === page);
 
     <button
       type="button"
-      class="ghost sidebar-toggle"
+      data-style="ghost"
+      class="sidebar-toggle"
       id="sidebar-close"
       aria-label="Close navigation"
     >
@@ -80,7 +81,7 @@ const currentItem = currentGroup?.items.find((item) => item.page === page);
       const hasActiveItem = group.items.some((item) => item.page === page);
 
       return (
-        <details class="sidebar-group" open={hasActiveItem}>
+        <details data-ui="accordion" class="sidebar-group" open={hasActiveItem}>
           <summary>{group.title}</summary>
 
           <nav>
@@ -105,7 +106,7 @@ const currentItem = currentGroup?.items.find((item) => item.page === page);
       const hasActiveItem = group.items.some((item) => item.page === page);
 
       return (
-        <details class="sidebar-group" open={hasActiveItem}>
+        <details data-ui="accordion" class="sidebar-group" open={hasActiveItem}>
           <summary>{group.title}</summary>
 
           <nav>

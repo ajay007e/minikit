@@ -6,17 +6,17 @@ export interface PlaygroundExample {
 export const examples: PlaygroundExample[] = [
   {
     name: 'Primary Button',
-    html: `<button class="button">Get Started</button>`,
+    html: `<button>Get Started</button>`,
   },
 
   {
     name: 'Outline Button',
-    html: `<button class="button outline">Learn More</button>`,
+    html: `<button data-style="outline">Learn More</button>`,
   },
 
   {
     name: 'Ghost Button',
-    html: `<button class="button ghost">Cancel</button>`,
+    html: `<button data-style="ghost">Cancel</button>`,
   },
 
   {
@@ -46,7 +46,7 @@ export const examples: PlaygroundExample[] = [
 
   {
     name: 'Spinner',
-    html: `<div data-spinner aria-label="Loading"></div>`,
+    html: `<div aria-busy="true"></div>`,
   },
 
   {

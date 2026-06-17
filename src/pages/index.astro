@@ -10,61 +10,43 @@ const base = import.meta.env.BASE_URL;
 
 <BaseLayout title="MiniKit" description="Build modern interfaces with simple HTML.">
   <main class="home">
+
     <section class="hero container">
-      <span data-badge>v0.0.2</span>
-
+      <span data-badge>v0.0.3</span>
       <h1>Build modern interfaces with simple HTML.</h1>
-
-      <p class="hero-subtitle">
-        A tiny HTML-first CSS and JavaScript library with accessible components, sensible defaults,
-        and zero dependencies.
-      </p>
-
+      <p class="hero-subtitle">A tiny HTML-first CSS and JavaScript library with accessible components, sensible defaults, and zero dependencies.</p>
       <div class="hero-actions">
-        <a href={`${base}getting-started/`} class="button large">Get Started</a>
-
-        <a href="https://github.com/ajay007e/minikit" class="button outline large">GitHub</a>
+        <a href={`${base}getting-started/`} class="button">Get Started</a>
+        <a href="https://github.com/ajay007e/minikit" class="button" data-style="outline">GitHub</a>
       </div>
     </section>
 
     <section class="container">
       <div class="section-heading">
         <h2>Simple HTML. Beautiful interfaces.</h2>
-
-        <p class="text-muted">
-          MiniKit embraces semantic HTML. Write familiar markup and get modern, accessible
-          components with minimal CSS and JavaScript.
-        </p>
+        <p class="text-muted">MiniKit embraces semantic HTML. Write familiar markup and get modern, accessible components with minimal CSS and JavaScript.</p>
       </div>
-
       <Playground />
     </section>
 
     <section class="container">
       <div class="section-heading">
         <h2>Small footprint. Big capabilities.</h2>
-
-        <p class="text-muted">
-          Everything you need to build modern interfaces without unnecessary complexity.
-        </p>
+        <p class="text-muted">Everything you need to build modern interfaces without unnecessary complexity.</p>
       </div>
-
       <div class="stats">
         <article class="stat">
-          <strong>14</strong>
+          <strong>16</strong>
           <span>Components</span>
         </article>
-
         <article class="stat">
-          <strong>6.4 KB</strong>
+          <strong>6.8 KB</strong>
           <span>CSS (gzip)</span>
         </article>
-
         <article class="stat">
-          <strong>1.8 KB</strong>
+          <strong>2.7 KB</strong>
           <span>JavaScript (gzip)</span>
         </article>
-
         <article class="stat">
           <strong>0</strong>
           <span>Dependencies</span>
@@ -75,34 +57,23 @@ const base = import.meta.env.BASE_URL;
     <section class="container features">
       <div class="section-heading">
         <h2>Everything you need. Nothing you don't.</h2>
-
-        <p class="text-muted">
-          A focused collection of components and utilities for building modern websites.
-        </p>
+        <p class="text-muted">A focused collection of components and utilities for building modern websites.</p>
       </div>
-
       <div class="feature-grid">
         <article data-card>
           <h3>HTML First</h3>
-
           <p>Build interfaces using semantic HTML instead of framework abstractions.</p>
         </article>
-
         <article data-card>
           <h3>Tiny Bundle</h3>
-
-          <p>Just 6.4 KB of CSS and 1.8 KB of JavaScript.</p>
+          <p>Just 6.8 KB of CSS and 2.7 KB of JavaScript.</p>
         </article>
-
         <article data-card>
           <h3>Accessible</h3>
-
           <p>Keyboard-friendly components with sensible defaults.</p>
         </article>
-
         <article data-card>
           <h3>Framework Agnostic</h3>
-
           <p>Works with React, Vue, HTMX, Alpine or plain HTML.</p>
         </article>
       </div>
