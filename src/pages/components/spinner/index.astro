@@ -18,8 +18,8 @@ import Example from '../../../components/example.astro';
       label: 'Basic Usage',
     },
     {
-      href: '#sizes',
-      label: 'Sizes',
+      href: '#variants',
+      label: 'Variants',
     },
     {
       href: '#overlay',
@@ -69,33 +69,31 @@ import Example from '../../../components/example.astro';
     </p>
   </section>
 
-  <section id="sizes">
-    <h2>Sizes</h2>
+  <section id="variants">
+    <h2>Variants</h2>
     <p>
-      MiniKit provides small, default, and large spinner sizes using the
+      MiniKit provides small, default, and large spinner variants using the
       <code>data-spinner</code>
       attribute.
     </p>
 
     <Example
       code={`<div class="hstack">
-  <div aria-busy="true" data-spinner="small"></div>
-  <div aria-busy="true""></div>
-  <div aria-busy="true" data-spinner="large"></div>
+  <div aria-busy="true" data-size="sm"></div>
+  <div aria-busy="true"></div>
+  <div aria-busy="true" data-size="lg"></div>
 </div>`}
     >
       <div class="hstack">
-        <div aria-busy="true" data-spinner="small"></div>
-
+        <div aria-busy="true" data-size="sm"></div>
         <div aria-busy="true"></div>
-
-        <div aria-busy="true" data-spinner="large"></div>
+        <div aria-busy="true" data-size="lg"></div>
       </div>
     </Example>
 
     <p>
-      Choose a spinner size that matches the surrounding interface and the importance of the loading
-      state.
+      Choose the spinner variant that best matches the surrounding interface and
+      the importance of the loading state.
     </p>
   </section>
 
@@ -109,12 +107,12 @@ import Example from '../../../components/example.astro';
     </p>
 
     <Example
-      code={`<div data-card aria-busy="true" data-spinner="overlay">
+      code={`<div data-card aria-busy="true" data-variant="overlay">
   <h3>Loading Dashboard</h3>
   <p>Please wait while your data is being loaded.</p>
 </div>`}
     >
-      <div data-card aria-busy="true" data-spinner="overlay">
+      <div data-card aria-busy="true" data-variant="overlay">
         <h3>Loading Dashboard</h3>
 
         <p>Please wait while your data is being loaded.</p>
@@ -129,33 +127,40 @@ import Example from '../../../components/example.astro';
 
   <section id="accessibility">
     <h2>Accessibility</h2>
-
     <p>
-      MiniKit uses the standard
-      <code>aria-busy</code>
-      attribute, allowing assistive technologies to announce that a region is currently updating.
+      Spinners communicate that an operation is currently in progress. They are
+      commonly used while loading content, submitting forms, fetching data, or
+      processing background tasks. MiniKit builds on the native
+      <code>aria-busy</code> attribute, automatically displaying a loading spinner
+      while preserving accessibility and browser semantics.
     </p>
 
     <ul>
       <li>
         Apply
         <code>aria-busy="true"</code>
-        only while content is actively loading.
+        only while content is loading.
       </li>
 
-      <li>Remove the attribute immediately after loading completes.</li>
+      <li>
+        Remove it immediately after loading completes.
+      </li>
 
       <li>
-        Pair loading indicators with descriptive text whenever users may wait more than a few
+        Provide descriptive text for loading operations that take more than a few
         seconds.
       </li>
 
       <li>
-        Use progress indicators instead of spinners whenever completion progress can be measured.
+        Use a progress indicator instead of a spinner whenever completion can be
+        measured.
+      </li>
+
+      <li>
+        Avoid blocking the interface longer than necessary.
       </li>
     </ul>
   </section>
-
   <section id="api">
     <h2>API</h2>
 
@@ -163,41 +168,34 @@ import Example from '../../../components/example.astro';
       <thead>
         <tr>
           <th>Attribute</th>
+          <th>Applies To</th>
           <th>Description</th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
-          <td>
-            <code>aria-busy="true"</code>
-          </td>
-
-          <td>Displays the loading spinner and marks the element as busy.</td>
+          <td><code>aria-busy="true"</code></td>
+          <td>Any element</td>
+          <td>Displays the loading spinner.</td>
         </tr>
 
         <tr>
-          <td>
-            <code>data-spinner="small"</code>
-          </td>
-
+          <td><code>data-size="sm"</code></td>
+          <td>Any element</td>
           <td>Displays a compact spinner.</td>
         </tr>
 
         <tr>
-          <td>
-            <code>data-spinner="large"</code>
-          </td>
-
-          <td>Displays a larger spinner.</td>
+          <td><code>data-size="lg"</code></td>
+          <td>Any element</td>
+          <td>Displays a large spinner.</td>
         </tr>
 
         <tr>
-          <td>
-            <code>data-spinner="overlay"</code>
-          </td>
-
-          <td>Centers the spinner over the element while dimming its contents.</td>
+          <td><code>data-variant="overlay"</code></td>
+          <td>Container element</td>
+          <td>Displays a centered overlay spinner.</td>
         </tr>
       </tbody>
     </table>

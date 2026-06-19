@@ -3,12 +3,12 @@ import ComponentLayout from '../../../layouts/component-layout.astro';
 
 import Example from '../../../components/example.astro';
 
-const basicAccordion = `<details>
+const basicAccordion = `<details data-ui="accordion">
   <summary>What is MiniKit?</summary>
   <p>MiniKit is a lightweight HTML-first CSS and JavaScript library.</p>
 </details>`;
 
-const multipleAccordion = `<details>
+const multipleAccordion = `<details data-ui="accordion">
   <summary>Installation</summary>
   <p>Install MiniKit using npm or a CDN.</p>
 </details>
@@ -21,7 +21,7 @@ const multipleAccordion = `<details>
   <p>MiniKit includes a growing collection of UI components.</p>
 </details>`;
 
-const openAccordion = `<details open>
+const openAccordion = `<details data-ui="accordion" open>
   <summary>Expanded by Default</summary>
   <p>This accordion item starts opened.</p>
 </details>`;
@@ -77,7 +77,7 @@ const openAccordion = `<details open>
     <p>Create an accordion using the native disclosure elements.</p>
 
     <Example code={basicAccordion}>
-      <details>
+      <details data-ui="accordion">
         <summary>What is MiniKit?</summary>
 
         <p>MiniKit is a lightweight HTML-first CSS and JavaScript library.</p>
@@ -93,19 +93,19 @@ const openAccordion = `<details open>
     </p>
 
     <Example code={multipleAccordion}>
-      <details>
+      <details data-ui="accordion">
         <summary>Installation</summary>
 
         <p>Install MiniKit using npm or a CDN.</p>
       </details>
 
-      <details>
+      <details data-ui="accordion">
         <summary>Customization</summary>
 
         <p>Customize MiniKit using CSS variables.</p>
       </details>
 
-      <details>
+      <details data-ui="accordion">
         <summary>Components</summary>
 
         <p>MiniKit includes a growing collection of UI components.</p>
@@ -121,7 +121,7 @@ const openAccordion = `<details open>
     </p>
 
     <Example code={openAccordion}>
-      <details open>
+      <details data-ui="accordion" open>
         <summary>Expanded by Default</summary>
 
         <p>This accordion item starts opened.</p>
@@ -133,10 +133,22 @@ const openAccordion = `<details open>
     <h2>Accessibility</h2>
 
     <p>
-      MiniKit relies on the native
-      <code>&lt;details&gt;</code> element, which provides built-in keyboard navigation and screen reader
-      support in modern browsers. Summary text should clearly communicate the content that will be revealed
-      when the accordion is expanded.
+      MiniKit uses the native <code>&lt;details&gt;</code> and
+      <code>&lt;summary&gt;</code> elements, providing built-in keyboard
+      interaction and screen reader support without any JavaScript.
+    </p>
+
+    <ul>
+      <li>Native keyboard support (<kbd>Tab</kbd>, <kbd>Enter</kbd>, and <kbd>Space</kbd>).</li>
+      <li>Automatic announcement of expanded and collapsed states by assistive technologies.</li>
+      <li>Visible focus indicators using MiniKit's global focus styles.</li>
+      <li>Supports multiple expanded items or single-item accordions using standard HTML.</li>
+      <li>No custom ARIA attributes are required.</li>
+    </ul>
+
+    <p>
+      Use concise, descriptive <code>&lt;summary&gt;</code> text so users can
+      easily understand what content each accordion contains.
     </p>
   </section>
 
@@ -147,14 +159,22 @@ const openAccordion = `<details open>
       <thead>
         <tr>
           <th>Attribute</th>
+          <th>Applies To</th>
           <th>Description</th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
+          <td><code>data-ui="accordion"</code></td>
+          <td><code>&lt;details&gt;</code></td>
+          <td>Applies MiniKit accordion styling.</td>
+        </tr>
+
+        <tr>
           <td><code>open</code></td>
-          <td>Expands the accordion item by default.</td>
+          <td><code>&lt;details&gt;</code></td>
+          <td>Expands the accordion when the page loads.</td>
         </tr>
       </tbody>
     </table>

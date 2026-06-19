@@ -26,8 +26,8 @@ const cardWithFooter = `<article data-card>
 
 const variantsCard = `<div class="vstack">
   <article data-card>Default Card</article>
-  <article data-card class="flat">Flat Card</article>
-  <article data-card class="outline">Outline Card</article>
+  <article data-card data-style="flat">Flat Card</article>
+  <article data-card data-style="outline">Outline Card</article>
 </div>`;
 ---
 
@@ -136,15 +136,13 @@ const variantsCard = `<div class="vstack">
   <section id="variants">
     <h2>Variants</h2>
 
-    <p>Cards support flat and outline variants for different visual emphasis levels.</p>
+    <p>Choose between the default, flat, and outline styles to match the desired level of visual emphasis.</p>
 
     <Example code={variantsCard}>
       <div class="vstack">
         <article data-card>Default Card</article>
-
-        <article data-card class="flat">Flat Card</article>
-
-        <article data-card class="outline">Outline Card</article>
+        <article data-card data-style="flat">Flat Card</article>
+        <article data-card data-style="outline">Outline Card</article>
       </div>
     </Example>
   </section>
@@ -153,21 +151,25 @@ const variantsCard = `<div class="vstack">
     <h2>Accessibility</h2>
 
     <p>
-      Cards are presentation containers and do not provide semantic meaning by themselves. Use
-      appropriate HTML elements such as
-      <code>article</code>, <code>section</code>, and headings to communicate structure. Interactive
-      cards should contain properly labeled links and buttons rather than relying on click handlers
-      attached to the entire card.
+      Cards are layout containers and do not introduce additional accessibility
+      behavior. Use semantic HTML elements to provide meaning and structure.
     </p>
+
+    <ul>
+      <li>Use <code>&lt;article&gt;</code> for self-contained content.</li>
+      <li>Use headings to establish a clear content hierarchy.</li>
+      <li>Place actions inside buttons or links instead of making the entire card clickable.</li>
+      <li>Provide descriptive text for interactive controls contained within the card.</li>
+    </ul>
   </section>
 
   <section id="api">
     <h2>API</h2>
-
     <table>
       <thead>
         <tr>
           <th>Attribute</th>
+          <th>Applies To</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -175,27 +177,32 @@ const variantsCard = `<div class="vstack">
       <tbody>
         <tr>
           <td><code>data-card</code></td>
-          <td>Creates a card component.</td>
+          <td><code>&lt;article&gt;</code></td>
+          <td>Creates a MiniKit card.</td>
         </tr>
 
         <tr>
-          <td><code>flat</code></td>
-          <td>Removes the card shadow.</td>
+          <td><code>data-style="flat"</code></td>
+          <td><code>&lt;article&gt;</code></td>
+          <td>Removes the default card shadow.</td>
         </tr>
 
         <tr>
-          <td><code>outline</code></td>
-          <td>Uses a transparent background.</td>
+          <td><code>data-style="outline"</code></td>
+          <td><code>&lt;article&gt;</code></td>
+          <td>Displays a transparent card with a border.</td>
         </tr>
 
         <tr>
-          <td><code>header</code></td>
-          <td>Adds structured card header content.</td>
+          <td><code>&lt;header&gt;</code></td>
+          <td><code>&lt;article&gt;</code></td>
+          <td>Provides an optional card header.</td>
         </tr>
 
         <tr>
-          <td><code>footer</code></td>
-          <td>Adds structured card footer content.</td>
+          <td><code>&lt;footer&gt;</code></td>
+          <td><code>&lt;article&gt;</code></td>
+          <td>Provides an optional card footer for actions.</td>
         </tr>
       </tbody>
     </table>

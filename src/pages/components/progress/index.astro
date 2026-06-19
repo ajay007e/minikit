@@ -21,7 +21,6 @@ import Example from '../../../components/example.astro';
       href: '#value',
       label: 'Progress Values',
     },
-
     {
       href: '#accessibility',
       label: 'Accessibility',
@@ -84,46 +83,57 @@ import Example from '../../../components/example.astro';
       Update the <code>value</code> attribute dynamically to reflect progress as an operation completes.
     </p>
   </section>
-
   <section id="accessibility">
     <h2>Accessibility</h2>
 
     <p>
-      The native <code>&lt;progress&gt;</code> element provides built-in accessibility support for assistive
-      technologies.
+      MiniKit styles the native <code>&lt;progress&gt;</code> element,
+      preserving browser accessibility and assistive technology support.
     </p>
 
     <ul>
-      <li>Always specify a meaningful maximum value.</li>
-
-      <li>Associate the progress indicator with nearby descriptive text.</li>
+      <li>Provide descriptive text explaining the current operation.</li>
 
       <li>
-        For long-running operations, communicate completion using both visual progress and textual
-        updates.
+        Specify both <code>value</code> and <code>max</code> for determinate
+        progress.
+      </li>
+
+      <li>
+        Omit <code>value</code> when progress cannot be determined.
+      </li>
+
+      <li>
+        Announce completion using nearby text rather than relying only on the
+        progress bar.
       </li>
     </ul>
   </section>
-
   <section id="api">
     <h2>API</h2>
+
     <table>
       <thead>
         <tr>
-          <th>Attribute</th>
+          <th>Element / Attribute</th>
           <th>Description</th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
+          <td><code>&lt;progress&gt;</code></td>
+          <td>Creates a native progress indicator.</td>
+        </tr>
+
+        <tr>
           <td><code>value</code></td>
-          <td>The current progress value.</td>
+          <td>Specifies the current progress value.</td>
         </tr>
 
         <tr>
           <td><code>max</code></td>
-          <td>The maximum progress value.</td>
+          <td>Specifies the maximum progress value.</td>
         </tr>
       </tbody>
     </table>

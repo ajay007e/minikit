@@ -2,7 +2,6 @@
 import ComponentLayout from '../../../layouts/component-layout.astro';
 
 import Example from '../../../components/example.astro';
-import CodeBlock from '../../../components/code-block.astro';
 ---
 
 <ComponentLayout
@@ -17,6 +16,10 @@ import CodeBlock from '../../../components/code-block.astro';
     {
       href: '#basic',
       label: 'Basic Usage',
+    },
+    {
+      href: '#caption',
+      label: 'Caption',
     },
     {
       href: '#alignment',
@@ -111,7 +114,53 @@ import CodeBlock from '../../../components/code-block.astro';
       the table body.
     </p>
   </section>
+  <section id="caption">
+    <h2>Caption</h2>
 
+    <p>
+      Use a caption to describe the purpose of the table.
+    </p>
+
+    <Example
+      code={`<table>
+    <caption>Employee Directory</caption>
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>Developer</td>
+      </tr>
+    </tbody>
+  </table>`}
+    >
+      <table>
+        <caption>
+          Employee Directory
+        </caption>
+
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>John Doe</td>
+            <td>Developer</td>
+          </tr>
+        </tbody>
+      </table>
+    </Example>
+  </section>
   <section id="alignment">
     <h2>Content Alignment</h2>
 
@@ -193,7 +242,10 @@ import CodeBlock from '../../../components/code-block.astro';
       <li>
         Add a <code>caption</code> for complex tables that require additional context.
       </li>
-
+      <li>
+        Use <code>scope="col"</code> and
+        <code>scope="row"</code> for header cells when appropriate.
+      </li>
       <li>Avoid using tables for layout purposes.</li>
     </ul>
   </section>

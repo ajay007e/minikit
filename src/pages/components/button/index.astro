@@ -4,48 +4,51 @@ import Example from '../../../components/example.astro';
 
 const basicButton = `<button>Click me</button>`;
 
-const variants = `
-<button>Primary</button>
+const variants = `<button>Primary</button>
 <button data-variant="secondary">Secondary</button>
 <button data-variant="success">Success</button>
 <button data-variant="danger">Danger</button>
 `;
 
-const outlines = `
-<button class="outline">Outline</button>
-<button data-variant="secondary" class="outline">Outline Secondary</button>
+const outlines = `<button data-style="outline">Outline</button>
+<button data-variant="danger" data-style="outline">Outline Danger</button>
 `;
 
-const sizes = `
-<button class="small">Small</button>
+const sizes = `<button data-size="sm">Small</button>
 <button>Default</button>
-<button class="large">Large</button>
+<button data-size="lg">Large</button>
 `;
 
-const disabled = `
-<button disabled>Disabled</button>
+const disabled = `<button disabled>Disabled</button>
 <button data-variant="secondary" disabled>
   Disabled Secondary
 </button>
 `;
 
-const iconButtons = `
-<button class="icon" aria-label="Settings">
-  ⚙️
+const iconButtons = `<button data-icon aria-label="Settings">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.4a1.7 1.7 0 0 0-.34-1.87L4.2 6.47a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 8.96 4.04 1.7 1.7 0 0 0 10 2.48V2a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 8.4c.66.27 1.1.91 1.1 1.63V10a2 2 0 1 1 0 4h-.09c-.72 0-1.36.44-1.63 1z"/>
+  </svg>
 </button>
+<button data-icon data-style="outline" aria-label="Search">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="11" cy="11" r="7"/>
+    <path d="m21 21-4.3-4.3"/>
+  </svg>
+</button>`;
 
-<button class="icon outline" aria-label="Search">
-  🔍
-</button>
-`;
 
-const buttonGroup = `
-<div class="hstack">
-  <button>Left</button>
-  <button data-variant="secondary">Middle</button>
-  <button class="outline">Right</button>
-</div>
-`;
+const linkButtons = `<a href="#" class="button">Primary Link</a>
+<a href="#" class="button" data-variant="secondary">Secondary Link</a>
+<a href="#" class="button" data-style="outline">Outline Link</a>`;
+
+const ghostButtons = `<button data-style="ghost">Ghost</button>
+<button data-style="ghost" data-variant="secondary">Secondary</button>
+<button data-style="ghost" data-variant="danger">Danger</button>`;
+
+const loadingButtons = `<button data-loading>Saving</button>
+<button data-loading data-variant="secondary">Loading</button>`;
 ---
 
 <ComponentLayout
@@ -57,9 +60,11 @@ const buttonGroup = `
     { href: '#variants', label: 'Variants' },
     { href: '#outline', label: 'Outline' },
     { href: '#sizes', label: 'Sizes' },
+    { href: '#links', label: 'Link Buttons' },
+    { href: '#ghost', label: 'Ghost' },
+    { href: '#loading', label: 'Loading' },
     { href: '#disabled', label: 'Disabled' },
     { href: '#icon', label: 'Icon Buttons' },
-    { href: '#groups', label: 'Button Groups' },
   ]}
 >
   <section id="basic">
@@ -67,7 +72,7 @@ const buttonGroup = `
 
     <p>Use a button element to trigger actions.</p>
 
-    <Example id="basic-button" code={basicButton}>
+    <Example code={basicButton}>
       <button>Click me</button>
     </Example>
   </section>
@@ -77,14 +82,11 @@ const buttonGroup = `
 
     <p>Buttons support multiple visual variants.</p>
 
-    <Example id="button-variants" code={variants}>
+    <Example code={variants}>
       <div class="hstack">
         <button>Primary</button>
-
         <button data-variant="secondary">Secondary</button>
-
         <button data-variant="success">Success</button>
-
         <button data-variant="danger">Danger</button>
       </div>
     </Example>
@@ -93,11 +95,10 @@ const buttonGroup = `
   <section id="outline">
     <h2>Outline Buttons</h2>
 
-    <Example id="outline-buttons" code={outlines}>
+    <Example code={outlines}>
       <div class="hstack">
-        <button class="outline">Outline</button>
-
-        <button data-variant="secondary" class="outline">Outline Secondary</button>
+        <button data-style="outline">Outline</button>
+        <button data-variant="danger" data-style="outline">Outline Danger</button>
       </div>
     </Example>
   </section>
@@ -105,21 +106,81 @@ const buttonGroup = `
   <section id="sizes">
     <h2>Sizes</h2>
 
-    <Example id="button-sizes" code={sizes}>
+    <Example code={sizes}>
       <div class="hstack" style="align-items:center">
-        <button class="small">Small</button>
-
+        <button data-size="sm">Small</button>
         <button>Default</button>
+        <button data-size="lg">Large</button>
+      </div>
+    </Example>
+  </section>
+  <section id="links">
+    <h2>Link Buttons</h2>
 
-        <button class="large">Large</button>
+    <p>
+      Apply the <code>button</code> class to an anchor when navigation should
+      look like a button.
+    </p>
+
+    <Example code={linkButtons}>
+      <div class="hstack">
+        <a href="#" class="button">Primary Link</a>
+        <a href="#" class="button" data-variant="secondary">Secondary Link</a>
+        <a href="#" class="button" data-style="outline">Outline Link</a>
       </div>
     </Example>
   </section>
 
+  <section id="ghost">
+    <h2>Ghost Buttons</h2>
+
+    <p>
+      Ghost buttons remove the background while retaining interactive states.
+    </p>
+
+    <Example code={ghostButtons}>
+      <div class="hstack">
+        <button data-style="ghost">Ghost</button>
+        <button
+          data-style="ghost"
+          data-variant="secondary">
+          Secondary
+        </button>
+
+        <button
+          data-style="ghost"
+          data-variant="danger">
+          Danger
+        </button>
+      </div>
+    </Example>
+  </section>
+
+<section id="loading">
+  <h2>Loading State</h2>
+
+  <p>
+    Use <code>data-loading</code> to display a built-in loading spinner.
+  </p>
+
+  <Example code={loadingButtons}>
+    <div class="hstack">
+      <button data-loading>
+        Saving
+      </button>
+
+      <button
+        data-loading
+        data-variant="secondary">
+        Loading
+      </button>
+    </div>
+  </Example>
+</section>
   <section id="disabled">
     <h2>Disabled State</h2>
 
-    <Example id="button-disabled" code={disabled}>
+    <Example code={disabled}>
       <div class="hstack">
         <button disabled>Disabled</button>
 
@@ -131,26 +192,118 @@ const buttonGroup = `
   <section id="icon">
     <h2>Icon Buttons</h2>
 
-    <Example id="icon-buttons" code={iconButtons}>
+    <Example code={iconButtons}>
       <div class="hstack">
-        <button class="icon" aria-label="Settings">⚙️</button>
+        <button data-icon aria-label="Settings">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.4a1.7 1.7 0 0 0-.34-1.87L4.2 6.47a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 8.96 4.04 1.7 1.7 0 0 0 10 2.48V2a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 8.4c.66.27 1.1.91 1.1 1.63V10a2 2 0 1 1 0 4h-.09c-.72 0-1.36.44-1.63 1z"/>
+          </svg>
+        </button>
 
-        <button class="icon outline" aria-label="Search">🔍</button>
+        <button
+          data-icon
+          data-style="outline"
+          aria-label="Search">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="m21 21-4.3-4.3"/>
+          </svg>
+        </button>
+
       </div>
     </Example>
   </section>
+  <section id="accessibility">
+    <h2>Accessibility</h2>
 
-  <section id="groups">
-    <h2>Button Groups</h2>
+    <p>
+      MiniKit buttons use native HTML elements and preserve built-in keyboard and
+      assistive technology support.
+    </p>
 
-    <Example id="button-groups" code={buttonGroup}>
-      <div class="hstack">
-        <button>Left</button>
+    <ul>
+      <li>Use <code>&lt;button&gt;</code> for actions and <code>&lt;a&gt;</code> for navigation.</li>
+      <li>Icon-only buttons must include an <code>aria-label</code>.</li>
+      <li>Do not use color alone to communicate meaning.</li>
+      <li>Disabled buttons cannot receive keyboard focus or pointer interaction.</li>
+      <li>Loading buttons remain accessible while indicating background activity.</li>
+    </ul>
+  </section>
 
-        <button data-variant="secondary">Middle</button>
+  <section id="api">
+    <h2>API</h2>
 
-        <button class="outline">Right</button>
-      </div>
-    </Example>
+    <table>
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Applies To</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>data-variant="secondary"</code></td>
+          <td><code>&lt;button&gt;</code>, <code>&lt;a&gt;</code></td>
+          <td>Displays the secondary button variant.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-variant="danger"</code></td>
+          <td><code>&lt;button&gt;</code>, <code>&lt;a&gt;</code></td>
+          <td>Displays the danger button variant.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-style="outline"</code></td>
+          <td><code>&lt;button&gt;</code>, <code>&lt;a&gt;</code></td>
+          <td>Displays the outline style.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-style="ghost"</code></td>
+          <td><code>&lt;button&gt;</code>, <code>&lt;a&gt;</code></td>
+          <td>Displays the ghost style.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="sm"</code></td>
+          <td><code>&lt;button&gt;</code>, <code>&lt;a&gt;</code></td>
+          <td>Displays a small button.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="lg"</code></td>
+          <td><code>&lt;button&gt;</code>, <code>&lt;a&gt;</code></td>
+          <td>Displays a large button.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-icon</code></td>
+          <td><code>&lt;button&gt;</code>, <code>&lt;a&gt;</code></td>
+          <td>Creates a square icon button.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-loading</code></td>
+          <td><code>&lt;button&gt;</code>, <code>&lt;a&gt;</code></td>
+          <td>Displays the built-in loading spinner and disables interaction.</td>
+        </tr>
+
+        <tr>
+          <td><code>disabled</code></td>
+          <td><code>&lt;button&gt;</code></td>
+          <td>Disables the button.</td>
+        </tr>
+
+        <tr>
+          <td><code>class="button"</code></td>
+          <td><code>&lt;a&gt;</code></td>
+          <td>Styles a link as a button.</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 </ComponentLayout>

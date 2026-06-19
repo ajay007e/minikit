@@ -49,6 +49,13 @@ export const components = [
   },
 
   {
+    title: 'Dropdown',
+    slug: 'dropdown',
+    href: 'components/dropdown/',
+    description: 'Contextual menus and action lists.',
+  },
+
+  {
     title: 'Forms',
     slug: 'forms',
     href: 'components/forms/',

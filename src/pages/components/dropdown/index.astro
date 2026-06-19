@@ -1,0 +1,370 @@
+---
+import ComponentLayout from '../../../layouts/component-layout.astro';
+
+import Example from '../../../components/example.astro';
+import CodeBlock from '../../../components/code-block.astro';
+---
+
+<ComponentLayout
+  slug="dropdown"
+  title="Dropdown"
+  description="Display contextual actions and navigation menus using the Popover API."
+  nav={[
+    {
+      href: '#overview',
+      label: 'Overview',
+    },
+    {
+      href: '#basic',
+      label: 'Basic Usage',
+    },
+    {
+      href: '#items',
+      label: 'Menu Items',
+    },
+    {
+      href: '#disabled',
+      label: 'Disabled Items',
+    },
+    {
+      href: '#events',
+      label: 'Events',
+    },
+    {
+      href: '#accessibility',
+      label: 'Accessibility',
+    },
+    {
+      href: '#api',
+      label: 'API',
+    },
+  ]}
+>
+  <section id="overview">
+    <h2>Overview</h2>
+
+    <p>
+      Dropdowns display contextual actions, commands, or navigation options in
+      an overlay menu. MiniKit provides an accessible custom element powered by
+      the Popover API with automatic positioning, keyboard navigation, and
+      focus management.
+    </p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic Usage</h2>
+
+    <p>
+      Wrap a trigger button and popover menu inside an
+      <code>mk-dropdown</code>
+      element. The trigger uses
+      <code>popovertarget</code>
+      to associate itself with the menu.
+    </p>
+
+    <Example
+      code={`<mk-dropdown>
+  <button popovertarget="actions-menu" aria-haspopup="menu" aria-expanded="false">Actions</button>
+  <div id="actions-menu" popover role="menu">
+    <button role="menuitem">Edit</button>
+    <button role="menuitem">Duplicate</button>
+    <button role="menuitem">Delete</button>
+  </div>
+</mk-dropdown>`}
+    >
+      <mk-dropdown>
+        <button
+          popovertarget="actions-menu"
+          aria-haspopup="menu"
+          aria-expanded="false"
+        >
+          Actions
+        </button>
+
+        <div
+          id="actions-menu"
+          popover
+          role="menu"
+        >
+          <button role="menuitem">
+            Edit
+          </button>
+
+          <button role="menuitem">
+            Duplicate
+          </button>
+
+          <button role="menuitem">
+            Delete
+          </button>
+        </div>
+      </mk-dropdown>
+    </Example>
+
+    <p>
+      The dropdown automatically positions itself relative to the trigger and
+      remains visible within the viewport.
+    </p>
+  </section>
+
+  <section id="items">
+    <h2>Menu Items</h2>
+
+    <p>
+      Menu items can be buttons, links, or any focusable element using
+      <code>role="menuitem"</code>.
+    </p>
+
+    <Example
+      code={`<mk-dropdown>
+  <button popovertarget="account-menu" aria-haspopup="menu">Account</button>
+  <div id="account-menu" popover role="menu">
+    <a href="#profile" role="menuitem">Profile</a>
+    <a href="#settings" role="menuitem">Settings</a>
+    <hr />
+    <button role="menuitem">Sign Out</button>
+  </div>
+</mk-dropdown>`}
+    >
+      <mk-dropdown>
+        <button
+          popovertarget="account-menu"
+          aria-haspopup="menu"
+        >
+          Account
+        </button>
+
+        <div
+          id="account-menu"
+          popover
+          role="menu"
+        >
+          <a
+            href="#profile"
+            role="menuitem"
+          >
+            Profile
+          </a>
+
+          <a
+            href="#settings"
+            role="menuitem"
+          >
+            Settings
+          </a>
+
+          <hr />
+
+          <button role="menuitem">
+            Sign Out
+          </button>
+        </div>
+      </mk-dropdown>
+    </Example>
+  </section>
+
+  <section id="disabled">
+    <h2>Disabled Items</h2>
+
+    <p>
+      Disable menu items using either the native
+      <code>disabled</code>
+      attribute or
+      <code>aria-disabled="true"</code>.
+    </p>
+
+    <Example
+      code={`<mk-dropdown>
+  <button popovertarget="file-menu" aria-haspopup="menu">File</button>
+  <div id="file-menu" popover role="menu">
+    <button role="menuitem">New File</button>
+    <button role="menuitem"disabled>Rename</button>
+    <button role="menuitem" aria-disabled="true">Delete</button>
+  </div>
+</mk-dropdown>`}
+    >
+      <mk-dropdown>
+        <button
+          popovertarget="file-menu"
+          aria-haspopup="menu"
+        >
+          File
+        </button>
+
+        <div
+          id="file-menu"
+          popover
+          role="menu"
+        >
+          <button role="menuitem">
+            New File
+          </button>
+
+          <button
+            role="menuitem"
+            disabled
+          >
+            Rename
+          </button>
+
+          <button
+            role="menuitem"
+            aria-disabled="true"
+          >
+            Delete
+          </button>
+        </div>
+      </mk-dropdown>
+    </Example>
+
+    <p>
+      Disabled items remain visible but are excluded from keyboard navigation.
+    </p>
+  </section>
+
+  <section id="events">
+    <h2>Events</h2>
+
+    <p>
+      MiniKit emits custom events when the dropdown opens and closes.
+    </p>
+
+    <CodeBlock
+      code={`const dropdown = document.querySelector('mk-dropdown');
+dropdown.addEventListener('open', () => {
+  console.log('opened');
+});
+dropdown.addEventListener('close', () => {
+  console.log('closed');
+});`}
+    />
+
+    <p>
+      These events can be used to synchronize UI state or perform additional
+      actions when the menu visibility changes.
+    </p>
+  </section>
+
+  <section id="accessibility">
+    <h2>Accessibility</h2>
+
+    <p>
+      MiniKit follows common ARIA menu patterns and automatically manages focus
+      when the menu opens and closes.
+    </p>
+
+    <ul>
+      <li>
+        Focus automatically moves to the first available menu item when the
+        menu opens.
+      </li>
+
+      <li>
+        Press
+        <kbd>ArrowDown</kbd>
+        to move to the next item.
+      </li>
+
+      <li>
+        Press
+        <kbd>ArrowUp</kbd>
+        to move to the previous item.
+      </li>
+
+      <li>
+        Press
+        <kbd>Escape</kbd>
+        to close the menu.
+      </li>
+
+      <li>
+        Focus returns to the trigger when the menu closes.
+      </li>
+
+      <li>
+        Disabled menu items are skipped during keyboard navigation.
+      </li>
+
+      <li>
+        The trigger's
+        <code>aria-expanded</code>
+        state is automatically synchronized.
+      </li>
+    </ul>
+  </section>
+
+  <section id="api">
+    <h2>API</h2>
+
+    <h3>Markup</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Element / Attribute</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>mk-dropdown</code></td>
+          <td>Creates a dropdown menu.</td>
+        </tr>
+
+        <tr>
+          <td><code>popover</code></td>
+          <td>Defines the dropdown menu container.</td>
+        </tr>
+
+        <tr>
+          <td><code>popovertarget</code></td>
+          <td>Associates the trigger with the menu.</td>
+        </tr>
+
+        <tr>
+          <td><code>role="menu"</code></td>
+          <td>Identifies the menu container.</td>
+        </tr>
+
+        <tr>
+          <td><code>role="menuitem"</code></td>
+          <td>Creates a keyboard-navigable menu item.</td>
+        </tr>
+
+        <tr>
+          <td><code>disabled</code></td>
+          <td>Disables a menu item.</td>
+        </tr>
+
+        <tr>
+          <td><code>aria-disabled="true"</code></td>
+          <td>Marks a menu item as unavailable.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Events</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><code>open</code></td>
+          <td>Fired when the dropdown menu opens.</td>
+        </tr>
+
+        <tr>
+          <td><code>close</code></td>
+          <td>Fired when the dropdown menu closes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ComponentLayout>

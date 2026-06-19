@@ -6,9 +6,9 @@ import Example from '../../../components/example.astro';
 const basicExample = `<button data-tooltip="Save changes">Save</button>`;
 
 const placementExample = `<button data-tooltip="Top tooltip">Top</button>
-<button data-tooltip="Bottom tooltip" data-tooltip-placement="bottom">Bottom</button>
-<button data-tooltip="Left tooltip" data-tooltip-placement="left">Left</button>
-<button data-tooltip="Right tooltip" data-tooltip-placement="right">Right</button>`;
+<button data-tooltip="Bottom tooltip" data-placement="bottom">Bottom</button>
+<button data-tooltip="Left tooltip" data-placement="left">Left</button>
+<button data-tooltip="Right tooltip" data-placement="right">Right</button>`;
 ---
 
 <ComponentLayout
@@ -70,7 +70,7 @@ const placementExample = `<button data-tooltip="Top tooltip">Top</button>
 
     <p>
       Tooltips are displayed above elements by default. Use
-      <code>data-tooltip-placement</code>
+      <code>data-placement</code>
       to change the position.
     </p>
 
@@ -78,11 +78,11 @@ const placementExample = `<button data-tooltip="Top tooltip">Top</button>
       <div class="hstack">
         <button data-tooltip="Top tooltip">Top</button>
 
-        <button data-tooltip="Bottom tooltip" data-tooltip-placement="bottom">Bottom</button>
+        <button data-tooltip="Bottom tooltip" data-placement="bottom">Bottom</button>
 
-        <button data-tooltip="Left tooltip" data-tooltip-placement="left">Left</button>
+        <button data-tooltip="Left tooltip" data-placement="left">Left</button>
 
-        <button data-tooltip="Right tooltip" data-tooltip-placement="right">Right</button>
+        <button data-tooltip="Right tooltip" data-placement="right">Right</button>
       </div>
     </Example>
   </section>
@@ -126,7 +126,7 @@ const placementExample = `<button data-tooltip="Top tooltip">Top</button>
         </tr>
 
         <tr>
-          <td><code>data-tooltip-placement</code></td>
+          <td><code>data-placement</code></td>
           <td>
             Optional placement:
             <code>top</code>,

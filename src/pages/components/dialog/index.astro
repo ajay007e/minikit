@@ -4,79 +4,38 @@ import ComponentLayout from '../../../layouts/component-layout.astro';
 import Example from '../../../components/example.astro';
 import CodeBlock from '../../../components/code-block.astro';
 
-const basicDialog = `<button onclick="basicDialog.showModal()">Open Dialog</button>
-
-<dialog id="basicDialog">
+const basicDialog = `<button data-dialog-open="basic-dialog">Open Dialog</button>
+<dialog id="basic-dialog">
   <header>
     <h3>Dialog Title</h3>
-
     <p>Optional dialog description.</p>
   </header>
-
-  <section>
-    <p>Dialog content goes here.</p>
-  </section>
-
-  <footer>
-    <form method="dialog">
-      <button>Close</button>
-    </form>
-  </footer>
+  <section><p>Dialog content goes here.</p></section>
+  <footer><button data-dialog-close>Close</button></footer>
 </dialog>`;
 
-const smallDialog = `<dialog data-size="small" open>
-  <header>
-    <h3>Small Dialog</h3>
-  </header>
-
-  <section>
-    <p>Compact dialog content.</p>
-  </section>
-
-  <footer>
-    <button>Close</button>
-  </footer>
-</dialog>`;
-
-const largeDialog = `<dialog data-size="large" open>
-  <header>
-    <h3>Large Dialog</h3>
-  </header>
-
-  <section>
-    <p>Large dialog content.</p>
-  </section>
-
-  <footer>
-    <button>Close</button>
-  </footer>
-</dialog>`;
-
-const fullDialog = `<dialog data-size="full" open>
-  <header>
-    <h3>Full Dialog</h3>
-  </header>
-
-  <section>
-    <p>Full-screen dialog content.</p>
-  </section>
-
-  <footer>
-    <button>Close</button>
-  </footer>
-</dialog>`;
-
-const dialogStructure = `<dialog>
+const dialogStructure = `<dialog id="settings">
   <header>
     <h3>Title</h3>
     <p>Description</p>
   </header>
+  <section><p>Content</p></section>
+  <footer>
+    <button data-dialog-close>Cancel</button>
+    <button>Confirm</button>
+  </footer>
+</dialog>`;
+
+const declarativeApi = `<button data-dialog-open="settings">Open Settings</button>
+<dialog id="settings">
+  <header>
+    <h3>Settings</h3>
+  </header>
   <section>
-    <p>Content</p>
+    <p>Dialog content...</p>
   </section>
   <footer>
-    <button>Cancel</button>
-    <button>Confirm</button>
+    <button data-dialog-close>Close</button>
   </footer>
 </dialog>`;
 ---
@@ -93,6 +52,10 @@ const dialogStructure = `<dialog>
     {
       href: '#basic',
       label: 'Basic Usage',
+    },
+    {
+      href: '#declarative',
+      label: 'Declarative API',
     },
     {
       href: '#sizes',
@@ -116,10 +79,15 @@ const dialogStructure = `<dialog>
     <h2>Overview</h2>
 
     <p>
-      Dialogs display content that requires user attention before returning to the main interface.
-      They are commonly used for confirmations, forms, settings, and other focused interactions.
-      MiniKit builds on the native <code>&lt;dialog&gt;</code> element, providing consistent styling while
-      preserving the browser's built-in accessibility and behavior.
+      Dialogs display content that requires user attention before returning to
+      the main interface. They are commonly used for confirmations, forms,
+      settings, and other focused interactions.
+    </p>
+
+    <p>
+      MiniKit builds on the native <code>&lt;dialog&gt;</code> element,
+      providing accessible styling while adding a declarative API for opening
+      and closing dialogs without writing JavaScript.
     </p>
   </section>
 
@@ -127,14 +95,17 @@ const dialogStructure = `<dialog>
     <h2>Basic Usage</h2>
 
     <p>
-      Open a dialog using the native <code>showModal()</code> method and close it with
-      <code>close()</code> or a form using <code>method="dialog"</code>.
+      Open dialogs using the
+      <code>data-dialog-open</code> attribute and close them with
+      <code>data-dialog-close</code>.
     </p>
 
     <Example title="Basic Dialog" code={basicDialog}>
-      <button onclick="document.getElementById('dialog-demo').showModal()">Open Dialog</button>
+      <button data-dialog-open="dialog-demo">
+        Open Dialog
+      </button>
 
-      <dialog id="dialog-demo" data-size="full">
+      <dialog id="dialog-demo">
         <header>
           <h3>Dialog Title</h3>
 
@@ -146,19 +117,32 @@ const dialogStructure = `<dialog>
         </section>
 
         <footer>
-          <form method="dialog">
-            <button>Close</button>
-          </form>
+          <button data-dialog-close>
+            Close
+          </button>
         </footer>
       </dialog>
     </Example>
   </section>
+
+  <section id="declarative">
+    <h2>Declarative API</h2>
+
+    <p>
+      MiniKit automatically handles opening and closing dialogs through data
+      attributes. No custom JavaScript is required for common dialog
+      interactions.
+    </p>
+
+    <CodeBlock code={declarativeApi} />
+  </section>
+
   <section id="sizes">
     <h2>Sizes</h2>
 
     <p>
-      MiniKit provides three optional size modifiers for adapting dialogs to different types of
-      content.
+      The default dialog provides a comfortable medium width. Use optional size
+      modifiers when additional control over the layout is needed.
     </p>
 
     <table>
@@ -172,17 +156,17 @@ const dialogStructure = `<dialog>
       <tbody>
         <tr>
           <td><code>data-size="small"</code></td>
-          <td>Compact width for simple confirmations and short forms.</td>
+          <td>Displays a compact dialog for confirmations and short forms.</td>
         </tr>
 
         <tr>
           <td><code>data-size="large"</code></td>
-          <td>Provides additional space for larger layouts and forms.</td>
+          <td>Displays a wider dialog for larger layouts and forms.</td>
         </tr>
 
         <tr>
           <td><code>data-size="full"</code></td>
-          <td>Expands the dialog to fill the viewport.</td>
+          <td>Expands the dialog to nearly fill the viewport.</td>
         </tr>
       </tbody>
     </table>
@@ -191,21 +175,50 @@ const dialogStructure = `<dialog>
     <h2>Structure</h2>
 
     <p>
-      A dialog typically consists of a header, content area, and footer. MiniKit automatically
-      styles these sections when they are direct children of the
-      <code>&lt;dialog&gt;</code> element.
+      A dialog typically consists of a header, content area, and footer.
+      MiniKit automatically styles these sections when they are direct children
+      of the <code>&lt;dialog&gt;</code> element.
     </p>
 
     <CodeBlock code={dialogStructure} />
   </section>
+
   <section id="accessibility">
     <h2>Accessibility</h2>
+
     <p>
-      MiniKit uses the native <code>&lt;dialog&gt;</code> element, which provides built-in focus management
-      and keyboard support in modern browsers. Always provide a descriptive title, clear actions, and
-      an obvious way for users to dismiss the dialog. Use <code>showModal()</code> for modal dialogs and
-      <code>show()</code> when a non-modal dialog is more appropriate.
+      MiniKit builds on the native <code>&lt;dialog&gt;</code> element,
+      preserving browser-provided accessibility features while adding
+      declarative controls.
     </p>
+
+    <ul>
+      <li>
+        Focus automatically moves into modal dialogs when they are opened.
+      </li>
+
+      <li>
+        Pressing <kbd>Esc</kbd> closes modal dialogs in supported browsers.
+      </li>
+
+      <li>
+        Clicking outside the dialog automatically closes it.
+      </li>
+
+      <li>
+        Always provide a descriptive heading and clear actions.
+      </li>
+
+      <li>
+        Icon-only controls should include an
+        <code>aria-label</code>.
+      </li>
+
+      <li>
+        Use <code>show()</code> or <code>showModal()</code> only when opening
+        dialogs programmatically.
+      </li>
+    </ul>
   </section>
 
   <section id="api">
@@ -215,39 +228,61 @@ const dialogStructure = `<dialog>
       <thead>
         <tr>
           <th>Attribute / Method</th>
+          <th>Applies To</th>
           <th>Description</th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
+          <td><code>data-dialog-open</code></td>
+          <td><code>&lt;button&gt;</code></td>
+          <td>
+            Opens the dialog whose
+            <code>id</code> matches the attribute value.
+          </td>
+        </tr>
+
+        <tr>
+          <td><code>data-dialog-close</code></td>
+          <td><code>&lt;button&gt;</code></td>
+          <td>Closes the nearest parent dialog.</td>
+        </tr>
+
+        <tr>
           <td><code>data-size="small"</code></td>
-          <td>Applies the compact dialog layout.</td>
+          <td><code>&lt;dialog&gt;</code></td>
+          <td>Displays a compact dialog.</td>
         </tr>
 
         <tr>
           <td><code>data-size="large"</code></td>
-          <td>Applies the large dialog layout.</td>
+          <td><code>&lt;dialog&gt;</code></td>
+          <td>Displays a wide dialog.</td>
         </tr>
 
         <tr>
           <td><code>data-size="full"</code></td>
-          <td>Expands the dialog to fill the viewport.</td>
+          <td><code>&lt;dialog&gt;</code></td>
+          <td>Displays a full-screen dialog.</td>
         </tr>
 
         <tr>
           <td><code>show()</code></td>
-          <td>Opens the dialog without blocking interaction.</td>
+          <td><code>&lt;dialog&gt;</code></td>
+          <td>Opens a non-modal dialog programmatically.</td>
         </tr>
 
         <tr>
           <td><code>showModal()</code></td>
-          <td>Opens the dialog as a modal.</td>
+          <td><code>&lt;dialog&gt;</code></td>
+          <td>Opens a modal dialog programmatically.</td>
         </tr>
 
         <tr>
           <td><code>close()</code></td>
-          <td>Closes the dialog.</td>
+          <td><code>&lt;dialog&gt;</code></td>
+          <td>Closes the dialog programmatically.</td>
         </tr>
       </tbody>
     </table>

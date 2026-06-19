@@ -5,27 +5,6 @@ import Example from '../../../components/example.astro';
 import CodeBlock from '../../../components/code-block.astro';
 
 const basicExample = `<button onclick="mk.toast('Your changes have been saved.')">Show Toast</button>`;
-
-const successExample = `<button onclick="mk.toast('Profile updated successfully.', 'Success', { variant: 'success' })">Show Success Toast</button>`;
-const warningExample = `<button onclick="mk.toast('Your session will expire soon.', 'Warning', { variant: 'warning' })">Show Warning Toast</button>`;
-const dangerExample = `<button onclick="mk.toast('Unalbe to save your changes.', 'Error', { variant: 'danger' })">Show Error Toast</button>`;
-
-const placementExample = `<button onclick="mk.toast('Profile updated.', 'Success', { placement: 'bottom-right' })">Show Bottom Right Toast</button>`;
-
-const customExample = `<button onclick="mk.toastEl(document.getElementById('custom-toast'))">Show Custom Toast</button>
-<template id="custom-toast">
-    <output data-variant="success">
-      <div class="toast-title">Deployment Complete</div>
-      <div class="toast-message">Your application has been deployed.</div>
-    </output>
-  </template>
-`;
-
-const durationExample = `<button onclick="mk.toast('Saved successfully.', '', { duration: 8000 })">Show 8s Toast</button>
-<button onclick="mk.toast('Uploading...', '', { duration: 0 })">Show Persistent Toast</button>`;
-
-const clearExample = `mk.toastClear();
-mk.toastClear("top-right",)`;
 ---
 
 <ComponentLayout
@@ -111,64 +90,85 @@ mk.toastClear("top-right",)`;
     </p>
   </section>
 
-  <section id="variants">
-    <h2>Variants</h2>
+<section id="variants">
+  <h2>Variants</h2>
 
-    <p>Toasts support four built-in variants to communicate different message types.</p>
+  <p>
+    Toasts support four built-in variants for communicating different message
+    types.
+  </p>
 
-    <h3>Success</h3>
+  <Example
+    code={`<div class="hstack">
+  <button onclick="mk.toast('Your changes have been saved.', 'Info')">
+    Info
+  </button>
 
-    <Example code={successExample}>
+  <button onclick="mk.toast('Profile updated successfully.', 'Success', { variant: 'success' })">
+    Success
+  </button>
+
+  <button onclick="mk.toast('Your session will expire soon.', 'Warning', { variant: 'warning' })">
+    Warning
+  </button>
+
+  <button onclick="mk.toast('Unable to save your changes.', 'Error', { variant: 'danger' })">
+    Error
+  </button>
+</div>`}
+  >
+    <div class="hstack">
       <button
         onclick={`mk.toast(
-      "Profile updated successfully.",
-      "Success",
-      {
-        variant: "success",
-      }
-    )`}
+  "Your changes have been saved.",
+  "Info"
+)`}
       >
-        Show Success Toast
+        Info
       </button>
-    </Example>
 
-    <h3>Warning</h3>
-
-    <Example code={warningExample}>
       <button
         onclick={`mk.toast(
-      "Your session will expire soon.",
-      "Warning",
-      {
-        variant: "warning",
-      }
-    )`}
+  "Profile updated successfully.",
+  "Success",
+  {
+    variant: "success",
+  }
+)`}
       >
-        Show Warning Toast
+        Success
       </button>
-    </Example>
 
-    <h3>Danger</h3>
-
-    <Example code={dangerExample}>
       <button
         onclick={`mk.toast(
-      "Unable to save your changes.",
-      "Error",
-      {
-        variant: "danger",
-      }
-    )`}
+  "Your session will expire soon.",
+  "Warning",
+  {
+    variant: "warning",
+  }
+)`}
       >
-        Show Error Toast
+        Warning
       </button>
-    </Example>
 
-    <p>
-      When no variant is specified, the default
-      <code>info</code>
-      style is used.
-    </p>
+      <button
+        onclick={`mk.toast(
+  "Unable to save your changes.",
+  "Error",
+  {
+    variant: "danger",
+  }
+)`}
+      >
+        Error
+      </button>
+    </div>
+  </Example>
+
+  <p>
+    Use variants consistently to communicate informational messages, successful
+    actions, warnings, and errors.
+  </p>
   </section>
   <section id="placement">
     <h2>Placement</h2>
@@ -179,113 +179,226 @@ mk.toastClear("top-right",)`;
       option.
     </p>
 
-    <CodeBlock code={placementExample} />
+    <Example
+      code={`<div class="hstack wrap">
+    <button onclick="mk.toast('Top Left', '', { placement: 'top-left' })">
+      Top Left
+    </button>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Placement</th>
-          <th>Description</th>
-        </tr>
-      </thead>
+    <button onclick="mk.toast('Top Center', '', { placement: 'top-center' })">
+      Top Center
+    </button>
 
-      <tbody>
-        <tr>
-          <td><code>top-left</code></td>
-          <td>Top-left corner.</td>
-        </tr>
+    <button onclick="mk.toast('Top Right', '', { placement: 'top-right' })">
+      Top Right
+    </button>
 
-        <tr>
-          <td><code>top-center</code></td>
-          <td>Centered at the top.</td>
-        </tr>
+    <button onclick="mk.toast('Bottom Left', '', { placement: 'bottom-left' })">
+      Bottom Left
+    </button>
 
-        <tr>
-          <td><code>top-right</code></td>
-          <td>Top-right corner (default).</td>
-        </tr>
+    <button onclick="mk.toast('Bottom Center', '', { placement: 'bottom-center' })">
+      Bottom Center
+    </button>
 
-        <tr>
-          <td><code>bottom-left</code></td>
-          <td>Bottom-left corner.</td>
-        </tr>
+    <button onclick="mk.toast('Bottom Right', '', { placement: 'bottom-right' })">
+      Bottom Right
+    </button>
+  </div>`}
+    >
+      <div class="hstack wrap">
+        <button
+          onclick={`mk.toast(
+    "Top Left",
+    "",
+    {
+      placement: "top-left",
+    }
+  )`}
+        >
+          Top Left
+        </button>
 
-        <tr>
-          <td><code>bottom-center</code></td>
-          <td>Centered at the bottom.</td>
-        </tr>
+        <button
+          onclick={`mk.toast(
+    "Top Center",
+    "",
+    {
+      placement: "top-center",
+    }
+  )`}
+        >
+          Top Center
+        </button>
 
-        <tr>
-          <td><code>bottom-right</code></td>
-          <td>Bottom-right corner.</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+        <button
+          onclick={`mk.toast(
+    "Top Right",
+    "",
+    {
+      placement: "top-right",
+    }
+  )`}
+        >
+          Top Right
+        </button>
 
-  <section id="custom">
-    <h2>Custom Toasts</h2>
+        <button
+          onclick={`mk.toast(
+    "Bottom Left",
+    "",
+    {
+      placement: "bottom-left",
+    }
+  )`}
+        >
+          Bottom Left
+        </button>
+
+        <button
+          onclick={`mk.toast(
+    "Bottom Center",
+    "",
+    {
+      placement: "bottom-center",
+    }
+  )`}
+        >
+          Bottom Center
+        </button>
+
+        <button
+          onclick={`mk.toast(
+    "Bottom Right",
+    "",
+    {
+      placement: "bottom-right",
+    }
+  )`}
+        >
+          Bottom Right
+        </button>
+      </div>
+    </Example>
 
     <p>
-      Display custom HTML by passing an element or template to
-      <code>showElement()</code>.
+      Toasts are displayed in the
+      <code>top-right</code>
+      corner by default.
+    </p>
+  </section>
+
+  <section id="close">
+    <h2>Close Button</h2>
+
+    <p>
+      Display a dismiss button by enabling the
+      <code>closeButton</code>
+      option.
     </p>
 
-    <Example code={customExample}>
-      <template id="custom-toast">
-        <output data-variant="success">
-          <div class="toast-title">Deployment Complete</div>
-
-          <div class="toast-message">Your application has been deployed.</div>
-        </output>
-      </template>
-
+    <Example
+      code={`<button onclick="mk.toast(
+    'Your changes have been saved.',
+    'Success',
+    {
+      variant: 'success',
+      closeButton: true
+    }
+  )">
+    Show Toast
+  </button>`}
+    >
       <button
-        onclick={`mk.toastEl(
-      document.getElementById("custom-toast")
-    )`}
+        onclick={`mk.toast(
+    "Your changes have been saved.",
+    "Success",
+    {
+      variant: "success",
+      closeButton: true,
+    }
+  )`}
       >
-        Show Custom Toast
+        Show Toast
       </button>
     </Example>
+
     <p>
-      Custom toasts allow complete control over the content while preserving MiniKit's animations
-      and positioning.
+      Clicking the close button immediately dismisses the notification without
+      waiting for the configured duration.
     </p>
   </section>
-
   <section id="duration">
     <h2>Duration</h2>
 
     <p>
-      Toasts automatically dismiss after four seconds by default. Override this using the
+      Toasts automatically dismiss after four seconds by default. Customize this
+      using the
       <code>duration</code>
-      option.
+      option, or set it to
+      <code>0</code>
+      to keep the notification visible until it is dismissed.
     </p>
 
-    <CodeBlock code={durationExample} />
+    <Example
+      code={`<div class="hstack">
+    <button onclick="mk.toast(
+      'Auto dismiss after 8 seconds.',
+      'Success',
+      {
+        variant: 'success',
+        duration: 8000
+      }
+    )">
+      8 Seconds
+    </button>
+
+    <button onclick="mk.toast(
+      'This notification will remain visible until dismissed.',
+      'Persistent',
+      {
+        variant: 'info',
+        duration: 0,
+        closeButton: true
+      }
+    )">
+      Persistent
+    </button>
+  </div>`}
+    >
+      <div class="hstack">
+        <button
+          onclick={`mk.toast(
+    "Auto dismiss after 8 seconds.",
+    "Success",
+    {
+      variant: "success",
+      duration: 8000,
+    }
+  )`}
+        >
+          8 Seconds
+        </button>
+
+        <button
+          onclick={`mk.toast(
+    "This notification will remain visible until dismissed.",
+    "Persistent",
+    {
+      variant: "info",
+      duration: 0,
+      closeButton: true,
+    }
+  )`}
+        >
+          Persistent
+        </button>
+      </div>
+    </Example>
 
     <p>
-      Set
-      <code>duration: 0</code>
-      to keep a toast visible until it is removed manually.
-    </p>
-  </section>
-
-  <section id="clear">
-    <h2>Clear Toasts</h2>
-
-    <p>
-      Remove active notifications using the
-      <code>clear()</code>
-      function.
-    </p>
-
-    <CodeBlock code={clearExample} />
-
-    <p>
-      When a placement is provided, only that container is cleared. Otherwise, every visible toast
-      is removed.
+      Persistent toasts should provide a close button so users can dismiss them
+      when they are no longer needed.
     </p>
   </section>
 
@@ -293,73 +406,90 @@ mk.toastClear("top-right",)`;
     <h2>Accessibility</h2>
 
     <p>
-      MiniKit automatically applies
-      <code>role="status"</code>
-      to generated toast notifications so assistive technologies can announce them appropriately.
+      MiniKit automatically applies appropriate ARIA roles to generated toast
+      notifications, allowing assistive technologies to announce them without
+      interrupting the user's workflow.
     </p>
 
     <ul>
-      <li>Use concise, meaningful notification messages.</li>
-
-      <li>Avoid displaying multiple high-priority notifications simultaneously.</li>
-
       <li>
-        Use success, warning, and danger variants consistently to help users understand the message.
+        Informational, success, and warning toasts use
+        <code>role="status"</code>.
       </li>
 
-      <li>Keep notifications visible long enough to be read comfortably.</li>
+      <li>
+        Error notifications use
+        <code>role="alert"</code>
+        so they are announced immediately.
+      </li>
+
+      <li>
+        Keep notification messages short and descriptive.
+      </li>
+
+      <li>
+        Use persistent notifications only when user action is required.
+      </li>
+
+      <li>
+        Provide a close button for persistent toasts so users can dismiss them.
+      </li>
     </ul>
   </section>
-
   <section id="api">
     <h2>API</h2>
 
     <table>
       <thead>
         <tr>
-          <th>Function</th>
+          <th>Function / Option</th>
           <th>Description</th>
         </tr>
       </thead>
 
       <tbody>
         <tr>
-          <td><code>show(message, title?, options?)</code></td>
+          <td><code>mk.toast(message, title?, options?)</code></td>
           <td>Displays a toast notification.</td>
         </tr>
 
         <tr>
-          <td><code>showElement(element, options?)</code></td>
-          <td>Displays a custom HTML toast.</td>
-        </tr>
-
-        <tr>
-          <td><code>clear()</code></td>
-          <td>Removes all visible toast notifications.</td>
-        </tr>
-
-        <tr>
-          <td><code>clear(placement)</code></td>
-          <td>Clears notifications from a specific placement.</td>
-        </tr>
-
-        <tr>
           <td><code>variant</code></td>
-          <td>info, success, warning, or danger.</td>
+          <td>
+            Specifies the toast style. Supports
+            <code>info</code>,
+            <code>success</code>,
+            <code>warning</code>,
+            and
+            <code>danger</code>.
+          </td>
         </tr>
 
         <tr>
           <td><code>placement</code></td>
-          <td>top-left, top-center, top-right, bottom-left, bottom-center, or bottom-right.</td>
+          <td>
+            Specifies where the toast appears on the screen.
+          </td>
         </tr>
 
         <tr>
           <td><code>duration</code></td>
           <td>
-            Time in milliseconds before automatically dismissing the toast. Set to <code>0</code> to disable
-            auto-dismiss.
+            Time in milliseconds before the toast is dismissed automatically.
+            Set to
+            <code>0</code>
+            to disable auto-dismiss.
           </td>
         </tr>
+
+        <tr>
+          <td><code>closeButton</code></td>
+          <td>
+            Displays a dismiss button inside the toast.
+          </td>
+        </tr>
+
+
       </tbody>
     </table>
   </section>

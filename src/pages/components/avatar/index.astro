@@ -10,15 +10,15 @@ const imageAvatar = `<figure data-variant="avatar">
 </figure>`;
 
 const avatarSizes = `<div class="hstack">
-  <figure data-variant="avatar" class="small">AJ</figure>
+  <figure data-variant="avatar" data-size="sm">AJ</figure>
   <figure data-variant="avatar">AJ</figure>
-  <figure data-variant="avatar" class="large">AJ</figure>
+  <figure data-variant="avatar" data-size="lg">AJ</figure>
 </div>`;
 
 const avatarGroup = `<figure data-variant="avatar" role="group">
   <figure data-variant="avatar">AJ</figure>
   <figure data-variant="avatar">MK</figure>
-  <figure data-variant="avatar">JN</figure>
+  <figure data-variant="avatar">JS</figure>
 </figure>`;
 ---
 
@@ -96,11 +96,9 @@ const avatarGroup = `<figure data-variant="avatar" role="group">
 
     <Example code={avatarSizes}>
       <div class="hstack">
-        <figure data-variant="avatar" class="small">AJ</figure>
-
+        <figure data-variant="avatar" data-size="sm">AJ</figure>
         <figure data-variant="avatar">AJ</figure>
-
-        <figure data-variant="avatar" class="large">AJ</figure>
+        <figure data-variant="avatar" data-size="lg">AJ</figure>
       </div>
     </Example>
   </section>
@@ -125,19 +123,27 @@ const avatarGroup = `<figure data-variant="avatar" role="group">
     <h2>Accessibility</h2>
 
     <p>
-      When displaying user images, provide meaningful alternative text using the <code>alt</code> attribute.
-      Initial-based avatars should be accompanied by nearby text when the identity of the user is important
-      to understanding the interface.
+      Avatar images should include meaningful alternative text whenever the
+      person's identity is important. Decorative avatars should use an empty
+      <code>alt=""</code> attribute so they are ignored by assistive
+      technologies.
     </p>
+
+    <ul>
+      <li>Always provide descriptive <code>alt</code> text for meaningful profile images.</li>
+      <li>Use <code>alt=""</code> for decorative images.</li>
+      <li>Initial-based avatars should be accompanied by visible text when identifying a person is important.</li>
+      <li>Avatar groups should include surrounding context that describes the represented users or team.</li>
+    </ul>
   </section>
 
   <section id="api">
     <h2>API</h2>
-
     <table>
       <thead>
         <tr>
           <th>Attribute</th>
+          <th>Applies To</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -145,22 +151,26 @@ const avatarGroup = `<figure data-variant="avatar" role="group">
       <tbody>
         <tr>
           <td><code>data-variant="avatar"</code></td>
-          <td>Creates an avatar component.</td>
+          <td><code>&lt;figure&gt;</code></td>
+          <td>Creates a MiniKit avatar.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="sm"</code></td>
+          <td><code>&lt;figure&gt;</code></td>
+          <td>Displays a small avatar.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="lg"</code></td>
+          <td><code>&lt;figure&gt;</code></td>
+          <td>Displays a large avatar.</td>
         </tr>
 
         <tr>
           <td><code>role="group"</code></td>
-          <td>Creates an avatar group.</td>
-        </tr>
-
-        <tr>
-          <td><code>small</code></td>
-          <td>Applies the small avatar size.</td>
-        </tr>
-
-        <tr>
-          <td><code>large</code></td>
-          <td>Applies the large avatar size.</td>
+          <td><code>&lt;figure&gt;</code></td>
+          <td>Creates an overlapping avatar group.</td>
         </tr>
       </tbody>
     </table>

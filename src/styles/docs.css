@@ -231,7 +231,7 @@ main {
   margin-top: 0;
 }
 
-.content section + section {
+.content > section + section {
   margin-top: var(--mk-space-8);
 }
 
@@ -639,22 +639,8 @@ input[id^='code-']:checked ~ .example-panels .example-code {
 
 /* Responsive */
 
-/* Tablet */
-
-@media (width <= 1200px) {
-  .docs-shell {
-    grid-template-columns:
-      240px
-      minmax(0, 1fr);
-  }
-  .sidebar,
-  .page-nav {
-    display: none;
-  }
-}
-
 /* Mobile */
-@media (width <= 768px) {
+@media (width <= 1200px) {
   .docs-shell {
     grid-template-columns: 1fr;
 
@@ -690,6 +676,11 @@ input[id^='code-']:checked ~ .example-panels .example-code {
 
   .features-list {
     grid-template-columns: 1fr;
+  }
+
+  .sidebar,
+  .page-nav {
+    display: none;
   }
 }
 

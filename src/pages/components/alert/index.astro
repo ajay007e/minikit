@@ -98,10 +98,18 @@ const dangerAlert = `<div role="alert" data-variant="danger">
     <h2>Accessibility</h2>
 
     <p>
-      The <code>alert</code> role communicates important information to assistive technologies and should
-      be used for messages that require immediate attention. Avoid relying solely on color to communicate
-      meaning. Alert content should clearly describe the status, outcome, or action required.
+      MiniKit styles the native <code>role="alert"</code> pattern without
+      modifying its behavior. Alerts are announced automatically by assistive
+      technologies when they are inserted into the page.
     </p>
+
+    <ul>
+      <li>Uses the standard <code>role="alert"</code> accessibility pattern.</li>
+      <li>Messages are announced automatically by screen readers.</li>
+      <li>Icons, if used, should be marked as decorative unless they convey additional meaning.</li>
+      <li>Do not rely on color alone—always provide clear descriptive text.</li>
+      <li>Use alerts for important, time-sensitive information. For non-urgent messages, consider a less intrusive pattern.</li>
+    </ul>
   </section>
 
   <section id="api">
@@ -111,6 +119,7 @@ const dangerAlert = `<div role="alert" data-variant="danger">
       <thead>
         <tr>
           <th>Attribute</th>
+          <th>Applies To</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -118,22 +127,26 @@ const dangerAlert = `<div role="alert" data-variant="danger">
       <tbody>
         <tr>
           <td><code>role="alert"</code></td>
-          <td>Creates an alert component.</td>
+          <td><code>&lt;div&gt;</code></td>
+          <td>Creates a MiniKit alert.</td>
         </tr>
 
         <tr>
           <td><code>data-variant="success"</code></td>
-          <td>Applies success styling.</td>
+          <td><code>&lt;div&gt;</code></td>
+          <td>Displays a success alert.</td>
         </tr>
 
         <tr>
           <td><code>data-variant="warning"</code></td>
-          <td>Applies warning styling.</td>
+          <td><code>&lt;div&gt;</code></td>
+          <td>Displays a warning alert.</td>
         </tr>
 
         <tr>
           <td><code>data-variant="danger"</code></td>
-          <td>Applies danger styling.</td>
+          <td><code>&lt;div&gt;</code></td>
+          <td>Displays an error or destructive alert.</td>
         </tr>
       </tbody>
     </table>

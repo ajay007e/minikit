@@ -13,12 +13,18 @@ const variantsBadge = `<div class="hstack">
   <span data-badge data-variant="danger">Danger</span>
 </div>`;
 
-const outlineBadge = `<span data-badge class="outline">Outline</span>`;
+const outlineBadge = `<div class="hstack">
+  <span data-badge data-style="outline">Default</span>
+  <span data-badge data-style="outline" data-variant="secondary">Secondary</span>
+  <span data-badge data-style="outline" data-variant="success">Success</span>
+  <span data-badge data-style="outline" data-variant="warning">Warning</span>
+  <span data-badge data-style="outline" data-variant="danger">Danger</span>
+</div>`;
 
 const sizesBadge = `<div class="hstack">
-  <span data-badge class="small">Small</span>
+  <span data-badge data-size="sm">Small</span>
   <span data-badge>Default</span>
-  <span data-badge class="large">Large</span>
+  <span data-badge data-size="lg">Large</span>
 </div>`;
 ---
 
@@ -102,7 +108,13 @@ const sizesBadge = `<div class="hstack">
     </p>
 
     <Example code={outlineBadge}>
-      <span data-badge class="outline">Outline</span>
+      <div class="hstack">
+        <span data-badge data-style="outline">Default</span>
+        <span data-badge data-style="outline" data-variant="secondary">Secondary</span>
+        <span data-badge data-style="outline" data-variant="success">Success</span>
+        <span data-badge data-style="outline" data-variant="warning">Warning</span>
+        <span data-badge data-style="outline" data-variant="danger">Danger</span>
+      </div>
     </Example>
   </section>
 
@@ -111,9 +123,9 @@ const sizesBadge = `<div class="hstack">
     <p>Badges support small and large size modifiers.</p>
     <Example code={sizesBadge}>
       <div class="hstack">
-        <span data-badge class="small">Small</span>
+        <span data-badge data-size="sm">Small</span>
         <span data-badge>Default</span>
-        <span data-badge class="large">Large</span>
+        <span data-badge data-size="lg">Large</span>
       </div>
     </Example>
   </section>
@@ -122,10 +134,16 @@ const sizesBadge = `<div class="hstack">
     <h2>Accessibility</h2>
 
     <p>
-      Badges should supplement content rather than be the sole method of communicating important
-      information. Avoid relying entirely on color to convey meaning. Pair badges with descriptive
-      text whenever possible.
+      Badges provide supplemental information and should not be the only method
+      of communicating important status or state changes.
     </p>
+
+    <ul>
+      <li>Do not rely on color alone to convey meaning.</li>
+      <li>Use descriptive badge text whenever possible.</li>
+      <li>Ensure badges have sufficient color contrast against their background.</li>
+      <li>When badges represent dynamic values or notifications, provide accessible context nearby.</li>
+    </ul>
   </section>
 
   <section id="api">
@@ -135,6 +153,7 @@ const sizesBadge = `<div class="hstack">
       <thead>
         <tr>
           <th>Attribute</th>
+          <th>Applies To</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -142,32 +161,50 @@ const sizesBadge = `<div class="hstack">
       <tbody>
         <tr>
           <td><code>data-badge</code></td>
-          <td>Creates a badge component.</td>
+          <td><code>&lt;span&gt;</code></td>
+          <td>Creates a MiniKit badge.</td>
         </tr>
 
         <tr>
-          <td><code>data-variant</code></td>
-          <td>
-            Supports <code>secondary</code>,
-            <code>success</code>,
-            <code>warning</code>, and
-            <code>danger</code>.
-          </td>
+          <td><code>data-variant="secondary"</code></td>
+          <td><code>&lt;span&gt;</code></td>
+          <td>Displays the secondary badge variant.</td>
         </tr>
 
         <tr>
-          <td><code>outline</code></td>
-          <td>Applies the outline style.</td>
+          <td><code>data-variant="success"</code></td>
+          <td><code>&lt;span&gt;</code></td>
+          <td>Displays the success badge variant.</td>
         </tr>
 
         <tr>
-          <td><code>small</code></td>
-          <td>Applies the small size.</td>
+          <td><code>data-variant="warning"</code></td>
+          <td><code>&lt;span&gt;</code></td>
+          <td>Displays the warning badge variant.</td>
         </tr>
 
         <tr>
-          <td><code>large</code></td>
-          <td>Applies the large size.</td>
+          <td><code>data-variant="danger"</code></td>
+          <td><code>&lt;span&gt;</code></td>
+          <td>Displays the danger badge variant.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-style="outline"</code></td>
+          <td><code>&lt;span&gt;</code></td>
+          <td>Displays the outline badge style.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="sm"</code></td>
+          <td><code>&lt;span&gt;</code></td>
+          <td>Displays a small badge.</td>
+        </tr>
+
+        <tr>
+          <td><code>data-size="lg"</code></td>
+          <td><code>&lt;span&gt;</code></td>
+          <td>Displays a large badge.</td>
         </tr>
       </tbody>
     </table>
